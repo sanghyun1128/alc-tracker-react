@@ -1,7 +1,7 @@
-import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
   {
@@ -18,7 +18,7 @@ export default [
       'react/jsx-props-no-spreading': 'warn',
       'react/destructuring-assignment': 'warn',
       '@typescript-eslint/no-unused-expressions': 'warn',
-      '@typescript-eslint/naming-convention': 'warn',
+      '@typescript-eslint/naming-convention': ['warn', { selector: 'variable', format: ['camelCase', 'UPPER_CASE'] }],
       'react/require-default-props': 'warn',
     },
     settings: {
