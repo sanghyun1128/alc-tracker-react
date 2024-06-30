@@ -9,7 +9,7 @@ import { lightTheme, darkTheme } from '../themes';
  * Detects system default color scheme and stores it in the local storage.
  * Stored value is updated when mode changed.
  *
- * @returns Current mode in `DefaultTheme` and a function that can change its state.
+ * @returns [theme, toggleTheme] - theme is the current theme object, toggleTheme is a function to toggle the theme.
  */
 export const useTheme = (): [DefaultTheme, () => void] => {
   const getSystemDefaultMode = (): string =>
