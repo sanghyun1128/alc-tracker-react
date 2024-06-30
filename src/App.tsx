@@ -12,7 +12,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegisterPage from './pages/RegisterPage';
 
 function App() {
-  const theme = useTheme();
+  const [theme] = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
