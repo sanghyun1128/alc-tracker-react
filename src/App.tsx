@@ -10,12 +10,14 @@ import MainPage from './pages/MainPage';
 import MyPage from './pages/MyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RegisterPage from './pages/RegisterPage';
+import GlobalStyle from './themes/GlobalStyle';
 
 function App() {
   const [theme] = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<IntroPage />} />
         <Route path="/main" element={<MainPage />} />
