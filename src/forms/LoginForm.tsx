@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
@@ -34,17 +34,39 @@ const Form = styled.form`
   }
 `;
 
+const ToggleButton = styled.button`
+  grid-column: 5 / 6;
+  grid-row: 4 / 5;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: ${props => props.theme.colors.primary};
+`;
+
 interface LoginFormProps {
   theme: DefaultTheme;
 }
 
 export default function LoginForm({ theme }: LoginFormProps) {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  };
+
   return (
     <Form theme={theme}>
       <InformationLabel text="Email" gridcolumn="1 / 6" gridrow="1 / 2" />
       <InformationInput type="email" gridcolumn="1 / 6" gridrow="2 / 3" />
       <InformationLabel text="Password" gridcolumn="1 / 6" gridrow="3 / 4" />
-      <InformationInput type="password" gridcolumn="1 / 6" gridrow="4 / 5" />
+      <InformationInput
+        type={showPassword ? 'text' : 'password'}
+        gridcolumn="1 / 6"
+        gridrow="4 / 5"
+      />
+      <ToggleButton type="button" onClick={togglePasswordVisibility}>
+        {showPassword ? 'Hide' : 'Show'}
+      </ToggleButton>
       <SubmitButton text="Log In" gridcolumn="2 / 5" gridrow="5 / 6" />
     </Form>
   );
