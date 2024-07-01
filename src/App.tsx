@@ -10,7 +10,7 @@ import MainPage from './pages/MainPage';
 import MyPage from './pages/MyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RegisterPage from './pages/RegisterPage';
-import GlobalStyle from './themes/GlobalStyle';
+import GlobalStyle from './styles/GlobalStyle';
 
 function App() {
   const [theme] = useTheme();
