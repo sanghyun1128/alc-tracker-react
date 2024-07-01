@@ -4,12 +4,9 @@ import styled from 'styled-components';
 
 import ButtonStyle from '../styles/ButtonStyle';
 
-const Button = styled(ButtonStyle)<{
-  gridcolumn: string;
-  gridrow: string;
-}>`
-  grid-column: ${props => props.gridcolumn};
-  grid-row: ${props => props.gridrow};
+const Button = styled(ButtonStyle)<{ $gridColumn: string; $gridRow: string }>`
+  grid-column: ${props => props.$gridColumn};
+  grid-row: ${props => props.$gridRow};
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.textDark};
 
@@ -25,17 +22,17 @@ const Button = styled(ButtonStyle)<{
 
 interface SubmitButtonProps {
   text: string;
-  gridcolumn: string;
-  gridrow: string;
+  gridColumn: string;
+  gridRow: string;
 }
 
 export default function SubmitButton({
   text,
-  gridcolumn,
-  gridrow,
+  gridColumn,
+  gridRow,
 }: SubmitButtonProps) {
   return (
-    <Button type="submit" gridcolumn={gridcolumn} gridrow={gridrow}>
+    <Button type="submit" $gridColumn={gridColumn} $gridRow={gridRow}>
       {text}
     </Button>
   );

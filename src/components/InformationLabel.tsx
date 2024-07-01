@@ -3,11 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Label = styled.label<{
-  gridcolumn: string;
-  gridrow: string;
+  $gridColumn: string;
+  $gridRow: string;
 }>`
-  grid-column: ${props => props.gridcolumn};
-  grid-row: ${props => props.gridrow};
+  grid-column: ${props => props.$gridColumn};
+  grid-row: ${props => props.$gridRow};
   font-size: 1.5rem;
   font-weight: bold;
   font-family: inherit;
@@ -16,20 +16,20 @@ const Label = styled.label<{
 
 interface InformationLabelProps {
   text: string;
-  gridcolumn: string;
-  gridrow: string;
+  gridColumn: string;
+  gridRow: string;
 }
 
 export default function InformationLabel({
   text,
-  gridcolumn,
-  gridrow,
+  gridColumn,
+  gridRow,
 }: InformationLabelProps) {
   return (
     <Label
       htmlFor={text.toLowerCase()}
-      gridcolumn={gridcolumn}
-      gridrow={gridrow}>
+      $gridColumn={gridColumn}
+      $gridRow={gridRow}>
       {text}
     </Label>
   );

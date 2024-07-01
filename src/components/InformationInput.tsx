@@ -3,11 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Input = styled.input<{
-  gridcolumn: string;
-  gridrow: string;
+  $gridColumn: string;
+  $gridRow: string;
+  $isError: boolean;
 }>`
-  grid-column: ${props => props.gridcolumn};
-  grid-row: ${props => props.gridrow};
+  grid-column: ${props => props.$gridColumn};
+  grid-row: ${props => props.$gridRow};
   padding: 0.5rem;
   margin: 0.5rem;
   border: 0px;
@@ -23,26 +24,37 @@ const Input = styled.input<{
     transition: border-bottom 0.8s;
     border-bottom: 3px solid ${props => props.theme.colors.secondaryOn};
   }
+
+  ${props => props.$isError && `border-bottom: 3px solid red`}
 `;
 
 interface InformationInputProps {
   type: string;
-  gridcolumn: string;
-  gridrow: string;
+  maxLength: number;
+  gridColumn: string;
+  gridRow: string;
+  isError: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function InformationInput({
   type,
-  gridcolumn,
-  gridrow,
+  maxLength,
+  gridColumn,
+  gridRow,
+  isError,
+  onChange,
 }: InformationInputProps) {
   return (
     <Input
       id={type}
       type={type}
       placeholder={`Please enter your ${type}`}
-      gridcolumn={gridcolumn}
-      gridrow={gridrow}
+      maxLength={maxLength}
+      $gridColumn={gridColumn}
+      $gridRow={gridRow}
+      $isError={isError}
+      onChange={onChange}
     />
   );
 }
