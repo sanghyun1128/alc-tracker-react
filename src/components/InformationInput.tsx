@@ -1,6 +1,8 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { shake } from '../animations/basicAnimations';
 
 const Input = styled.input<{
   $gridColumn: string;
@@ -12,20 +14,26 @@ const Input = styled.input<{
   padding: 0.5rem;
   margin: 0.5rem;
   border: 0px;
-  border-bottom: 3px solid ${props => props.theme.colors.secondary};
+  border-bottom: ${({ $isError }) =>
+    $isError
+      ? css`3px solid ${props => props.theme.colors.warning}`
+      : css`3px solid ${props => props.theme.colors.secondary}`};
   background-color: transparent;
   outline: none;
   font-size: 1rem;
   font-weight: bold;
   font-family: inherit;
   color: ${props => props.theme.colors.textLight};
+  animation: ${({ $isError }) =>
+    $isError &&
+    css`
+      ${shake} 1s
+    `};
 
   &:focus {
     transition: border-bottom 0.8s;
     border-bottom: 3px solid ${props => props.theme.colors.secondaryOn};
   }
-
-  ${props => props.$isError && `border-bottom: 3px solid red`}
 `;
 
 interface InformationInputProps {
