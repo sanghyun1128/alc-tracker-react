@@ -13,7 +13,9 @@ import { lightTheme, darkTheme } from '../themes';
  */
 export const useTheme = (): [DefaultTheme, () => void] => {
   const getSystemDefaultMode = (): string =>
-    window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    window.matchMedia('(prefers-color-scheme: light)').matches
+      ? 'light'
+      : 'dark';
 
   const [themeMode, setThemeMode] = useState<string>(getSystemDefaultMode);
   const [theme, setTheme] = useState<DefaultTheme>(lightTheme);
