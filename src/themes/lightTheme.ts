@@ -13,5 +13,6 @@ export const lightTheme: DefaultTheme = {
     secondaryOn: '#219ebc',
     textDark: '#023047',
     textLight: '#f1faee',
+    warning: '#e63946',
   },
 };
