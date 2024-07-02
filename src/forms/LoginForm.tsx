@@ -24,6 +24,10 @@ const Form = styled.form`
 
   animation: ${fadeInUp} 1.3s;
 
+  ${deviceSizes.abnormal} {
+    width: 250px;
+    padding: 20px 20px 0px 20px;
+  }
   ${deviceSizes.small} {
     width: 250px;
     padding: 20px 20px 0px 20px;
