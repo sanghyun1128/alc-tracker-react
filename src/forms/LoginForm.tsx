@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
 import { fadeInUp } from '../animations/basicAnimations';
@@ -48,6 +49,8 @@ export default function LoginForm({ theme }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isEmailError, setIsEmailError] = useState<boolean>(false);
   const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
+  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setShowPassword(prevShowPassword => !prevShowPassword);
   };
@@ -131,7 +134,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         gridColumn="1 / 3"
         gridRow="6 / 7"
         justifyContent="flex-start"
-        onClick={togglePasswordVisibility}
+        onClick={() => navigate('/forgot-password')}
       />
       <TextButton
         text="Register"
@@ -140,7 +143,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         gridColumn="5 / 6"
         gridRow="6 / 7"
         justifyContent="flex-end"
-        onClick={togglePasswordVisibility}
+        onClick={() => navigate('/register')}
       />
       <SubmitButton text="Log In" gridColumn="2 / 5" gridRow="5 / 6" />
     </Form>
