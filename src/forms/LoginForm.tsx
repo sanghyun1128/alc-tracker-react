@@ -15,10 +15,10 @@ import { passwordValidation } from '../validation/passwordValidation';
 const Form = styled.form`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr) 1.5fr 1fr;
   align-items: center;
   justify-items: stretch;
-  height: 400px;
+  height: 450px;
   border-radius: ${props => props.theme.formBorderRadius};
   background-color: ${props => props.theme.colors.formBackground};
 
@@ -144,7 +144,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         text="Register"
         textSize=""
         textColor={theme.colors.secondary}
-        gridColumn="5 / 6"
+        gridColumn="4 / 6"
         gridRow="6 / 7"
         justifyContent="flex-end"
         onClick={() => navigate('/register')}
