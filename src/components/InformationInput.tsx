@@ -38,6 +38,7 @@ const Input = styled.input<{
 
 interface InformationInputProps {
   type: string;
+  placeholder: string;
   maxLength: number;
   gridColumn: string;
   gridRow: string;
@@ -47,6 +48,7 @@ interface InformationInputProps {
 
 export default function InformationInput({
   type,
+  placeholder,
   maxLength,
   gridColumn,
   gridRow,
@@ -57,7 +59,7 @@ export default function InformationInput({
     <Input
       id={type}
       type={type}
-      placeholder={`Please enter your ${type}`}
+      placeholder={placeholder}
       maxLength={maxLength}
       $gridColumn={gridColumn}
       $gridRow={gridRow}
