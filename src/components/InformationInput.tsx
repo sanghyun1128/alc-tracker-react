@@ -27,7 +27,7 @@ const Input = styled.input<{
   animation: ${({ $isError }) =>
     $isError &&
     css`
-      ${shake} 1s
+      ${shake} 1.3s
     `};
 
   &:focus {

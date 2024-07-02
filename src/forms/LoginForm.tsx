@@ -20,7 +20,7 @@ const Form = styled.form`
   border-radius: ${props => props.theme.formBorderRadius};
   background-color: ${props => props.theme.colors.formBackground};
 
-  animation: ${fadeInUp} 1.5s;
+  animation: ${fadeInUp} 1.3s;
 
   ${deviceSizes.small} {
     width: 250px;
@@ -61,6 +61,16 @@ export default function LoginForm({ theme }: LoginFormProps) {
     setShowPassword(prevShowPassword => !prevShowPassword);
   };
 
+  const emailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+    setIsEmailError(false);
+  };
+
+  const passwordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    setIsPasswordError(false);
+  };
+
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (emailValidation(email)) {
@@ -89,7 +99,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         gridColumn="1 / 6"
         gridRow="2 / 3"
         isError={isEmailError}
-        onChange={event => setEmail(event.target.value)}
+        onChange={event => emailChange(event)}
       />
       <InformationLabel text="Password" gridColumn="1 / 6" gridRow="3 / 4" />
       <InformationInput
@@ -98,7 +108,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         gridColumn="1 / 6"
         gridRow="4 / 5"
         isError={isPasswordError}
-        onChange={event => setPassword(event.target.value)}
+        onChange={event => passwordChange(event)}
       />
       <ToggleButton type="button" onClick={togglePasswordVisibility}>
         {showPassword ? 'Hide' : 'Show'}
