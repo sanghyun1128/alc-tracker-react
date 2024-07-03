@@ -3,43 +3,21 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { fadeInUp } from '../animations/basicAnimations';
+import { fadeInBottomToCenter } from '../animations/basicAnimations';
 import InformationInput from '../components/InformationInput';
 import InformationLabel from '../components/InformationLabel';
 import SubmitButton from '../components/SubmitButton';
 import TextButton from '../components/TextButton';
-import { deviceSizes } from '../const/deviceSizes';
+import FormStyle from '../styles/FormStyle';
 import { emailValidation } from '../validation';
 import { passwordValidation } from '../validation/passwordValidation';
 
-const Form = styled.form`
-  display: grid;
+const Form = styled(FormStyle)`
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr) 1.5fr 1fr;
-  align-items: center;
-  justify-items: stretch;
   height: 450px;
-  border-radius: ${props => props.theme.formBorderRadius};
-  background-color: ${props => props.theme.colors.formBackground};
 
-  animation: ${fadeInUp} 1.3s;
-
-  ${deviceSizes.abnormal} {
-    width: 250px;
-    padding: 20px 20px 0px 20px;
-  }
-  ${deviceSizes.small} {
-    width: 250px;
-    padding: 20px 20px 0px 20px;
-  }
-  ${deviceSizes.medium} {
-    width: 400px;
-    padding: 50px 50px 0px 50px;
-  }
-  ${deviceSizes.large} {
-    width: 500px;
-    padding: 50px 50px 0px 50px;
-  }
+  animation: ${fadeInBottomToCenter} 1.3s;
 `;
 
 interface LoginFormProps {
