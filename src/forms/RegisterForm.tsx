@@ -5,7 +5,6 @@ import styled, { DefaultTheme } from 'styled-components';
 
 import { fadeInRightToCenter } from '../animations/basicAnimations';
 import InformationInput from '../components/InformationInput';
-import InformationLabel from '../components/InformationLabel';
 import SubmitButton from '../components/SubmitButton';
 import TextButton from '../components/TextButton';
 import FormStyle from '../styles/FormStyle';
@@ -27,100 +26,97 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
 
   return (
     <Form theme={theme}>
-      <InformationLabel
-        text="Name"
-        textSize="1rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 3"
-        gridRow="1 / 2"
-      />
       <InformationInput
         type="text"
         placeholder="Jim Murray"
         maxLength={254}
-        gridColumn="3 / 7"
+        gridColumn="1 / 7"
         gridRow="1 / 2"
         isError={false}
+        labelText="Name"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
         onChange={() => console.log('Email changed')}
-      />
-      <InformationLabel
-        text="Email"
-        textSize="1rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 3"
-        gridRow="2 / 3"
       />
       <InformationInput
         type="email"
-        placeholder="abcd1234@mail.com"
+        placeholder="abcd1234@email.com"
         maxLength={254}
-        gridColumn="3 / 7"
+        gridColumn="1 / 7"
         gridRow="2 / 3"
         isError={false}
+        labelText="Email"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
         onChange={() => console.log('Email changed')}
       />
-      <InformationLabel
-        text="Confirm Email"
-        textSize="1rem"
+      <TextButton
+        text="Confirm"
+        textSize=""
         textColor={theme.colors.primary}
-        gridColumn="1 / 3"
-        gridRow="3 / 4"
+        gridColumn="6 / 7"
+        gridRow="2 / 3"
+        justifyContent="center"
+        onClick={() => console.log('hide')}
       />
       <InformationInput
         type="text"
         placeholder="99999"
         maxLength={254}
-        gridColumn="3 / 7"
+        gridColumn="1 / 7"
         gridRow="3 / 4"
         isError={false}
+        labelText="Confirm Email"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
         onChange={() => console.log('Email changed')}
-      />
-      <InformationLabel
-        text="Birth"
-        textSize="1rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 3"
-        gridRow="4 / 5"
       />
       <InformationInput
         type="date"
-        placeholder="abcd1234@mail.com"
+        placeholder=""
         maxLength={254}
-        gridColumn="3 / 7"
+        gridColumn="1 / 7"
         gridRow="4 / 5"
         isError={false}
+        labelText="Birth"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
         onChange={() => console.log('Email changed')}
-      />
-      <InformationLabel
-        text="Gender"
-        textSize="1rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 3"
-        gridRow="5 / 6"
       />
       <InformationInput
         type="radio"
         placeholder=""
         maxLength={254}
-        gridColumn="3 / 7"
+        gridColumn="1 / 7"
         gridRow="5 / 6"
         isError={false}
+        labelText="Gender"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
         onChange={() => console.log('Email changed')}
       />
-      <InformationLabel
-        text="Password"
-        textSize="1rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 3"
-        gridRow="6 / 7"
-      />
       <InformationInput
-        type="text"
+        type="password"
         placeholder=". . . . . . . . . ."
         maxLength={254}
-        gridColumn="3 / 7"
+        gridColumn="1 / 7"
         gridRow="6 / 7"
         isError={false}
+        labelText="Password"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
+        onChange={() => console.log('Email changed')}
+      />
+      <InformationInput
+        type="password"
+        placeholder=". . . . . . . . . ."
+        maxLength={254}
+        gridColumn="1 / 7"
+        gridRow="7 / 8"
+        isError={false}
+        labelText="Confirm Password"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
         onChange={() => console.log('Email changed')}
       />
       <TextButton
@@ -131,22 +127,6 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         gridRow="6 / 7"
         justifyContent="center"
         onClick={() => console.log('hide')}
-      />
-      <InformationLabel
-        text="re-enter Password"
-        textSize="1rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 3"
-        gridRow="7 / 8"
-      />
-      <InformationInput
-        type="text"
-        placeholder=". . . . . . . . . ."
-        maxLength={254}
-        gridColumn="3 / 7"
-        gridRow="7 / 8"
-        isError={false}
-        onChange={() => console.log('Email changed')}
       />
       <TextButton
         text="hide"

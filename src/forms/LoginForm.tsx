@@ -5,7 +5,6 @@ import { DefaultTheme, styled } from 'styled-components';
 
 import { fadeInBottomToCenter } from '../animations/basicAnimations';
 import InformationInput from '../components/InformationInput';
-import InformationLabel from '../components/InformationLabel';
 import SubmitButton from '../components/SubmitButton';
 import TextButton from '../components/TextButton';
 import FormStyle from '../styles/FormStyle';
@@ -14,7 +13,7 @@ import { passwordValidation } from '../validation/passwordValidation';
 
 const Form = styled(FormStyle)`
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr) 1.5fr 1fr;
+  grid-template-rows: repeat(2, 1.5fr) repeat(2, 1fr);
   height: 450px;
 
   animation: ${fadeInBottomToCenter} 1.3s;
@@ -68,44 +67,36 @@ export default function LoginForm({ theme }: LoginFormProps) {
 
   return (
     <Form theme={theme} onSubmit={event => submitForm(event)}>
-      <InformationLabel
-        text="Email"
-        textSize="1.5rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 6"
-        gridRow="1 / 2"
-      />
       <InformationInput
         type="email"
         placeholder="abcd1234@email.com"
         maxLength={254}
         gridColumn="1 / 6"
-        gridRow="2 / 3"
+        gridRow="1 / 2"
         isError={isEmailError}
-        onChange={event => emailChange(event)}
-      />
-      <InformationLabel
-        text="Password"
-        textSize="1.5rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 6"
-        gridRow="3 / 4"
+        labelText="Email"
+        labelSize="1.5rem"
+        labelColor={theme.colors.primary}
+        onChange={emailChange}
       />
       <InformationInput
         type={showPassword ? 'text' : 'password'}
         placeholder=". . . . . . . . . ."
         maxLength={20}
         gridColumn="1 / 6"
-        gridRow="4 / 5"
+        gridRow="2 / 3"
         isError={isPasswordError}
-        onChange={event => passwordChange(event)}
+        labelText="Password"
+        labelSize="1.5rem"
+        labelColor={theme.colors.primary}
+        onChange={passwordChange}
       />
       <TextButton
         text={showPassword ? 'Hide' : 'Show'}
         textSize=""
         textColor={theme.colors.primary}
         gridColumn="5 / 6"
-        gridRow="4 / 5"
+        gridRow="2 / 3"
         justifyContent="center"
         onClick={togglePasswordVisibility}
       />
@@ -114,7 +105,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         textSize=""
         textColor={theme.colors.secondary}
         gridColumn="1 / 3"
-        gridRow="6 / 7"
+        gridRow="4 / 5"
         justifyContent="flex-start"
         onClick={() => navigate('/forgot-password')}
       />
@@ -123,11 +114,11 @@ export default function LoginForm({ theme }: LoginFormProps) {
         textSize=""
         textColor={theme.colors.secondary}
         gridColumn="4 / 6"
-        gridRow="6 / 7"
+        gridRow="4 / 5"
         justifyContent="flex-end"
         onClick={() => navigate('/register')}
       />
-      <SubmitButton text="Log In" gridColumn="2 / 5" gridRow="5 / 6" />
+      <SubmitButton text="Log In" gridColumn="2 / 5" gridRow="3 / 4" />
     </Form>
   );
 }
