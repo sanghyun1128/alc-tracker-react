@@ -18,11 +18,11 @@ const FormStyle = styled.form`
     padding: 20px 20px 0px 20px;
   }
   ${deviceSizes.medium} {
-    width: 400px;
+    width: 500px;
     padding: 50px 50px 0px 50px;
   }
   ${deviceSizes.large} {
-    width: 500px;
+    width: 700px;
     padding: 50px 50px 0px 50px;
   }
 `;
