@@ -4,13 +4,26 @@ import styled, { css } from 'styled-components';
 
 import { shake } from '../animations/basicAnimations';
 
-const Input = styled.input<{
-  $gridColumn: string;
-  $gridRow: string;
-  $isError: boolean;
-}>`
+const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+  align-items: baseline;
   grid-column: ${props => props.$gridColumn};
   grid-row: ${props => props.$gridRow};
+`;
+
+const Label = styled.label`
+  flex: 1 1 0;
+  font-weight: bold;
+  font-family: inherit;
+`;
+
+const Input = styled.input<{
+  $isError: boolean;
+}>`
+  flex: 2 1 0;
   padding: 0.5rem;
   margin: 0.5rem;
   border: 0px;
@@ -43,6 +56,9 @@ interface InformationInputProps {
   gridColumn: string;
   gridRow: string;
   isError: boolean;
+  labelText: string;
+  labelSize: string;
+  labelColor: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -53,18 +69,26 @@ export default function InformationInput({
   gridColumn,
   gridRow,
   isError,
+  labelText,
+  labelSize,
+  labelColor,
   onChange,
 }: InformationInputProps) {
   return (
-    <Input
-      id={type}
-      type={type}
-      placeholder={placeholder}
-      maxLength={maxLength}
-      $gridColumn={gridColumn}
-      $gridRow={gridRow}
-      $isError={isError}
-      onChange={onChange}
-    />
+    <Container $gridColumn={gridColumn} $gridRow={gridRow}>
+      <Label
+        htmlFor={labelText.toLowerCase()}
+        style={{ fontSize: labelSize, color: labelColor }}>
+        {labelText}
+      </Label>
+      <Input
+        id={labelText.toLowerCase()}
+        type={type}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        $isError={isError}
+        onChange={onChange}
+      />
+    </Container>
   );
 }
