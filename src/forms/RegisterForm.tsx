@@ -50,7 +50,6 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(state);
 
     const isNicknameValid = nicknameValidation(state.nickname);
     const isEmailValid = emailValidation(state.email);
@@ -76,6 +75,8 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       isPasswordConfirmed
     ) {
       console.log('Form submitted');
+    } else {
+      console.log(state);
     }
   };
 
@@ -85,24 +86,30 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
     switch (id) {
       case 'nickname':
         dispatch({ type: 'SET_NICKNAME', payload: value });
+        dispatch({ type: 'SET_NICKNAME_VALID', payload: true });
         break;
       case 'email':
         dispatch({ type: 'SET_EMAIL', payload: value });
+        dispatch({ type: 'SET_EMAIL_VALID', payload: true });
         break;
       case 'confirm email':
         dispatch({ type: 'SET_CONFIRM_EMAIL', payload: value });
+        dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: true });
         break;
       case 'birth':
         dispatch({ type: 'SET_BIRTH', payload: new Date(value) });
+        dispatch({ type: 'SET_BIRTH_VALID', payload: true });
         break;
       case 'gender':
         dispatch({ type: 'SET_GENDER', payload: value });
         break;
       case 'password':
         dispatch({ type: 'SET_PASSWORD', payload: value });
+        dispatch({ type: 'SET_PASSWORD_VALID', payload: true });
         break;
       case 'confirm password':
         dispatch({ type: 'SET_CONFIRM_PASSWORD', payload: value });
+        dispatch({ type: 'SET_PASSWORD_CONFIRMED', payload: true });
         break;
       default:
         break;
@@ -114,7 +121,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         type="text"
         placeholder="Jim Murray"
-        maxLength={254}
+        maxLength={15}
         gridColumn="1 / 7"
         gridRow="1 / 2"
         isError={!state.isNicknameValid}
@@ -147,7 +154,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         type="text"
         placeholder="99999"
-        maxLength={254}
+        maxLength={5}
         gridColumn="1 / 7"
         gridRow="3 / 4"
         isError={!state.isEmailConfirmed}
@@ -159,7 +166,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         type="date"
         placeholder=""
-        maxLength={254}
+        maxLength={0}
         gridColumn="1 / 7"
         gridRow="4 / 5"
         isError={!state.isBirthValid}
@@ -171,7 +178,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         type="radio"
         placeholder=""
-        maxLength={254}
+        maxLength={0}
         gridColumn="1 / 7"
         gridRow="5 / 6"
         isError={false}
@@ -183,7 +190,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         type="password"
         placeholder=". . . . . . . . . ."
-        maxLength={254}
+        maxLength={20}
         gridColumn="1 / 7"
         gridRow="6 / 7"
         isError={!state.isPasswordValid}
@@ -195,7 +202,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         type="password"
         placeholder=". . . . . . . . . ."
-        maxLength={254}
+        maxLength={20}
         gridColumn="1 / 7"
         gridRow="7 / 8"
         isError={!state.isPasswordConfirmed}
