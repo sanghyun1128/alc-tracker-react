@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
@@ -7,7 +7,9 @@ import { fadeInRightToCenter } from '../animations/basicAnimations';
 import InformationInput from '../components/InformationInput';
 import SubmitButton from '../components/SubmitButton';
 import TextButton from '../components/TextButton';
+import { registerFormReducer } from '../reducers/registerFormReducer';
 import FormStyle from '../styles/FormStyle';
+import { RegisterFormState } from '../types/registerForm';
 
 const Form = styled(FormStyle)`
   grid-template-columns: repeat(6, 1fr);
@@ -21,11 +23,62 @@ interface RegisterFormProps {
   theme: DefaultTheme;
 }
 
+const initialState: RegisterFormState = {
+  name: '',
+  email: '',
+  birth: new Date(),
+  gender: '',
+  confirmEmail: '',
+  password: '',
+  confirmPassword: '',
+  isNameValid: false,
+  isEmailValid: false,
+  isEmailConfirmed: false,
+  isPasswordValid: false,
+  isPasswordConfirmed: false,
+};
+
 export default function RegisterForm({ theme }: RegisterFormProps) {
+  const [state, dispatch] = useReducer(registerFormReducer, initialState);
   const navigate = useNavigate();
 
+  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(state);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target;
+
+    switch (id) {
+      case 'name':
+        dispatch({ type: 'SET_NAME', payload: value });
+        break;
+      case 'email':
+        dispatch({ type: 'SET_EMAIL', payload: value });
+        break;
+      case 'confirm email':
+        dispatch({ type: 'SET_CONFIRM_EMAIL', payload: value });
+        break;
+      case 'birth':
+        dispatch({ type: 'SET_BIRTH', payload: new Date(value) });
+        break;
+      case 'gender':
+        dispatch({ type: 'SET_GENDER', payload: value });
+        break;
+      case 'password':
+        dispatch({ type: 'SET_PASSWORD', payload: value });
+        break;
+      case 'confirm password':
+        dispatch({ type: 'SET_CONFIRM_PASSWORD', payload: value });
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
-    <Form theme={theme}>
+    <Form onSubmit={event => submitForm(event)}>
       <InformationInput
         type="text"
         placeholder="Jim Murray"
@@ -36,7 +89,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Name"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        onChange={() => console.log('Email changed')}
+        onChange={handleInputChange}
       />
       <InformationInput
         type="email"
@@ -48,7 +101,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Email"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        onChange={() => console.log('Email changed')}
+        onChange={handleInputChange}
       />
       <TextButton
         text="Confirm"
@@ -69,7 +122,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Confirm Email"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        onChange={() => console.log('Email changed')}
+        onChange={handleInputChange}
       />
       <InformationInput
         type="date"
@@ -81,7 +134,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Birth"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        onChange={() => console.log('Email changed')}
+        onChange={handleInputChange}
       />
       <InformationInput
         type="radio"
@@ -93,7 +146,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Gender"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        onChange={() => console.log('Email changed')}
+        onChange={handleInputChange}
       />
       <InformationInput
         type="password"
@@ -105,7 +158,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Password"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        onChange={() => console.log('Email changed')}
+        onChange={handleInputChange}
       />
       <InformationInput
         type="password"
@@ -117,7 +170,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Confirm Password"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        onChange={() => console.log('Email changed')}
+        onChange={handleInputChange}
       />
       <TextButton
         text="hide"
