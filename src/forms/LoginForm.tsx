@@ -66,7 +66,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
   };
 
   return (
-    <Form theme={theme} onSubmit={event => submitForm(event)}>
+    <Form onSubmit={event => submitForm(event)}>
       <InformationInput
         type="email"
         placeholder="abcd1234@email.com"
