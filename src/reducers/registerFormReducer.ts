@@ -5,7 +5,7 @@ export const registerFormReducer = (
   action: RegisterFormAction,
 ) => {
   switch (action.type) {
-    case 'SET_NAME':
+    case 'SET_NICKNAME':
       return { ...state, name: action.payload };
     case 'SET_EMAIL':
       return { ...state, email: action.payload };

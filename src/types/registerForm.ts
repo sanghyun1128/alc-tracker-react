@@ -1,5 +1,5 @@
 export type RegisterFormState = {
-  name: string;
+  nickname: string;
   email: string;
   confirmEmail: string;
   birth: Date;
@@ -7,7 +7,7 @@ export type RegisterFormState = {
   password: string;
   confirmPassword: string;
 
-  isNameValid: boolean;
+  isNicknameValid: boolean;
   isEmailValid: boolean;
   isEmailConfirmed: boolean;
   isPasswordValid: boolean;
@@ -15,7 +15,7 @@ export type RegisterFormState = {
 };
 
 export type RegisterFormAction =
-  | { type: 'SET_NAME'; payload: string }
+  | { type: 'SET_NICKNAME'; payload: string }
   | { type: 'SET_EMAIL'; payload: string }
   | { type: 'SET_CONFIRM_EMAIL'; payload: string }
   | { type: 'SET_BIRTH'; payload: Date }
