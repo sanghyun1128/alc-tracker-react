@@ -36,11 +36,11 @@ const initialState: RegisterFormState = {
   confirmEmail: '',
   password: '',
   confirmPassword: '',
-  isNicknameValid: false,
-  isEmailValid: false,
-  isEmailConfirmed: false,
-  isPasswordValid: false,
-  isPasswordConfirmed: false,
+  isNicknameValid: true,
+  isEmailValid: true,
+  isEmailConfirmed: true,
+  isPasswordValid: true,
+  isPasswordConfirmed: true,
 };
 
 export default function RegisterForm({ theme }: RegisterFormProps) {
@@ -51,19 +51,21 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
     event.preventDefault();
     console.log(state);
 
-    const isNameValid = nicknameValidation(state.nickname);
+    const isNicknameValid = nicknameValidation(state.nickname);
     const isEmailValid = emailValidation(state.email);
     //TODO: Add real email confirmation logic
     const isEmailConfirmed = state.confirmEmail === '99999';
     const isPasswordValid = passwordValidation(state.password);
     const isPasswordConfirmed = state.password === state.confirmPassword;
 
-    dispatch({ type: 'SET_NAME_VALID', payload: isNameValid });
+    dispatch({ type: 'SET_NICKNAME_VALID', payload: isNicknameValid });
     dispatch({ type: 'SET_EMAIL_VALID', payload: isEmailValid });
     dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: isEmailConfirmed });
     dispatch({ type: 'SET_PASSWORD_VALID', payload: isPasswordValid });
     dispatch({ type: 'SET_PASSWORD_CONFIRMED', payload: isPasswordConfirmed });
   };
+
+  const handleInputError = (id: string) => {};
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;

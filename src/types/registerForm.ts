@@ -22,7 +22,7 @@ export type RegisterFormAction =
   | { type: 'SET_GENDER'; payload: string }
   | { type: 'SET_PASSWORD'; payload: string }
   | { type: 'SET_CONFIRM_PASSWORD'; payload: string }
-  | { type: 'SET_NAME_VALID'; payload: boolean }
+  | { type: 'SET_NICKNAME_VALID'; payload: boolean }
   | { type: 'SET_EMAIL_VALID'; payload: boolean }
   | { type: 'SET_EMAIL_CONFIRMED'; payload: boolean }
   | { type: 'SET_PASSWORD_VALID'; payload: boolean }
