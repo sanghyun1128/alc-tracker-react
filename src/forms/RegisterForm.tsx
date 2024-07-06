@@ -10,6 +10,11 @@ import TextButton from '../components/TextButton';
 import { registerFormReducer } from '../reducers/registerFormReducer';
 import FormStyle from '../styles/FormStyle';
 import { RegisterFormState } from '../types/registerForm';
+import {
+  emailValidation,
+  passwordValidation,
+  nicknameValidation,
+} from '../validation';
 
 const Form = styled(FormStyle)`
   grid-template-columns: repeat(6, 1fr);
@@ -24,14 +29,14 @@ interface RegisterFormProps {
 }
 
 const initialState: RegisterFormState = {
-  name: '',
+  nickname: '',
   email: '',
   birth: new Date(),
   gender: '',
   confirmEmail: '',
   password: '',
   confirmPassword: '',
-  isNameValid: false,
+  isNicknameValid: false,
   isEmailValid: false,
   isEmailConfirmed: false,
   isPasswordValid: false,
@@ -45,14 +50,27 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(state);
+
+    const isNameValid = nicknameValidation(state.nickname);
+    const isEmailValid = emailValidation(state.email);
+    //TODO: Add real email confirmation logic
+    const isEmailConfirmed = state.confirmEmail === '99999';
+    const isPasswordValid = passwordValidation(state.password);
+    const isPasswordConfirmed = state.password === state.confirmPassword;
+
+    dispatch({ type: 'SET_NAME_VALID', payload: isNameValid });
+    dispatch({ type: 'SET_EMAIL_VALID', payload: isEmailValid });
+    dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: isEmailConfirmed });
+    dispatch({ type: 'SET_PASSWORD_VALID', payload: isPasswordValid });
+    dispatch({ type: 'SET_PASSWORD_CONFIRMED', payload: isPasswordConfirmed });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
 
     switch (id) {
-      case 'name':
-        dispatch({ type: 'SET_NAME', payload: value });
+      case 'nickname':
+        dispatch({ type: 'SET_NICKNAME', payload: value });
         break;
       case 'email':
         dispatch({ type: 'SET_EMAIL', payload: value });
@@ -85,8 +103,8 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         maxLength={254}
         gridColumn="1 / 7"
         gridRow="1 / 2"
-        isError={false}
-        labelText="Name"
+        isError={!state.isNicknameValid}
+        labelText="Nickname"
         labelSize="1rem"
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
@@ -97,7 +115,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         maxLength={254}
         gridColumn="1 / 7"
         gridRow="2 / 3"
-        isError={false}
+        isError={!state.isEmailValid}
         labelText="Email"
         labelSize="1rem"
         labelColor={theme.colors.primary}
@@ -118,7 +136,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         maxLength={254}
         gridColumn="1 / 7"
         gridRow="3 / 4"
-        isError={false}
+        isError={!state.isEmailConfirmed}
         labelText="Confirm Email"
         labelSize="1rem"
         labelColor={theme.colors.primary}
@@ -154,7 +172,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         maxLength={254}
         gridColumn="1 / 7"
         gridRow="6 / 7"
-        isError={false}
+        isError={!state.isPasswordValid}
         labelText="Password"
         labelSize="1rem"
         labelColor={theme.colors.primary}
@@ -166,7 +184,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         maxLength={254}
         gridColumn="1 / 7"
         gridRow="7 / 8"
-        isError={false}
+        isError={!state.isPasswordConfirmed}
         labelText="Confirm Password"
         labelSize="1rem"
         labelColor={theme.colors.primary}
