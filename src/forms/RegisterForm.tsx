@@ -31,7 +31,7 @@ interface RegisterFormProps {
 const initialState: RegisterFormState = {
   nickname: '',
   email: '',
-  birth: new Date(),
+  birth: null,
   gender: '',
   confirmEmail: '',
   password: '',
@@ -39,6 +39,7 @@ const initialState: RegisterFormState = {
   isNicknameValid: true,
   isEmailValid: true,
   isEmailConfirmed: true,
+  isBirthValid: true,
   isPasswordValid: true,
   isPasswordConfirmed: true,
 };
@@ -55,17 +56,28 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
     const isEmailValid = emailValidation(state.email);
     //TODO: Add real email confirmation logic
     const isEmailConfirmed = state.confirmEmail === '99999';
+    const isBirthValid = state.birth !== null;
     const isPasswordValid = passwordValidation(state.password);
     const isPasswordConfirmed = state.password === state.confirmPassword;
 
     dispatch({ type: 'SET_NICKNAME_VALID', payload: isNicknameValid });
     dispatch({ type: 'SET_EMAIL_VALID', payload: isEmailValid });
     dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: isEmailConfirmed });
+    dispatch({ type: 'SET_BIRTH_VALID', payload: isBirthValid });
     dispatch({ type: 'SET_PASSWORD_VALID', payload: isPasswordValid });
     dispatch({ type: 'SET_PASSWORD_CONFIRMED', payload: isPasswordConfirmed });
-  };
 
-  const handleInputError = (id: string) => {};
+    if (
+      isNicknameValid &&
+      isEmailValid &&
+      isEmailConfirmed &&
+      isBirthValid &&
+      isPasswordValid &&
+      isPasswordConfirmed
+    ) {
+      console.log('Form submitted');
+    }
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
@@ -150,7 +162,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         maxLength={254}
         gridColumn="1 / 7"
         gridRow="4 / 5"
-        isError={false}
+        isError={!state.isBirthValid}
         labelText="Birth"
         labelSize="1rem"
         labelColor={theme.colors.primary}

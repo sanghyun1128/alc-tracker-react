@@ -25,6 +25,8 @@ export const registerFormReducer = (
       return { ...state, isEmailValid: action.payload };
     case 'SET_EMAIL_CONFIRMED':
       return { ...state, isEmailConfirmed: action.payload };
+    case 'SET_BIRTH_VALID':
+      return { ...state, isBirthValid: action.payload };
     case 'SET_PASSWORD_VALID':
       return { ...state, isPasswordValid: action.payload };
     case 'SET_PASSWORD_CONFIRMED':
