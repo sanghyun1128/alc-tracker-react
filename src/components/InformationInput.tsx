@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { shake } from '../animations/basicAnimations';
+import LabelStyle from '../styles/LabelStyle';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   display: flex;
@@ -14,11 +15,7 @@ const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   grid-row: ${props => props.$gridRow};
 `;
 
-const Label = styled.label`
-  flex: 1 1 0;
-  font-weight: bold;
-  font-family: inherit;
-`;
+const Label = styled(LabelStyle)``;
 
 const Input = styled.input<{
   $isError: boolean;
