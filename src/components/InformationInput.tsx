@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { shake } from '../animations/basicAnimations';
+import InputStyle from '../styles/InputStyle';
 import LabelStyle from '../styles/LabelStyle';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
@@ -17,34 +17,7 @@ const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
 
 const Label = styled(LabelStyle)``;
 
-const Input = styled.input<{
-  $isError: boolean;
-}>`
-  flex: 2 1 0;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  border: 0px;
-  border-bottom: ${({ $isError }) =>
-    $isError
-      ? css`3px solid ${props => props.theme.colors.warning}`
-      : css`3px solid ${props => props.theme.colors.secondary}`};
-  background-color: transparent;
-  outline: none;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: inherit;
-  color: ${props => props.theme.colors.textLight};
-  animation: ${({ $isError }) =>
-    $isError &&
-    css`
-      ${shake} 1.3s
-    `};
-
-  &:focus {
-    transition: border-bottom 0.8s;
-    border-bottom: 3px solid ${props => props.theme.colors.secondaryOn};
-  }
-`;
+const Input = styled(InputStyle)``;
 
 interface InformationInputProps {
   type: string;
