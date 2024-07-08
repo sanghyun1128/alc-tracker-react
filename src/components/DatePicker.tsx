@@ -26,6 +26,7 @@ interface DatePickerProps {
   labelText: string;
   labelSize: string;
   labelColor: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function DatePicker({
@@ -35,6 +36,7 @@ export default function DatePicker({
   labelText,
   labelSize,
   labelColor,
+  onChange,
 }: DatePickerProps) {
   return (
     <Container $gridColumn={gridColumn} $gridRow={gridRow}>
@@ -43,7 +45,14 @@ export default function DatePicker({
         style={{ fontSize: labelSize, color: labelColor }}>
         {labelText}
       </Label>
-      <Input type="date" $isError={isError} />
+      <Input
+        type="date"
+        id={labelText.toLowerCase()}
+        max="2077-12-31"
+        min="1900-01-01"
+        $isError={isError}
+        onChange={onChange}
+      />
     </Container>
   );
 }
