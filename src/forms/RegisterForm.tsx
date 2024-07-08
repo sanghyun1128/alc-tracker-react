@@ -32,7 +32,7 @@ interface RegisterFormProps {
 const initialState: RegisterFormState = {
   nickname: '',
   email: '',
-  birth: null,
+  birth: new Date('2001-01-01'),
   gender: '',
   confirmEmail: '',
   password: '',
@@ -86,15 +86,15 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
 
     switch (id) {
       case 'nickname':
-        dispatch({ type: 'SET_NICKNAME', payload: value });
+        dispatch({ type: 'SET_NICKNAME', payload: value.trim() });
         dispatch({ type: 'SET_NICKNAME_VALID', payload: true });
         break;
       case 'email':
-        dispatch({ type: 'SET_EMAIL', payload: value });
+        dispatch({ type: 'SET_EMAIL', payload: value.trim() });
         dispatch({ type: 'SET_EMAIL_VALID', payload: true });
         break;
       case 'confirm email':
-        dispatch({ type: 'SET_CONFIRM_EMAIL', payload: value });
+        dispatch({ type: 'SET_CONFIRM_EMAIL', payload: value.trim() });
         dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: true });
         break;
       case 'birth':
@@ -183,6 +183,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Birth"
         labelSize="1rem"
         labelColor={theme.colors.primary}
+        onChange={handleInputChange}
       />
       <InformationInput
         type="radio"
