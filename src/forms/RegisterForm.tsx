@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
 
 import { fadeInRightToCenter } from '../animations/basicAnimations';
+import DatePicker from '../components/DatePicker';
 import InformationInput from '../components/InformationInput';
 import SubmitButton from '../components/SubmitButton';
 import TextButton from '../components/TextButton';
@@ -163,7 +164,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
-      <InformationInput
+      {/* <InformationInput
         type="date"
         placeholder=""
         maxLength={0}
@@ -174,6 +175,14 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelSize="1rem"
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
+      /> */}
+      <DatePicker
+        gridColumn="1 / 7"
+        gridRow="4 / 5"
+        isError={!state.isBirthValid}
+        labelText="Birth"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
       />
       <InformationInput
         type="radio"
