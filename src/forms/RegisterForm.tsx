@@ -120,36 +120,27 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
   return (
     <Form onSubmit={event => submitForm(event)}>
       <InformationInput
-        placeholder="Jim Murray"
+        placeholder="Nickname"
         maxLength={15}
         gridColumn="1 / 7"
         gridRow="1 / 2"
         isError={!state.isNicknameValid}
-        labelText="Nickname"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
       <InformationInput
-        placeholder="abcd1234@email.com"
+        placeholder="Email"
         maxLength={254}
         gridColumn="1 / 7"
         gridRow="2 / 3"
         isError={!state.isEmailValid}
-        labelText="Email"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
       <InformationInput
-        placeholder="99999"
+        placeholder="Email confirmation code"
         maxLength={5}
         gridColumn="1 / 7"
         gridRow="3 / 4"
         isError={!state.isEmailConfirmed}
-        labelText="Confirm Email"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
       <DatePicker
@@ -162,37 +153,28 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         onChange={handleInputChange}
       />
       <InformationInput
-        placeholder=""
+        placeholder="Gender"
         maxLength={0}
         gridColumn="1 / 7"
         gridRow="5 / 6"
         isError={false}
-        labelText="Gender"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
       <InformationInput
-        placeholder=". . . . . . . . . ."
+        placeholder="Password"
         maxLength={20}
         gridColumn="1 / 7"
         gridRow="6 / 7"
         isError={!state.isPasswordValid}
-        labelText="Password"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
         onChange={handleInputChange}
         hideShowButton={true}
       />
       <InformationInput
-        placeholder=". . . . . . . . . ."
+        placeholder="Re enter password"
         maxLength={20}
         gridColumn="1 / 7"
         gridRow="7 / 8"
         isError={!state.isPasswordConfirmed}
-        labelText="Confirm Password"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
         onChange={handleInputChange}
         hideShowButton={true}
       />

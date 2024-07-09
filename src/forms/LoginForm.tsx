@@ -63,25 +63,19 @@ export default function LoginForm({ theme }: LoginFormProps) {
   return (
     <Form onSubmit={event => submitForm(event)}>
       <InformationInput
-        placeholder="abcd1234@email.com"
+        placeholder="Email"
         maxLength={254}
         gridColumn="1 / 6"
         gridRow="1 / 2"
         isError={isEmailError}
-        labelText="Email"
-        labelSize="1.5rem"
-        labelColor={theme.colors.primary}
         onChange={emailChange}
       />
       <InformationInput
-        placeholder=". . . . . . . . . ."
+        placeholder="Password"
         maxLength={20}
         gridColumn="1 / 6"
         gridRow="2 / 3"
         isError={isPasswordError}
-        labelText="Password"
-        labelSize="1.5rem"
-        labelColor={theme.colors.primary}
         onChange={passwordChange}
         hideShowButton={true}
       />
