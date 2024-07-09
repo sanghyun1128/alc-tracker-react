@@ -17,6 +17,7 @@ const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
 const Input = styled(InputStyle)`
   grid-column: 1 / 7;
   grid-row: 1 / 2;
+  margin: 0;
 `;
 
 const Button = styled(TextButtonStyle)`
