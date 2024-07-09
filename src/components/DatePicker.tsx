@@ -6,18 +6,21 @@ import InputStyle from '../styles/InputStyle';
 import LabelStyle from '../styles/LabelStyle';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
-  display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-  justify-content: space-between;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
   grid-column: ${props => props.$gridColumn};
   grid-row: ${props => props.$gridRow};
 `;
 
-const Label = styled(LabelStyle)``;
+const Label = styled(LabelStyle)`
+  grid-column: 1 / 2;
+`;
 
-const Input = styled(InputStyle)``;
+const Input = styled(InputStyle)`
+  grid-column: 2 / 7;
+`;
 
 interface DatePickerProps {
   gridColumn: string;
@@ -29,6 +32,7 @@ interface DatePickerProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+//TODO: Remake DatePicker with select dropdowns for day, month, and year
 export default function DatePicker({
   gridColumn,
   gridRow,
