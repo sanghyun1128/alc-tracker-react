@@ -7,20 +7,29 @@ import LabelStyle from '../styles/LabelStyle';
 import TextButtonStyle from '../styles/TextButtonStyle';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
-  display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-  justify-content: space-between;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
   grid-column: ${props => props.$gridColumn};
   grid-row: ${props => props.$gridRow};
 `;
 
-const Label = styled(LabelStyle)``;
+const Label = styled(LabelStyle)`
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+`;
 
-const Input = styled(InputStyle)``;
+const Input = styled(InputStyle)`
+  grid-column: 3 / 7;
+  grid-row: 1 / 2;
+`;
 
-const Button = styled(TextButtonStyle)``;
+const Button = styled(TextButtonStyle)`
+  grid-column: 6 / 7;
+  grid-row: 1 / 2;
+  justify-self: end;
+`;
 
 interface InformationInputProps {
   placeholder: string;
