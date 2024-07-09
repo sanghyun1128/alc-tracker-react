@@ -120,7 +120,6 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
   return (
     <Form onSubmit={event => submitForm(event)}>
       <InformationInput
-        type="text"
         placeholder="Jim Murray"
         maxLength={15}
         gridColumn="1 / 7"
@@ -132,7 +131,6 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         onChange={handleInputChange}
       />
       <InformationInput
-        type="email"
         placeholder="abcd1234@email.com"
         maxLength={254}
         gridColumn="1 / 7"
@@ -143,17 +141,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
-      <TextButton
-        text="Confirm"
-        textSize=""
-        textColor={theme.colors.primary}
-        gridColumn="6 / 7"
-        gridRow="2 / 3"
-        justifyContent="center"
-        onClick={() => console.log('hide')}
-      />
       <InformationInput
-        type="text"
         placeholder="99999"
         maxLength={5}
         gridColumn="1 / 7"
@@ -164,18 +152,6 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
-      {/* <InformationInput
-        type="date"
-        placeholder=""
-        maxLength={0}
-        gridColumn="1 / 7"
-        gridRow="4 / 5"
-        isError={!state.isBirthValid}
-        labelText="Birth"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
-        onChange={handleInputChange}
-      /> */}
       <DatePicker
         gridColumn="1 / 7"
         gridRow="4 / 5"
@@ -186,7 +162,6 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         onChange={handleInputChange}
       />
       <InformationInput
-        type="radio"
         placeholder=""
         maxLength={0}
         gridColumn="1 / 7"
@@ -198,7 +173,6 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         onChange={handleInputChange}
       />
       <InformationInput
-        type="password"
         placeholder=". . . . . . . . . ."
         maxLength={20}
         gridColumn="1 / 7"
@@ -208,9 +182,9 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelSize="1rem"
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
+        hideShowButton={true}
       />
       <InformationInput
-        type="password"
         placeholder=". . . . . . . . . ."
         maxLength={20}
         gridColumn="1 / 7"
@@ -220,24 +194,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelSize="1rem"
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
-      />
-      <TextButton
-        text="hide"
-        textSize=""
-        textColor={theme.colors.primary}
-        gridColumn="6 / 7"
-        gridRow="6 / 7"
-        justifyContent="center"
-        onClick={() => console.log('hide')}
-      />
-      <TextButton
-        text="hide"
-        textSize=""
-        textColor={theme.colors.primary}
-        gridColumn="6 / 7"
-        gridRow="7 / 8"
-        justifyContent="center"
-        onClick={() => console.log('hide')}
+        hideShowButton={true}
       />
       <SubmitButton text="Register" gridColumn="2 / 6" gridRow="8 / 9" />
       <TextButton

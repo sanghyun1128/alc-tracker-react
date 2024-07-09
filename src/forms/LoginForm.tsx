@@ -27,14 +27,9 @@ interface LoginFormProps {
 export default function LoginForm({ theme }: LoginFormProps) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isEmailError, setIsEmailError] = useState<boolean>(false);
   const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword);
-  };
 
   const emailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -68,7 +63,6 @@ export default function LoginForm({ theme }: LoginFormProps) {
   return (
     <Form onSubmit={event => submitForm(event)}>
       <InformationInput
-        type="email"
         placeholder="abcd1234@email.com"
         maxLength={254}
         gridColumn="1 / 6"
@@ -80,7 +74,6 @@ export default function LoginForm({ theme }: LoginFormProps) {
         onChange={emailChange}
       />
       <InformationInput
-        type={showPassword ? 'text' : 'password'}
         placeholder=". . . . . . . . . ."
         maxLength={20}
         gridColumn="1 / 6"
@@ -90,15 +83,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         labelSize="1.5rem"
         labelColor={theme.colors.primary}
         onChange={passwordChange}
-      />
-      <TextButton
-        text={showPassword ? 'Hide' : 'Show'}
-        textSize=""
-        textColor={theme.colors.primary}
-        gridColumn="5 / 6"
-        gridRow="2 / 3"
-        justifyContent="center"
-        onClick={togglePasswordVisibility}
+        hideShowButton={true}
       />
       <TextButton
         text="Forgot Password?"

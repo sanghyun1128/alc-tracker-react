@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
 import InputStyle from '../styles/InputStyle';
 import LabelStyle from '../styles/LabelStyle';
+import TextButtonStyle from '../styles/TextButtonStyle';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   display: flex;
@@ -19,8 +20,9 @@ const Label = styled(LabelStyle)``;
 
 const Input = styled(InputStyle)``;
 
+const Button = styled(TextButtonStyle)``;
+
 interface InformationInputProps {
-  type: string;
   placeholder: string;
   maxLength: number;
   gridColumn: string;
@@ -29,11 +31,11 @@ interface InformationInputProps {
   labelText: string;
   labelSize: string;
   labelColor: string;
+  hideShowButton?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function InformationInput({
-  type,
   placeholder,
   maxLength,
   gridColumn,
@@ -42,8 +44,15 @@ export default function InformationInput({
   labelText,
   labelSize,
   labelColor,
+  hideShowButton,
   onChange,
 }: InformationInputProps) {
+  const [showInput, setShowInput] = useState<boolean>(false);
+
+  const toggleInputVisibility = () => {
+    setShowInput(prevShowInput => !prevShowInput);
+  };
+
   return (
     <Container $gridColumn={gridColumn} $gridRow={gridRow}>
       <Label
@@ -53,12 +62,17 @@ export default function InformationInput({
       </Label>
       <Input
         id={labelText.toLowerCase()}
-        type={type}
+        type={hideShowButton && !showInput ? 'password' : 'text'}
         placeholder={placeholder}
         maxLength={maxLength}
         $isError={isError}
         onChange={onChange}
       />
+      {hideShowButton && (
+        <Button type="button" onClick={toggleInputVisibility}>
+          {showInput ? 'Hide' : 'Show'}
+        </Button>
+      )}
     </Container>
   );
 }
