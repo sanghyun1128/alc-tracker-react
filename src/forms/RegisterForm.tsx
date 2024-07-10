@@ -10,6 +10,7 @@ import {
   SubmitButton,
   TextButton,
 } from '../components';
+import { Selector } from '../components/Selector';
 import { registerFormReducer } from '../reducers/registerFormReducer';
 import { FormStyle } from '../styles';
 import { RegisterFormState } from '../types/registerForm';
@@ -83,7 +84,9 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
     }
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { id, value } = event.target;
 
     switch (id) {
@@ -154,12 +157,13 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelColor={theme.colors.primary}
         onChange={handleInputChange}
       />
-      <InformationInput
-        placeholder="Gender"
-        maxLength={0}
+      <Selector
         gridColumn="1 / 7"
         gridRow="5 / 6"
-        isError={false}
+        labelText="Gender"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
+        options={['Man', 'Woman', 'Other']}
         onChange={handleInputChange}
       />
       <InformationInput
