@@ -47,9 +47,9 @@ export function Selector({
         style={{ fontSize: labelSize, color: labelColor }}>
         {labelText}
       </Label>
-      <Select>
-        {options.map(e => (
-          <option key={e} value={e}>
+      <Select id={labelText.toLowerCase()} onChange={onChange}>
+        {options.map((e, i) => (
+          <option key={e} value={i}>
             {e}
           </option>
         ))}

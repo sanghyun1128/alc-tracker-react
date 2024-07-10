@@ -11,6 +11,7 @@ import {
   TextButton,
 } from '../components';
 import { Selector } from '../components/Selector';
+import { genderList } from '../const/gender';
 import { registerFormReducer } from '../reducers/registerFormReducer';
 import { FormStyle } from '../styles';
 import { RegisterFormState } from '../types/registerForm';
@@ -36,7 +37,7 @@ const initialState: RegisterFormState = {
   nickname: '',
   email: '',
   birth: null,
-  gender: '',
+  gender: 0,
   confirmEmail: '',
   password: '',
   confirmPassword: '',
@@ -107,7 +108,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         dispatch({ type: 'SET_BIRTH_VALID', payload: true });
         break;
       case 'gender':
-        dispatch({ type: 'SET_GENDER', payload: value });
+        dispatch({ type: 'SET_GENDER', payload: +value });
         break;
       case 'password':
         dispatch({ type: 'SET_PASSWORD', payload: value });
@@ -163,7 +164,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         labelText="Gender"
         labelSize="1rem"
         labelColor={theme.colors.primary}
-        options={['Man', 'Woman', 'Other']}
+        options={genderList}
         onChange={handleInputChange}
       />
       <InformationInput
