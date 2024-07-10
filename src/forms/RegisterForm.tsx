@@ -9,8 +9,8 @@ import {
   DatePicker,
   SubmitButton,
   TextButton,
+  Selector,
 } from '../components';
-import { Selector } from '../components/Selector';
 import { genderList } from '../const/gender';
 import { registerFormReducer } from '../reducers/registerFormReducer';
 import { FormStyle } from '../styles';
