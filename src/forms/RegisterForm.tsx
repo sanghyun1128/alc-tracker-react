@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
 
 import { fadeInRightToCenter } from '../animations/basicAnimations';
-import DatePicker from '../components/DatePicker';
-import InformationInput from '../components/InformationInput';
-import SubmitButton from '../components/SubmitButton';
-import TextButton from '../components/TextButton';
+import {
+  InformationInput,
+  DatePicker,
+  SubmitButton,
+  TextButton,
+} from '../components';
 import { registerFormReducer } from '../reducers/registerFormReducer';
-import FormStyle from '../styles/FormStyle';
+import { FormStyle } from '../styles';
 import { RegisterFormState } from '../types/registerForm';
 import {
   emailValidation,
@@ -32,7 +34,7 @@ interface RegisterFormProps {
 const initialState: RegisterFormState = {
   nickname: '',
   email: '',
-  birth: new Date('2001-01-01'),
+  birth: null,
   gender: '',
   confirmEmail: '',
   password: '',

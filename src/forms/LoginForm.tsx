@@ -4,12 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
 import { fadeInBottomToCenter } from '../animations/basicAnimations';
-import InformationInput from '../components/InformationInput';
-import SubmitButton from '../components/SubmitButton';
-import TextButton from '../components/TextButton';
-import FormStyle from '../styles/FormStyle';
-import { emailValidation } from '../validation';
-import { passwordValidation } from '../validation/passwordValidation';
+import { InformationInput, SubmitButton, TextButton } from '../components';
+import { FormStyle } from '../styles';
+import { emailValidation, passwordValidation } from '../validation';
 
 const Form = styled(FormStyle)`
   grid-template-columns: repeat(5, 1fr);
