@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-import InputStyle from '../styles/InputStyle';
-import TextButtonStyle from '../styles/TextButtonStyle';
+import { InputStyle, TextButtonStyle } from '../styles';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   display: grid;
@@ -36,7 +35,7 @@ interface InformationInputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InformationInput({
+export function InformationInput({
   placeholder,
   maxLength,
   gridColumn,

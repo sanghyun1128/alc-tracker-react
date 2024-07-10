@@ -2,8 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import InputStyle from '../styles/InputStyle';
-import LabelStyle from '../styles/LabelStyle';
+import { InputStyle, LabelStyle } from '../styles';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   display: grid;
@@ -33,7 +32,7 @@ interface DatePickerProps {
 }
 
 //TODO: Remake DatePicker with select dropdowns for day, month, and year
-export default function DatePicker({
+export function DatePicker({
   gridColumn,
   gridRow,
   isError,
