@@ -3,7 +3,7 @@ export type RegisterFormState = {
   email: string;
   confirmEmail: string;
   birth: Date | null;
-  gender: string;
+  gender: number;
   password: string;
   confirmPassword: string;
 
@@ -20,7 +20,7 @@ export type RegisterFormAction =
   | { type: 'SET_EMAIL'; payload: string }
   | { type: 'SET_CONFIRM_EMAIL'; payload: string }
   | { type: 'SET_BIRTH'; payload: Date }
-  | { type: 'SET_GENDER'; payload: string }
+  | { type: 'SET_GENDER'; payload: number }
   | { type: 'SET_PASSWORD'; payload: string }
   | { type: 'SET_CONFIRM_PASSWORD'; payload: string }
   | { type: 'SET_NICKNAME_VALID'; payload: boolean }
