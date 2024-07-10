@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 import { deviceSizes } from '../const/deviceSizes';
 
-const FormStyle = styled.form`
+export const FormStyle = styled.form`
   display: grid;
   align-items: center;
   justify-items: stretch;
@@ -14,7 +14,7 @@ const FormStyle = styled.form`
     padding: 20px 20px 0px 20px;
   }
   ${deviceSizes.small} {
-    width: 250px;
+    width: 400px;
     padding: 20px 20px 0px 20px;
   }
   ${deviceSizes.medium} {
@@ -22,9 +22,7 @@ const FormStyle = styled.form`
     padding: 50px 50px 0px 50px;
   }
   ${deviceSizes.large} {
-    width: 700px;
+    width: 550px;
     padding: 50px 50px 0px 50px;
   }
 `;
-
-export default FormStyle;

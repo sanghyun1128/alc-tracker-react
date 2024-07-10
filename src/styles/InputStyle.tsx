@@ -2,7 +2,7 @@ import { styled, css } from 'styled-components';
 
 import { shake } from '../animations/basicAnimations';
 
-const InputStyle = styled.input<{
+export const InputStyle = styled.input<{
   $isError: boolean;
 }>`
   flex: 2 1 0;
@@ -30,5 +30,3 @@ const InputStyle = styled.input<{
     border-bottom: 3px solid ${props => props.theme.colors.secondaryOn};
   }
 `;
-
-export default InputStyle;

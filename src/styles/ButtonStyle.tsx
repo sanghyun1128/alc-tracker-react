@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const ButtonStyle = styled.button`
+export const ButtonStyle = styled.button`
   align-items: center;
   background-clip: padding-box;
   border: 1px solid transparent;
@@ -26,4 +26,3 @@ const ButtonStyle = styled.button`
   vertical-align: baseline;
   width: auto;
 `;
-export default ButtonStyle;
