@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useCallback, useReducer } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
@@ -85,41 +85,44 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
     }
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { id, value } = event.target;
 
-    switch (id) {
-      case 'nickname':
-        dispatch({ type: 'SET_NICKNAME', payload: value.trim() });
-        dispatch({ type: 'SET_NICKNAME_VALID', payload: true });
-        break;
-      case 'email':
-        dispatch({ type: 'SET_EMAIL', payload: value.trim() });
-        dispatch({ type: 'SET_EMAIL_VALID', payload: true });
-        break;
-      case 'email confirmation code':
-        dispatch({ type: 'SET_CONFIRM_EMAIL', payload: value.trim() });
-        dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: true });
-        break;
-      case 'birth':
-        dispatch({ type: 'SET_BIRTH', payload: new Date(value) });
-        dispatch({ type: 'SET_BIRTH_VALID', payload: true });
-        break;
-      case 'gender':
-        dispatch({ type: 'SET_GENDER', payload: +value });
-        break;
-      case 'password':
-        dispatch({ type: 'SET_PASSWORD', payload: value });
-        dispatch({ type: 'SET_PASSWORD_VALID', payload: true });
-        break;
-      case 're enter password':
-        dispatch({ type: 'SET_CONFIRM_PASSWORD', payload: value });
-        dispatch({ type: 'SET_PASSWORD_CONFIRMED', payload: true });
-        break;
-      default:
-        break;
-    }
-  };
+      switch (id) {
+        case 'nickname':
+          dispatch({ type: 'SET_NICKNAME', payload: value.trim() });
+          dispatch({ type: 'SET_NICKNAME_VALID', payload: true });
+          break;
+        case 'email':
+          dispatch({ type: 'SET_EMAIL', payload: value.trim() });
+          dispatch({ type: 'SET_EMAIL_VALID', payload: true });
+          break;
+        case 'email confirmation code':
+          dispatch({ type: 'SET_CONFIRM_EMAIL', payload: value.trim() });
+          dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: true });
+          break;
+        case 'birth':
+          dispatch({ type: 'SET_BIRTH', payload: new Date(value) });
+          dispatch({ type: 'SET_BIRTH_VALID', payload: true });
+          break;
+        case 'gender':
+          dispatch({ type: 'SET_GENDER', payload: +value });
+          break;
+        case 'password':
+          dispatch({ type: 'SET_PASSWORD', payload: value });
+          dispatch({ type: 'SET_PASSWORD_VALID', payload: true });
+          break;
+        case 're enter password':
+          dispatch({ type: 'SET_CONFIRM_PASSWORD', payload: value });
+          dispatch({ type: 'SET_PASSWORD_CONFIRMED', payload: true });
+          break;
+        default:
+          break;
+      }
+    },
+    [],
+  );
 
   return (
     <Form onSubmit={event => submitForm(event)}>
