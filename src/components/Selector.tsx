@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -84,7 +84,7 @@ interface SelectorProps {
   labelSize: string;
   labelColor: string;
   options: string[];
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function Selector({
@@ -113,6 +113,16 @@ export function Selector({
       setIsOpen(false);
     },
   });
+
+  useEffect(() => {
+    const event = {
+      target: {
+        value: selectedOption,
+      },
+    } as React.ChangeEvent<HTMLInputElement>;
+
+    onChange(event);
+  }, [selectedOption, onChange]);
 
   return (
     <Container $gridColumn={gridColumn} $gridRow={gridRow} ref={selectorRef}>
