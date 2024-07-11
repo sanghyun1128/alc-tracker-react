@@ -97,13 +97,14 @@ export function Selector({
   options,
   onChange,
 }: SelectorProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<number>(0);
   const selectorRef = useRef<HTMLDivElement>(null);
+  const id = labelText.toLowerCase();
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleOptionClick = (option: string) => {
+  const handleOptionClick = (option: number) => {
     setSelectedOption(option);
     setIsOpen(false);
   };
@@ -118,23 +119,22 @@ export function Selector({
   useEffect(() => {
     const event = {
       target: {
-        value: selectedOption,
+        id,
+        value: String(selectedOption),
       },
     } as React.ChangeEvent<HTMLInputElement>;
 
     onChange(event);
-  }, [selectedOption, onChange]);
+  }, [selectedOption, id]);
 
   return (
     <Container $gridColumn={gridColumn} $gridRow={gridRow} ref={selectorRef}>
-      <Label
-        htmlFor={labelText.toLowerCase()}
-        style={{ fontSize: labelSize, color: labelColor }}>
+      <Label htmlFor={id} style={{ fontSize: labelSize, color: labelColor }}>
         {labelText}
       </Label>
       <SelectContainer>
         <SelectTrigger onClick={toggleDropdown}>
-          {selectedOption}
+          {options[selectedOption]}
           <ArrowIcon $isOpen={isOpen} />
         </SelectTrigger>
         {isOpen && (
@@ -142,7 +142,7 @@ export function Selector({
             {options.map((option, index) => (
               <SelectOption
                 key={index}
-                onClick={() => handleOptionClick(option)}>
+                onClick={() => handleOptionClick(index)}>
                 {option}
               </SelectOption>
             ))}
