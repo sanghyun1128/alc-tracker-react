@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
 import { Icons } from '../assets/svg';
+import { useOnClickOutside } from '../hooks/useOnClickOutSide';
 import { LabelStyle } from '../styles';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
@@ -97,6 +98,7 @@ export function Selector({
 }: SelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
+  const selectorRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -105,8 +107,15 @@ export function Selector({
     setIsOpen(false);
   };
 
+  useOnClickOutside({
+    ref: selectorRef,
+    handler: () => {
+      setIsOpen(false);
+    },
+  });
+
   return (
-    <Container $gridColumn={gridColumn} $gridRow={gridRow}>
+    <Container $gridColumn={gridColumn} $gridRow={gridRow} ref={selectorRef}>
       <Label
         htmlFor={labelText.toLowerCase()}
         style={{ fontSize: labelSize, color: labelColor }}>
