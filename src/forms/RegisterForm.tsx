@@ -85,9 +85,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
     }
   };
 
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
 
     switch (id) {
