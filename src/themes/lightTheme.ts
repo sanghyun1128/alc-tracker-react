@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components';
 
 export const lightTheme: DefaultTheme = {
   alt: 'light',
-  formBorderRadius: '5px',
+  borderRadius: '5px',
 
   colors: {
     background: '#F5E7B2',
