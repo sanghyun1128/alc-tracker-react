@@ -41,7 +41,9 @@ const SelectTrigger = styled.div`
   cursor: pointer;
 `;
 
-const SelectOptionList = styled.ul`
+const SelectOptionList = styled.ul<{
+  $isOpen: boolean;
+}>`
   grid-column: 2 / 7;
 
   position: absolute;
@@ -54,6 +56,10 @@ const SelectOptionList = styled.ul`
   border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.colors.secondaryOn};
   list-style: none;
+
+  max-height: ${({ $isOpen }) => ($isOpen ? '150px' : '0px')};
+  overflow: hidden;
+  transition: max-height 1s cubic-bezier(0.16, 1, 0.3, 1);
 `;
 
 const SelectOption = styled.li`
@@ -73,8 +79,7 @@ const ArrowIcon = styled(Icons.ARROW_LEFT).attrs({
   width: 20,
   height: 20,
 })<{ $isOpen: boolean }>`
-  transform: ${({ $isOpen }) =>
-    $isOpen ? 'rotate(-90deg)' : 'rotate(-45deg)'};
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(-90deg)' : 'rotate(0deg)')};
   transition: transform 0.3s;
 `;
 
@@ -102,7 +107,9 @@ export function Selector({
   const selectorRef = useRef<HTMLDivElement>(null);
   const id = labelText.toLowerCase();
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleOptionClick = (option: number) => {
     setSelectedOption(option);
@@ -125,7 +132,7 @@ export function Selector({
     } as React.ChangeEvent<HTMLInputElement>;
 
     onChange(event);
-  }, [selectedOption, id]);
+  }, [selectedOption, onChange, id]);
 
   return (
     <Container $gridColumn={gridColumn} $gridRow={gridRow} ref={selectorRef}>
@@ -137,17 +144,14 @@ export function Selector({
           {options[selectedOption]}
           <ArrowIcon $isOpen={isOpen} />
         </SelectTrigger>
-        {isOpen && (
-          <SelectOptionList>
-            {options.map((option, index) => (
-              <SelectOption
-                key={index}
-                onClick={() => handleOptionClick(index)}>
-                {option}
-              </SelectOption>
-            ))}
-          </SelectOptionList>
-        )}
+
+        <SelectOptionList $isOpen={isOpen}>
+          {options.map((option, index) => (
+            <SelectOption key={index} onClick={() => handleOptionClick(index)}>
+              {option}
+            </SelectOption>
+          ))}
+        </SelectOptionList>
       </SelectContainer>
     </Container>
   );
