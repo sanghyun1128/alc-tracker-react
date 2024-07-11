@@ -6,12 +6,13 @@ import { Icons } from '../assets/svg';
 import { LabelStyle } from '../styles';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 1fr;
-  align-items: center;
   grid-column: ${props => props.$gridColumn};
   grid-row: ${props => props.$gridRow};
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  margin: 0;
 `;
 
 const Label = styled(LabelStyle)`
@@ -20,48 +21,60 @@ const Label = styled(LabelStyle)`
 
 const SelectContainer = styled.div`
   grid-column: 2 / 7;
-  width: 100%;
   position: relative;
-  margin: 0 auto;
+  margin: 0;
+  width: 100%;
 `;
 
 const SelectTrigger = styled.div`
+  grid-column: 2 / 7;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  background-color: #fff;
+  margin: 0;
+  color: ${props => props.theme.colors.textDark};
+  border-radius: ${props => props.theme.borderRadius};
+  background-color: ${props => props.theme.colors.secondary};
   cursor: pointer;
 `;
 
 const SelectOptionList = styled.ul`
+  grid-column: 2 / 7;
+
   position: absolute;
   width: 100%;
   top: 100%;
   left: 0;
-  border-top: none;
-  border-radius: 0 0 5px 5px;
-  background-color: #fff;
-  list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0px 8px 8px 0px;
+  border-top: none;
+  border-radius: ${props => props.theme.borderRadius};
+  background-color: ${props => props.theme.colors.secondaryOn};
+  list-style: none;
 `;
 
 const SelectOption = styled.li`
+  grid-column: 2 / 7;
+
+  width: 100%;
   padding: 10px;
+  color: ${props => props.theme.colors.textDark};
   cursor: pointer;
 
   &:hover {
-    color: #fff;
+    color: ${props => props.theme.colors.secondary};
   }
 `;
 
 const ArrowIcon = styled(Icons.ARROW_LEFT).attrs({
   width: 20,
   height: 20,
-})``;
+})<{ isOpen: boolean }>`
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(-90deg)' : 'rotate(-45deg)')};
+  transition: transform 0.3s;
+`;
 
 interface SelectorProps {
   gridColumn: string;
@@ -86,6 +99,7 @@ export function Selector({
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
+
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     setIsOpen(false);
@@ -101,7 +115,7 @@ export function Selector({
       <SelectContainer>
         <SelectTrigger onClick={toggleDropdown}>
           {selectedOption}
-          <ArrowIcon />
+          <ArrowIcon isOpen={isOpen} />
         </SelectTrigger>
         {isOpen && (
           <SelectOptionList>
