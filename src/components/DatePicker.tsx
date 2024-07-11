@@ -19,6 +19,7 @@ const Label = styled(LabelStyle)`
 
 const Input = styled(InputStyle)`
   grid-column: 2 / 7;
+  margin: 0;
 `;
 
 interface DatePickerProps {
