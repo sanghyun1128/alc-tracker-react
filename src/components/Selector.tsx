@@ -72,8 +72,9 @@ const SelectOption = styled.li`
 const ArrowIcon = styled(Icons.ARROW_LEFT).attrs({
   width: 20,
   height: 20,
-})<{ isOpen: boolean }>`
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(-90deg)' : 'rotate(-45deg)')};
+})<{ $isOpen: boolean }>`
+  transform: ${({ $isOpen }) =>
+    $isOpen ? 'rotate(-90deg)' : 'rotate(-45deg)'};
   transition: transform 0.3s;
 `;
 
@@ -134,7 +135,7 @@ export function Selector({
       <SelectContainer>
         <SelectTrigger onClick={toggleDropdown}>
           {selectedOption}
-          <ArrowIcon isOpen={isOpen} />
+          <ArrowIcon $isOpen={isOpen} />
         </SelectTrigger>
         {isOpen && (
           <SelectOptionList>
