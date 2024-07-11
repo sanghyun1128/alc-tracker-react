@@ -4,7 +4,7 @@ export const ButtonStyle = styled.button`
   align-items: center;
   background-clip: padding-box;
   border: 1px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: ${props => props.theme.borderRadius};
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   cursor: pointer;

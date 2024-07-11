@@ -6,7 +6,7 @@ export const FormStyle = styled.form`
   display: grid;
   align-items: center;
   justify-items: stretch;
-  border-radius: ${props => props.theme.formBorderRadius};
+  border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.colors.formBackground};
 
   ${deviceSizes.abnormal} {
