@@ -97,7 +97,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         dispatch({ type: 'SET_EMAIL', payload: value.trim() });
         dispatch({ type: 'SET_EMAIL_VALID', payload: true });
         break;
-      case 'confirm email':
+      case 'email confirmation code':
         dispatch({ type: 'SET_CONFIRM_EMAIL', payload: value.trim() });
         dispatch({ type: 'SET_EMAIL_CONFIRMED', payload: true });
         break;
@@ -112,7 +112,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         dispatch({ type: 'SET_PASSWORD', payload: value });
         dispatch({ type: 'SET_PASSWORD_VALID', payload: true });
         break;
-      case 'confirm password':
+      case 're enter password':
         dispatch({ type: 'SET_CONFIRM_PASSWORD', payload: value });
         dispatch({ type: 'SET_PASSWORD_CONFIRMED', payload: true });
         break;
