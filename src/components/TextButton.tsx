@@ -2,19 +2,16 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-const Button = styled.button<{
+import { TextButtonStyle } from '../styles';
+
+const Button = styled(TextButtonStyle)<{
   $gridColumn: string;
   $gridRow: string;
   $justifyContent: string;
 }>`
   grid-column: ${props => props.$gridColumn};
   grid-row: ${props => props.$gridRow};
-  display: flex;
   justify-content: ${props => props.$justifyContent};
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: ${props => props.theme.colors.primary};
 `;
 
 interface TextButtonProps {
@@ -27,7 +24,7 @@ interface TextButtonProps {
   onClick: () => void;
 }
 
-export default function TextButton({
+export function TextButton({
   text,
   textSize,
   textColor,

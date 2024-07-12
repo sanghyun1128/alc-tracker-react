@@ -1,70 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { shake } from '../animations/basicAnimations';
+import { InputStyle, TextButtonStyle } from '../styles';
 
-const Input = styled.input<{
-  $gridColumn: string;
-  $gridRow: string;
-  $isError: boolean;
-}>`
+const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
   grid-column: ${props => props.$gridColumn};
   grid-row: ${props => props.$gridRow};
-  padding: 0.5rem;
-  margin: 0.5rem;
-  border: 0px;
-  border-bottom: ${({ $isError }) =>
-    $isError
-      ? css`3px solid ${props => props.theme.colors.warning}`
-      : css`3px solid ${props => props.theme.colors.secondary}`};
-  background-color: transparent;
-  outline: none;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: inherit;
-  color: ${props => props.theme.colors.textLight};
-  animation: ${({ $isError }) =>
-    $isError &&
-    css`
-      ${shake} 1.3s
-    `};
+`;
 
-  &:focus {
-    transition: border-bottom 0.8s;
-    border-bottom: 3px solid ${props => props.theme.colors.secondaryOn};
-  }
+const Input = styled(InputStyle)`
+  grid-column: 1 / 7;
+  grid-row: 1 / 2;
+  margin: 0;
+`;
+
+const Button = styled(TextButtonStyle)`
+  grid-column: 6 / 7;
+  grid-row: 1 / 2;
+  justify-self: end;
 `;
 
 interface InformationInputProps {
-  type: string;
   placeholder: string;
   maxLength: number;
   gridColumn: string;
   gridRow: string;
   isError: boolean;
+  hideShowButton?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InformationInput({
-  type,
+export function InformationInput({
   placeholder,
   maxLength,
   gridColumn,
   gridRow,
   isError,
+  hideShowButton,
   onChange,
 }: InformationInputProps) {
+  const [showInput, setShowInput] = useState<boolean>(false);
+
+  const toggleInputVisibility = () => {
+    setShowInput(prevShowInput => !prevShowInput);
+  };
+
   return (
-    <Input
-      id={type}
-      type={type}
-      placeholder={placeholder}
-      maxLength={maxLength}
-      $gridColumn={gridColumn}
-      $gridRow={gridRow}
-      $isError={isError}
-      onChange={onChange}
-    />
+    <Container $gridColumn={gridColumn} $gridRow={gridRow}>
+      <Input
+        id={placeholder.toLowerCase()}
+        type={hideShowButton && !showInput ? 'password' : 'text'}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        $isError={isError}
+        onChange={onChange}
+      />
+      {hideShowButton && (
+        <Button type="button" onClick={toggleInputVisibility}>
+          {showInput ? 'Hide' : 'Show'}
+        </Button>
+      )}
+    </Container>
   );
 }

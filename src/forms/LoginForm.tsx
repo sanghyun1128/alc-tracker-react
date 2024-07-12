@@ -3,43 +3,17 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { fadeInUp } from '../animations/basicAnimations';
-import InformationInput from '../components/InformationInput';
-import InformationLabel from '../components/InformationLabel';
-import SubmitButton from '../components/SubmitButton';
-import TextButton from '../components/TextButton';
-import { deviceSizes } from '../const/deviceSizes';
-import { emailValidation } from '../validation';
-import { passwordValidation } from '../validation/passwordValidation';
+import { fadeInBottomToCenter } from '../animations/basicAnimations';
+import { InformationInput, SubmitButton, TextButton } from '../components';
+import { FormStyle } from '../styles';
+import { emailValidation, passwordValidation } from '../validation';
 
-const Form = styled.form`
-  display: grid;
+const Form = styled(FormStyle)`
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr) 1.5fr 1fr;
-  align-items: center;
-  justify-items: stretch;
+  grid-template-rows: repeat(2, 1.5fr) repeat(2, 1fr);
   height: 450px;
-  border-radius: ${props => props.theme.formBorderRadius};
-  background-color: ${props => props.theme.colors.formBackground};
 
-  animation: ${fadeInUp} 1.3s;
-
-  ${deviceSizes.abnormal} {
-    width: 250px;
-    padding: 20px 20px 0px 20px;
-  }
-  ${deviceSizes.small} {
-    width: 250px;
-    padding: 20px 20px 0px 20px;
-  }
-  ${deviceSizes.medium} {
-    width: 400px;
-    padding: 50px 50px 0px 50px;
-  }
-  ${deviceSizes.large} {
-    width: 500px;
-    padding: 50px 50px 0px 50px;
-  }
+  animation: ${fadeInBottomToCenter} 1.3s;
 `;
 
 interface LoginFormProps {
@@ -50,14 +24,9 @@ interface LoginFormProps {
 export default function LoginForm({ theme }: LoginFormProps) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isEmailError, setIsEmailError] = useState<boolean>(false);
   const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword);
-  };
 
   const emailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -89,54 +58,30 @@ export default function LoginForm({ theme }: LoginFormProps) {
   };
 
   return (
-    <Form theme={theme} onSubmit={event => submitForm(event)}>
-      <InformationLabel
-        text="Email"
-        textSize="1.5rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 6"
-        gridRow="1 / 2"
-      />
+    <Form onSubmit={event => submitForm(event)}>
       <InformationInput
-        type="email"
-        placeholder="abcd1234@email.com"
+        placeholder="Email"
         maxLength={254}
         gridColumn="1 / 6"
-        gridRow="2 / 3"
+        gridRow="1 / 2"
         isError={isEmailError}
-        onChange={event => emailChange(event)}
-      />
-      <InformationLabel
-        text="Password"
-        textSize="1.5rem"
-        textColor={theme.colors.primary}
-        gridColumn="1 / 6"
-        gridRow="3 / 4"
+        onChange={emailChange}
       />
       <InformationInput
-        type={showPassword ? 'text' : 'password'}
-        placeholder=". . . . . . . . . ."
+        placeholder="Password"
         maxLength={20}
         gridColumn="1 / 6"
-        gridRow="4 / 5"
+        gridRow="2 / 3"
         isError={isPasswordError}
-        onChange={event => passwordChange(event)}
-      />
-      <TextButton
-        text={showPassword ? 'Hide' : 'Show'}
-        textSize=""
-        textColor={theme.colors.primary}
-        gridColumn="5 / 6"
-        gridRow="4 / 5"
-        justifyContent="center"
-        onClick={togglePasswordVisibility}
+        onChange={passwordChange}
+        hideShowButton={true}
       />
       <TextButton
         text="Forgot Password?"
         textSize=""
         textColor={theme.colors.secondary}
         gridColumn="1 / 3"
-        gridRow="6 / 7"
+        gridRow="4 / 5"
         justifyContent="flex-start"
         onClick={() => navigate('/forgot-password')}
       />
@@ -145,11 +90,11 @@ export default function LoginForm({ theme }: LoginFormProps) {
         textSize=""
         textColor={theme.colors.secondary}
         gridColumn="4 / 6"
-        gridRow="6 / 7"
+        gridRow="4 / 5"
         justifyContent="flex-end"
         onClick={() => navigate('/register')}
       />
-      <SubmitButton text="Log In" gridColumn="2 / 5" gridRow="5 / 6" />
+      <SubmitButton text="Log In" gridColumn="2 / 5" gridRow="3 / 4" />
     </Form>
   );
 }
