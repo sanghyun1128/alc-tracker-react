@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { shake } from '../animations/basicAnimations';
 import { Icons, IconType } from '../assets/svg';
 
 const Button = styled.button`
@@ -11,12 +12,14 @@ const Button = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  padding: 10px;
-  border-radius: ${props => props.theme.borderRadius};
+  padding: 30px;
+  border-radius: 50%;
+  background-color: ${props => props.theme.colors.primary};
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.primaryOn};
+    animation: ${shake} 0.5s;
   }
 `;
 
