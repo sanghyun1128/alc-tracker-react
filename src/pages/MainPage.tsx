@@ -9,7 +9,7 @@ import IconButton from '../components/IconButton';
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
