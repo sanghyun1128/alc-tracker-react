@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { fadeIn } from '../animations/basicAnimations';
 import IconButton from '../components/IconButton';
 
 const Container = styled.div`
@@ -12,6 +13,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  animation: ${fadeIn} 5s;
 `;
 
 export default function MainPage() {
