@@ -36,7 +36,10 @@ export default function IconButton({ icon, size, onClick }: IconButtonProps) {
   const Icon = Icons[icon] as IconType;
 
   return (
-    <Button id={String(icon).toLowerCase()} onClick={e => onClick(e)}>
+    <Button
+      type="button"
+      id={String(icon).toLowerCase()}
+      onClick={e => onClick(e)}>
       <Icon width={size} height={size} />
     </Button>
   );
