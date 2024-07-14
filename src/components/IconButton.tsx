@@ -12,7 +12,7 @@ const Button = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  padding: 30px;
+  padding: 10px;
   border-radius: 50%;
   background-color: ${props => props.theme.colors.primary};
   transition: background-color 0.3s ease-in-out;
