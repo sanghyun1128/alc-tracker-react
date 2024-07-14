@@ -8,12 +8,24 @@ import IconButton from '../components/IconButton';
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 100vh;
+  flex-direction: column;
   width: 100vw;
-  overflow: hidden;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
   animation: ${fadeIn} 5s;
+`;
+
+const Body = styled.div`
+  flex-grow: 1;
+  margin: 10px;
+`;
+
+const ControlSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
 `;
 
 export default function MainPage() {
@@ -27,9 +39,17 @@ export default function MainPage() {
 
   return (
     <Container>
-      <IconButton icon="WINE" onClick={handleIconClick} size={100} />
-      <IconButton icon="WHISKEY" onClick={handleIconClick} size={100} />
-      <IconButton icon="COCKTAIL" onClick={handleIconClick} size={100} />
+      <Body>
+        <IconButton icon="WINE" onClick={handleIconClick} size={30} />
+        <IconButton icon="WHISKEY" onClick={handleIconClick} size={30} />
+        <IconButton icon="COCKTAIL" onClick={handleIconClick} size={30} />
+      </Body>
+
+      <ControlSection>
+        <IconButton icon="SETTING" onClick={handleIconClick} size={20} />
+        <IconButton icon="PLUS" onClick={handleIconClick} size={20} />
+        <IconButton icon="USER" onClick={handleIconClick} size={20} />
+      </ControlSection>
     </Container>
   );
 }
