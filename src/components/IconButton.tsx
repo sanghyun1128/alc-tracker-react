@@ -7,6 +7,8 @@ import { Icons, IconType } from '../assets/svg';
 
 const Button = styled.button<{ $buttonColor: string }>`
   display: flex;
+  align-self: center;
+  justify-self: center;
   align-items: center;
   justify-content: center;
   border: none;
