@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { fadeIn } from '../animations/basicAnimations';
+import DotPagination from '../components/DotPagination';
 import IconButton from '../components/IconButton';
 
 const Container = styled.div`
@@ -19,6 +20,11 @@ const Container = styled.div`
 const Body = styled.div`
   flex-grow: 1;
   margin: 10px;
+  display: grid;
+  grid-template-columns: 0.5fr repeat(9, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-content: center;
+  align-items: center;
 `;
 
 const ControlSection = styled.div`
@@ -40,15 +46,32 @@ export default function MainPage() {
   return (
     <Container>
       <Body>
-        <IconButton icon="WINE" onClick={handleIconClick} size={30} />
-        <IconButton icon="WHISKEY" onClick={handleIconClick} size={30} />
-        <IconButton icon="COCKTAIL" onClick={handleIconClick} size={30} />
+        <DotPagination
+          numOfPages={3}
+          align="column"
+          style={{ gridRow: '1 / 11', gridColumn: '1 / 2' }}
+        />
       </Body>
 
       <ControlSection>
-        <IconButton icon="SETTING" onClick={handleIconClick} size={20} />
-        <IconButton icon="PLUS" onClick={handleIconClick} size={20} />
-        <IconButton icon="USER" onClick={handleIconClick} size={20} />
+        <IconButton
+          icon="SETTING"
+          onClick={handleIconClick}
+          size={20}
+          buttonColor="primary"
+        />
+        <IconButton
+          icon="PLUS"
+          onClick={handleIconClick}
+          size={20}
+          buttonColor="primary"
+        />
+        <IconButton
+          icon="USER"
+          onClick={handleIconClick}
+          size={20}
+          buttonColor="primary"
+        />
       </ControlSection>
     </Container>
   );
