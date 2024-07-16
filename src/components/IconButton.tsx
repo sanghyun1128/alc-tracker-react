@@ -43,6 +43,8 @@ interface IconButtonProps {
  * @param {IconButtonProps} props
  * @param {String} props.icon name of the icon to be displayed and used as the id of the button
  * @param {Number} props.size size of the icon
+ * @param {String} props.buttonColor set button type 'primary' | 'secondary'
+ * @param {Object} props.style React.CSSProperties to be applied to the icon
  * @param {Function} props.onClick function to be called when the button is clicked
  */
 export default function IconButton({
