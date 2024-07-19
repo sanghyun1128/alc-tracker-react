@@ -1,5 +1,6 @@
 import { ReactComponent as ArrowLeft } from './arrow-left.svg';
 import { ReactComponent as Cocktail } from './cocktail.svg';
+import { ReactComponent as FileEmpty } from './file-empty.svg';
 import { ReactComponent as Plus } from './plus.svg';
 import { ReactComponent as Setting } from './setting.svg';
 import { ReactComponent as StarEmpty } from './star-empty.svg';
@@ -28,4 +29,5 @@ export const Icons: { [src: string]: IconType } = {
   WINE_RED: WineRed,
   WINE_WHITE: WineWhite,
   WINE_SPARKLING: WineSparkling,
+  FILE_EMPTY: FileEmpty,
 };
