@@ -69,18 +69,4 @@ export const wineList = [
     totalStar: '0.5',
     version: '1.0.0',
   },
-  {
-    name: 'Wine 11',
-    vintage: 2020,
-    type: 'Red',
-    totalStar: '0.0',
-    version: '1.0.0',
-  },
-  {
-    name: 'Wine 12',
-    vintage: 2021,
-    type: 'Sparkling',
-    totalStar: '0.0',
-    version: '1.0.0',
-  },
 ];
