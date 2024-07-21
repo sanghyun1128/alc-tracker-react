@@ -14,45 +14,40 @@ import { wineList } from '../const/dummy';
 import { useTheme } from '../hooks/useTheme';
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
+  display: grid;
+  grid-template-columns: 0.07fr 1fr;
+  grid-template-rows: 1fr 0.1fr;
+  padding: 10px;
   margin: 0;
+  width: 80vw;
+  height: 90vh;
   animation: ${fadeIn} 5s;
 `;
 
-const Body = styled.div`
-  flex-grow: 1;
-  margin: 10px;
-  display: grid;
-  grid-template-columns: 0.5fr repeat(9, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  justify-content: center;
-  align-items: center;
-`;
-
 const MainViewSection = styled.div`
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   align-items: center;
   justify-items: center;
-  width: 100%;
-  height: 100%;
   border: 0;
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: 100%;
   border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.colors.secondary};
 `;
 
 const ControlSection = styled.div`
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px;
+  padding: 10px;
 `;
 
 export default function MainPage() {
@@ -67,44 +62,42 @@ export default function MainPage() {
 
   return (
     <Container>
-      <Body>
-        <DotPagination
-          numOfPages={3}
-          align="column"
-          style={{ gridRow: '1 / 11', gridColumn: '1 / 2' }}
+      <DotPagination
+        numOfPages={3}
+        align="column"
+        style={{ gridRow: '1 / 2', gridColumn: '1 / 2' }}
+      />
+      <MainViewSection>
+        <IconLabel
+          icon="WINE"
+          size={30}
+          style={{
+            gridRow: '1 / 2',
+            gridColumn: '1 / 2',
+            backgroundColor: `${theme.colors.primary}`,
+          }}
         />
-        <MainViewSection style={{ gridRow: '1 / 11', gridColumn: '2 / 11' }}>
-          <IconLabel
-            icon="WINE"
-            size={30}
-            style={{
-              gridRow: '1 / 2',
-              gridColumn: '1 / 2',
-              backgroundColor: `${theme.colors.primary}`,
-            }}
-          />
-          <TextLabel
-            text="Wine"
-            size="h2"
-            style={{
-              gridRow: '1 / 2',
-              gridColumn: '2 / 3',
-              color: `${theme.colors.textDark}`,
-            }}
-          />
-          {/* <EmptyView
+        <TextLabel
+          text="Wine"
+          size="h2"
+          style={{
+            gridRow: '1 / 2',
+            gridColumn: '2 / 3',
+            color: `${theme.colors.textDark}`,
+          }}
+        />
+        {/* <EmptyView
             theme={theme}
             style={{
               gridRow: '2 / 11',
               gridColumn: '1 / 11',
             }}
           /> */}
-          <CardView
-            arr={wineList}
-            style={{ gridRow: '2 / 11', gridColumn: '1 / 11' }}
-          />
-        </MainViewSection>
-      </Body>
+        <CardView
+          arr={wineList}
+          style={{ gridRow: '2 / 11', gridColumn: '1 / 11' }}
+        />
+      </MainViewSection>
 
       <ControlSection>
         <IconButton
