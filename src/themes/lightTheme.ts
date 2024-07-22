@@ -14,5 +14,9 @@ export const lightTheme: DefaultTheme = {
     textDark: '#023047',
     textLight: '#f1faee',
     warning: '#e63946',
+    wineWhite: '#ffd15d',
+    wineWhiteOn: '#f9b54c',
+    wineRed: '#d83e20',
+    wineRedOn: '#c1321f',
   },
 };
