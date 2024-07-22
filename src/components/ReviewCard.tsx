@@ -14,7 +14,7 @@ const Container = styled.div`
   width: 30vw;
   min-width: 300px;
   height: 100px;
-  background-color: ${props => props.theme.colors.formBackground};
+  background-color: ${props => props.theme.colors.background};
   border-radius: ${props => props.theme.borderRadius};
 `;
 
@@ -43,7 +43,18 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
       />
       <TextLabel text={name} size="h3" style={{}} />
       <TextLabel text={String(vintage)} size="h3" style={{}} />
-      <TextLabel text={totalStar} size="h3" style={{}} />
+      {new Array(5).fill(0).map((_, index) => {
+        return (
+          <IconLabel
+            key={index}
+            icon={
+              index < Math.floor(Number(totalStar)) ? 'STAR_FULL' : 'STAR_EMPTY'
+            }
+            size={20}
+            style={{}}
+          />
+        );
+      })}
     </Container>
   );
 }
