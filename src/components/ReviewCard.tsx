@@ -6,16 +6,21 @@ import { WineCard } from '../types/api/wineCard';
 import IconLabel from './IconLabel';
 import TextLabel from './TextLabel';
 
-const Container = styled.div`
+const Container = styled.div<{ $type: string }>`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 30vw;
   min-width: 300px;
   height: 100px;
-  background-color: ${props => props.theme.colors.background};
+  padding: 10px;
+  background-color: ${props =>
+    props.$type === 'Red'
+      ? props.theme.colors.wineRedOn
+      : props.theme.colors.wineWhiteOn};
   border-radius: ${props => props.theme.borderRadius};
+  cursor: pointer;
 `;
 
 interface ReviewCardProps {
@@ -25,9 +30,12 @@ interface ReviewCardProps {
 
 export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   const { name, vintage, type, totalStar } = card;
+  const fullStars = Math.floor(Number(totalStar));
+  const hasHalfStar = Number(totalStar) % 1 !== 0;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (
-    <Container style={style}>
+    <Container $type={type} style={style}>
       <IconLabel
         icon={
           type === 'Red'
@@ -43,18 +51,25 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
       />
       <TextLabel text={name} size="h3" style={{}} />
       <TextLabel text={String(vintage)} size="h3" style={{}} />
-      {new Array(5).fill(0).map((_, index) => {
-        return (
-          <IconLabel
-            key={index}
-            icon={
-              index < Math.floor(Number(totalStar)) ? 'STAR_FULL' : 'STAR_EMPTY'
-            }
-            size={20}
-            style={{}}
-          />
-        );
-      })}
+      {new Array(fullStars).fill(0).map((_, index) => (
+        <IconLabel
+          key={`full-${index}`}
+          icon="STAR_FULL"
+          size={20}
+          style={{ padding: '0px' }}
+        />
+      ))}
+      {hasHalfStar && (
+        <IconLabel icon="STAR_HALF" size={20} style={{ padding: '0px' }} />
+      )}
+      {new Array(emptyStars).fill(0).map((_, index) => (
+        <IconLabel
+          key={`empty-${index}`}
+          icon="STAR_EMPTY"
+          size={20}
+          style={{ padding: '0px' }}
+        />
+      ))}
     </Container>
   );
 }
