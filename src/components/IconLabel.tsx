@@ -22,15 +22,5 @@ export default function IconLabel({ icon, size, style = {} }: IconLabelProps) {
     Icon = Icons.FILE_EMPTY;
   }
 
-  return (
-    <Icon
-      width={size}
-      height={size}
-      style={{
-        ...style,
-        borderRadius: '50%',
-        padding: '10px',
-      }}
-    />
-  );
+  return <Icon width={size} height={size} style={style} />;
 }
