@@ -5,6 +5,7 @@ import { ReactComponent as Plus } from './plus.svg';
 import { ReactComponent as Setting } from './setting.svg';
 import { ReactComponent as StarEmpty } from './star-empty.svg';
 import { ReactComponent as StarFull } from './star-full.svg';
+import { ReactComponent as StarHalf } from './star-half.svg';
 import { ReactComponent as User } from './user.svg';
 import { ReactComponent as Whiskey } from './whiskey.svg';
 import { ReactComponent as WineRed } from './wine-red.svg';
@@ -26,6 +27,7 @@ export const Icons: { [src: string]: IconType } = {
   PLUS: Plus,
   STAR_EMPTY: StarEmpty,
   STAR_FULL: StarFull,
+  STAR_HALF: StarHalf,
   WINE_RED: WineRed,
   WINE_WHITE: WineWhite,
   WINE_SPARKLING: WineSparkling,
