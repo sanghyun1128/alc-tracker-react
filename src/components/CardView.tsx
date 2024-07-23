@@ -2,6 +2,8 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
+import { CocktailCard } from '../types/api/cocktailCard';
+import { WhiskeyCard } from '../types/api/whiskeyCard';
 import { WineCard } from '../types/api/wineCard';
 import ReviewCard from './ReviewCard';
 
@@ -14,7 +16,7 @@ const Container = styled.div`
 `;
 
 interface CardViewProps {
-  arr: Array<WineCard>;
+  arr: Array<WineCard | WhiskeyCard | CocktailCard>;
   style: React.CSSProperties;
 }
 
