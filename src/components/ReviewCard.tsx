@@ -2,6 +2,8 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
+import { CocktailCard } from '../types/api/cocktailCard';
+import { WhiskeyCard } from '../types/api/whiskeyCard';
 import { WineCard } from '../types/api/wineCard';
 import IconLabel from './IconLabel';
 import TextLabel from './TextLabel';
@@ -32,15 +34,25 @@ const Container = styled.div<{ $type: string }>`
 `;
 
 interface ReviewCardProps {
-  card: WineCard;
+  card: WineCard | WhiskeyCard | CocktailCard;
   style?: React.CSSProperties;
 }
 
 export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
-  const { name, vintage, type, totalStar } = card;
+  const { name, totalStar } = card;
   const fullStars = Math.floor(Number(totalStar));
   const hasHalfStar = Number(totalStar) % 1 !== 0;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+  let type;
+  let vintage;
+  if ('type' in card && 'vintage' in card) {
+    type = card.type;
+    vintage = card.vintage;
+  } else {
+    type = 'Red';
+    vintage = '';
+  }
 
   return (
     <Container $type={type} style={style}>
