@@ -3,19 +3,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const H1 = styled.h1`
-  flex: 1 1 0;
   font-weight: bold;
   font-family: inherit;
 `;
 
 const H2 = styled.h2`
-  flex: 1 1 0;
   font-weight: bold;
   font-family: inherit;
 `;
 
 const H3 = styled.h3`
-  flex: 1 1 0;
   font-weight: bold;
   font-family: inherit;
 `;
