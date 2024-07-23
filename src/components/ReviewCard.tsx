@@ -13,14 +13,22 @@ const Container = styled.div<{ $type: string }>`
   align-items: center;
   width: 30vw;
   min-width: 300px;
-  height: 100px;
+  height: 80px;
   padding: 10px;
   background-color: ${props =>
     props.$type === 'Red'
       ? props.theme.colors.wineRedOn
       : props.theme.colors.wineWhiteOn};
   border-radius: ${props => props.theme.borderRadius};
+  transition: background-color 0.5s;
   cursor: pointer;
+
+  &:hover {
+    background-color: ${props =>
+      props.$type === 'Red'
+        ? props.theme.colors.wineRed
+        : props.theme.colors.wineWhite};
+  }
 `;
 
 interface ReviewCardProps {
@@ -49,8 +57,11 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
         size={30}
         style={{}}
       />
-      <TextLabel text={name} size="h3" style={{}} />
-      <TextLabel text={String(vintage)} size="h3" style={{}} />
+      <TextLabel
+        text={name + ' ' + vintage}
+        size="h3"
+        style={{ flexGrow: '1', marginLeft: '10px', marginRight: '10px' }}
+      />
       {new Array(fullStars).fill(0).map((_, index) => (
         <IconLabel
           key={`full-${index}`}
