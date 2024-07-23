@@ -55,30 +55,39 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
                 : 'WINE_RED'
         }
         size={30}
-        style={{}}
+        style={{ flexBasis: '50px' }}
       />
       <TextLabel
         text={name + ' ' + vintage}
         size="h3"
-        style={{ flexGrow: '1', marginLeft: '10px', marginRight: '10px' }}
+        style={{
+          flexBasis: '100px',
+          flexGrow: '1',
+          marginLeft: '10px',
+          marginRight: '10px',
+        }}
       />
       {new Array(fullStars).fill(0).map((_, index) => (
         <IconLabel
           key={`full-${index}`}
           icon="STAR_FULL"
-          size={20}
-          style={{ padding: '0px' }}
+          size={15}
+          style={{ padding: '0px', flexBasis: '15px' }}
         />
       ))}
       {hasHalfStar && (
-        <IconLabel icon="STAR_HALF" size={20} style={{ padding: '0px' }} />
+        <IconLabel
+          icon="STAR_HALF"
+          size={15}
+          style={{ padding: '0px', flexBasis: '15px' }}
+        />
       )}
       {new Array(emptyStars).fill(0).map((_, index) => (
         <IconLabel
           key={`empty-${index}`}
           icon="STAR_EMPTY"
-          size={20}
-          style={{ padding: '0px' }}
+          size={15}
+          style={{ padding: '0px', flexBasis: '15px' }}
         />
       ))}
     </Container>
