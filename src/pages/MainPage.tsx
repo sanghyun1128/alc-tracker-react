@@ -6,6 +6,7 @@ import { styled } from 'styled-components';
 import { fadeIn, fadeOut } from '../animations/basicAnimations';
 import CardView from '../components/CardView';
 import DotPagination from '../components/DotPagination';
+import EmptyView from '../components/EmptyView';
 import IconButton from '../components/IconButton';
 import IconLabel from '../components/IconLabel';
 import TextLabel from '../components/TextLabel';
@@ -64,7 +65,7 @@ export default function MainPage() {
   ];
   const [cardData, setCardData] = useState([
     wineCardList,
-    whiskeyCardList,
+    [],
     cocktailCardList,
   ]);
   const [pageIndex, setPageIndex] = useState<number>(0);
@@ -132,17 +133,17 @@ export default function MainPage() {
             color: `${theme.colors.textDark}`,
           }}
         />
-        {/* <EmptyView
+        {cardData[pageIndex].length === 0 ? (
+          <EmptyView
             theme={theme}
-            style={{
-              gridRow: '2 / 11',
-              gridColumn: '1 / 11',
-            }}
-          /> */}
-        <CardView
-          arr={cardData[pageIndex]}
-          style={{ gridRow: '2 / 11', gridColumn: '1 / 11' }}
-        />
+            style={{ gridRow: '2 / 11', gridColumn: '1 / 11' }}
+          />
+        ) : (
+          <CardView
+            arr={cardData[pageIndex]}
+            style={{ gridRow: '2 / 11', gridColumn: '1 / 11' }}
+          />
+        )}
       </MainViewSection>
 
       <ControlSection>
