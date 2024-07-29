@@ -67,6 +67,7 @@ export default function MainPage() {
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const mainViewRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (mainViewRef.current) {
@@ -82,7 +83,7 @@ export default function MainPage() {
     }
   }, [pageIndex]);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+  const handleScroll = () => {
     if (mainViewRef.current && !isScrolling) {
       const newIndex = Math.round(
         mainViewRef.current.scrollTop / mainViewRef.current.clientHeight,
@@ -91,6 +92,19 @@ export default function MainPage() {
         setPageIndex(newIndex);
       }
     }
+
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    scrollTimeoutRef.current = setTimeout(() => {
+      if (mainViewRef.current) {
+        mainViewRef.current.scrollTo({
+          top: pageIndex * mainViewRef.current.clientHeight,
+          behavior: 'smooth',
+        });
+      }
+    }, 100);
   };
 
   const handleIconClick = (
