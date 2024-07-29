@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -62,6 +62,27 @@ export default function MainPage() {
   ]);
   const [pageIndex, setPageIndex] = useState<number>(0);
 
+  const mainViewRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (mainViewRef.current) {
+      mainViewRef.current.scrollTo({
+        top: pageIndex * mainViewRef.current.clientHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [pageIndex]);
+
+  const handleScroll = () => {
+    console.log(pageIndex);
+    if (mainViewRef.current) {
+      const newIndex = Math.round(
+        mainViewRef.current.scrollTop / mainViewRef.current.clientHeight,
+      );
+      setPageIndex(newIndex);
+    }
+  };
+
   const handleIconClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
@@ -88,7 +109,7 @@ export default function MainPage() {
           padding: '10px',
         }}
       />
-      <MainViewSection>
+      <MainViewSection ref={mainViewRef} onScroll={handleScroll}>
         {pageList.map((page, index) =>
           cardData[index].length === 0 ? (
             <EmptyView key={index} theme={theme} style={{}} />
