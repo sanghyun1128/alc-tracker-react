@@ -36,6 +36,10 @@ const MainViewSection = styled.div`
   border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.colors.secondary};
   overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ControlSection = styled.div`
@@ -61,25 +65,31 @@ export default function MainPage() {
     cocktailCardList,
   ]);
   const [pageIndex, setPageIndex] = useState<number>(0);
-
+  const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const mainViewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (mainViewRef.current) {
+      setIsScrolling(true);
       mainViewRef.current.scrollTo({
         top: pageIndex * mainViewRef.current.clientHeight,
         behavior: 'smooth',
       });
+      const timer = setTimeout(() => {
+        setIsScrolling(false);
+      }, 500);
+      return () => clearTimeout(timer);
     }
   }, [pageIndex]);
 
-  const handleScroll = () => {
-    console.log(pageIndex);
-    if (mainViewRef.current) {
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (mainViewRef.current && !isScrolling) {
       const newIndex = Math.round(
         mainViewRef.current.scrollTop / mainViewRef.current.clientHeight,
       );
-      setPageIndex(newIndex);
+      if (newIndex !== pageIndex) {
+        setPageIndex(newIndex);
+      }
     }
   };
 
