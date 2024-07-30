@@ -84,6 +84,7 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
       <TextLabel
         text={name + ' ' + vintage}
         size="h3"
+        type="light"
         style={{
           flexBasis: '100px',
           flexGrow: '1',

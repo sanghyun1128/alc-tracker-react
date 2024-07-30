@@ -30,6 +30,7 @@ export default function EmptyView({ style, theme }: EmptyViewProps) {
         style={{ width: '50%', height: '50%' }}
       />
       <TextLabel
+        type="dark"
         text="Click the button to add a new item"
         size="h3"
         style={{ color: theme.colors.textDark, textAlign: 'center' }}
