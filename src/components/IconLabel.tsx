@@ -1,6 +1,14 @@
 import React from 'react';
 
+import { styled } from 'styled-components';
+
 import { Icons, IconType } from '../assets/svg';
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 interface IconLabelProps {
   icon: string;
@@ -22,5 +30,9 @@ export default function IconLabel({ icon, size, style = {} }: IconLabelProps) {
     Icon = Icons.FILE_EMPTY;
   }
 
-  return <Icon width={size} height={size} style={style} />;
+  return (
+    <Container style={{ ...style, width: `${size}px`, height: `${size}px` }}>
+      <Icon width={size} height={size} />
+    </Container>
+  );
 }
