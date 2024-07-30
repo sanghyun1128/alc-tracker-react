@@ -61,7 +61,7 @@ export default function MainPage() {
   ];
   const [cardData, setCardData] = useState([
     wineCardList,
-    [],
+    whiskeyCardList,
     cocktailCardList,
   ]);
   const [pageIndex, setPageIndex] = useState<number>(0);
