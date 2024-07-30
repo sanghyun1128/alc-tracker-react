@@ -14,5 +14,13 @@ export const lightTheme: DefaultTheme = {
     textDark: '#023047',
     textLight: '#f1faee',
     warning: '#e63946',
+    wineWhite: '#f9b54c',
+    wineWhiteOn: '#ffd15d',
+    wineRed: '#c1321f',
+    wineRedOn: '#d83e20',
+    whiskey: '#6f523b',
+    whiskeyOn: '#b76935',
+    cocktail: '#00b4d8',
+    cocktailOn: '#90e0ef',
   },
 };

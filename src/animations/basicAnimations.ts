@@ -48,3 +48,25 @@ export const shake = keyframes`
       animation-timing-function: ease-out;
   }
 `;
+
+export const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    to {
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+`;
+
+export const fadeOut = keyframes`
+    0% {
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    to {
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+`;

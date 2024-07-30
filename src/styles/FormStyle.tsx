@@ -10,11 +10,11 @@ export const FormStyle = styled.form`
   background-color: ${props => props.theme.colors.formBackground};
 
   ${deviceSizes.abnormal} {
-    width: 250px;
+    width: 375px;
     padding: 20px 20px 0px 20px;
   }
   ${deviceSizes.small} {
-    width: 400px;
+    width: 375px;
     padding: 20px 20px 0px 20px;
   }
   ${deviceSizes.medium} {
