@@ -19,8 +19,16 @@ const Container = styled.div<{ $type: string }>`
   padding: 10px;
   background-color: ${props =>
     props.$type === 'Red'
-      ? props.theme.colors.wineRedOn
-      : props.theme.colors.wineWhiteOn};
+      ? props.theme.colors.wineRed
+      : props.$type === 'White'
+        ? props.theme.colors.wineWhite
+        : props.$type === 'Sparkling'
+          ? props.theme.colors.wineWhite
+          : props.$type === 'Whiskey'
+            ? props.theme.colors.whiskey
+            : props.$type === 'Cocktail'
+              ? props.theme.colors.cocktail
+              : props.theme.colors.primary};
   border-radius: ${props => props.theme.borderRadius};
   transition: background-color 0.5s;
   cursor: pointer;
@@ -28,8 +36,16 @@ const Container = styled.div<{ $type: string }>`
   &:hover {
     background-color: ${props =>
       props.$type === 'Red'
-        ? props.theme.colors.wineRed
-        : props.theme.colors.wineWhite};
+        ? props.theme.colors.wineRedOn
+        : props.$type === 'White'
+          ? props.theme.colors.wineWhiteOn
+          : props.$type === 'Sparkling'
+            ? props.theme.colors.wineWhiteOn
+            : props.$type === 'Whiskey'
+              ? props.theme.colors.whiskeyOn
+              : props.$type === 'Cocktail'
+                ? props.theme.colors.cocktailOn
+                : props.theme.colors.primaryOn};
   }
 `;
 
@@ -44,31 +60,27 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   const hasHalfStar = Number(totalStar) % 1 !== 0;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
-  let type;
-  let vintage;
-  if ('type' in card && 'vintage' in card) {
-    type = card.type;
-    vintage = card.vintage;
+  const type = 'type' in card ? String(card.type) : '';
+  const vintage = 'vintage' in card ? String(card.vintage) : '';
+
+  let iconName;
+  if (type === 'Red') {
+    iconName = 'WINE_RED';
+  } else if (type === 'White') {
+    iconName = 'WINE_WHITE';
+  } else if (type === 'Sparkling') {
+    iconName = 'WINE_SPARKLING';
+  } else if (type === 'Whiskey') {
+    iconName = 'WHISKEY';
+  } else if (type === 'Cocktail') {
+    iconName = 'COCKTAIL';
   } else {
-    type = 'Red';
-    vintage = '';
+    iconName = 'WINE';
   }
 
   return (
     <Container $type={type} style={style}>
-      <IconLabel
-        icon={
-          type === 'Red'
-            ? 'WINE_RED'
-            : type === 'White'
-              ? 'WINE_WHITE'
-              : type === 'Sparkling'
-                ? 'WINE_SPARKLING'
-                : 'WINE_RED'
-        }
-        size={30}
-        style={{ flexBasis: '50px' }}
-      />
+      <IconLabel icon={iconName} size={30} style={{ flexBasis: '50px' }} />
       <TextLabel
         text={name + ' ' + vintage}
         size="h3"
