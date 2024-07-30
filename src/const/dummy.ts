@@ -74,51 +74,61 @@ export const wineCardList = [
 export const whiskeyCardList = [
   {
     name: 'Macallan 18y',
+    type: 'Whiskey',
     totalStar: '5.0',
     version: '1.0.0',
   },
   {
     name: 'Lagavulin 16y',
+    type: 'Whiskey',
     totalStar: '5.0',
     version: '1.0.0',
   },
   {
     name: 'Glenfiddich 12y',
+    type: 'Whiskey',
     totalStar: '3.0',
     version: '1.0.0',
   },
   {
     name: 'Jack Daniel',
+    type: 'Whiskey',
     totalStar: '4.5',
     version: '1.0.0',
   },
   {
     name: 'Jameson',
+    type: 'Whiskey',
     totalStar: '3.5',
     version: '1.0.0',
   },
   {
     name: 'Macallan 12y',
+    type: 'Whiskey',
     totalStar: '4.0',
     version: '1.0.0',
   },
   {
     name: 'Lagavulin 8y',
+    type: 'Whiskey',
     totalStar: '5.0',
     version: '1.0.0',
   },
   {
     name: 'Glenfiddich 18y',
+    type: 'Whiskey',
     totalStar: '3.5',
     version: '1.0.0',
   },
   {
     name: 'Jack Daniel',
+    type: 'Whiskey',
     totalStar: '4.5',
     version: '1.0.0',
   },
   {
     name: 'Jameson',
+    type: 'Whiskey',
     totalStar: '3.5',
     version: '1.0.0',
   },
@@ -127,51 +137,61 @@ export const whiskeyCardList = [
 export const cocktailCardList = [
   {
     name: 'Margarita',
+    type: 'Cocktail',
     totalStar: '5.0',
     version: '1.0.0',
   },
   {
     name: 'Martini',
+    type: 'Cocktail',
     totalStar: '5.0',
     version: '1.0.0',
   },
   {
     name: 'Mojito',
+    type: 'Cocktail',
     totalStar: '4.0',
     version: '1.0.0',
   },
   {
     name: 'Old Fashioned',
+    type: 'Cocktail',
     totalStar: '4.5',
     version: '1.0.0',
   },
   {
     name: 'Cosmopolitan',
+    type: 'Cocktail',
     totalStar: '3.5',
     version: '1.0.0',
   },
   {
     name: 'Margarita',
+    type: 'Cocktail',
     totalStar: '5.0',
     version: '1.0.0',
   },
   {
     name: 'Martini',
+    type: 'Cocktail',
     totalStar: '5.0',
     version: '1.0.0',
   },
   {
     name: 'Mojito',
+    type: 'Cocktail',
     totalStar: '4.0',
     version: '1.0.0',
   },
   {
     name: 'Old Fashioned',
+    type: 'Cocktail',
     totalStar: '4.5',
     version: '1.0.0',
   },
   {
     name: 'Cosmopolitan',
+    type: 'Cocktail',
     totalStar: '3.5',
     version: '1.0.0',
   },
