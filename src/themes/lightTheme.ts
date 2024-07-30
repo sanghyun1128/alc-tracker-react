@@ -18,5 +18,9 @@ export const lightTheme: DefaultTheme = {
     wineWhiteOn: '#f9b54c',
     wineRed: '#d83e20',
     wineRedOn: '#c1321f',
+    whiskey: '#b565',
+    whiskeyOn: '#a34d',
+    cocktail: '#f4a261',
+    cocktailOn: '#ee8959',
   },
 };
