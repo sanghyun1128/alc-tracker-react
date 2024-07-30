@@ -20,6 +20,9 @@ export type IconType = React.FunctionComponent<
 export const Icons: { [src: string]: IconType } = {
   ARROW_LEFT: ArrowLeft,
   WINE: Wine,
+  WINE_RED: WineRed,
+  WINE_WHITE: WineWhite,
+  WINE_SPARKLING: WineSparkling,
   WHISKEY: Whiskey,
   COCKTAIL: Cocktail,
   SETTING: Setting,
@@ -28,8 +31,5 @@ export const Icons: { [src: string]: IconType } = {
   STAR_EMPTY: StarEmpty,
   STAR_FULL: StarFull,
   STAR_HALF: StarHalf,
-  WINE_RED: WineRed,
-  WINE_WHITE: WineWhite,
-  WINE_SPARKLING: WineSparkling,
   FILE_EMPTY: FileEmpty,
 };
