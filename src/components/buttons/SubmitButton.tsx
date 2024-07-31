@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { ButtonStyle } from '../styles';
+import { ButtonStyle } from '../../styles';
 
 const Button = styled(ButtonStyle)<{ $gridColumn: string; $gridRow: string }>`
   grid-column: ${props => props.$gridColumn};
@@ -26,7 +26,11 @@ interface SubmitButtonProps {
   gridRow: string;
 }
 
-export function SubmitButton({ text, gridColumn, gridRow }: SubmitButtonProps) {
+export default function SubmitButton({
+  text,
+  gridColumn,
+  gridRow,
+}: SubmitButtonProps) {
   return (
     <Button type="submit" $gridColumn={gridColumn} $gridRow={gridRow}>
       {text}

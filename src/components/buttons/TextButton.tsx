@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { TextButtonStyle } from '../styles';
+import { TextButtonStyle } from '../../styles';
 
 const Button = styled(TextButtonStyle)<{
   $gridColumn: string;
@@ -24,7 +24,7 @@ interface TextButtonProps {
   onClick: () => void;
 }
 
-export function TextButton({
+export default function TextButton({
   text,
   textSize,
   textColor,
