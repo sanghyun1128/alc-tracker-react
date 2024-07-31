@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { Icons, IconType } from '../assets/svg';
+import { Icons, IconType } from '../../assets/svg';
 
 const Container = styled.div`
   display: flex;
