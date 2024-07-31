@@ -2,11 +2,10 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
+import { IconLabel, TextLabel } from '.';
 import { CocktailCard } from '../types/api/cocktailCard';
 import { WhiskeyCard } from '../types/api/whiskeyCard';
 import { WineCard } from '../types/api/wineCard';
-import IconLabel from './IconLabel';
-import TextLabel from './TextLabel';
 
 const Container = styled.div<{ $type: string }>`
   display: flex;

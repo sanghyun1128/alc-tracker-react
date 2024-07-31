@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Animations } from '../assets/lottie';
-import LottieContainer from '../components/LottieContainer';
+import { LottieContainer } from '../components';
 
 export default function NotFoundPage() {
   return (

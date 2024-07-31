@@ -3,11 +3,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import CardView from '../components/CardView';
-import DotPagination from '../components/DotPagination';
-import EmptyView from '../components/EmptyView';
-import IconButton from '../components/IconButton';
-import IconLabel from '../components/IconLabel';
+import {
+  IconLabel,
+  DotPagination,
+  IconButton,
+  CardView,
+  EmptyView,
+} from '../components';
 import {
   cocktailCardList,
   whiskeyCardList,

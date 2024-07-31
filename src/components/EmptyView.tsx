@@ -2,9 +2,8 @@ import React from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
+import { LottieContainer, TextLabel } from '.';
 import { Animations } from '../assets/lottie';
-import LottieContainer from './LottieContainer';
-import TextLabel from './TextLabel';
 
 const Container = styled.div`
   display: flex;

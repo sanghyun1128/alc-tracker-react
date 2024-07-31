@@ -2,10 +2,10 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
+import { ReviewCard } from '.';
 import { CocktailCard } from '../types/api/cocktailCard';
 import { WhiskeyCard } from '../types/api/whiskeyCard';
 import { WineCard } from '../types/api/wineCard';
-import ReviewCard from './ReviewCard';
 
 const Container = styled.div`
   display: grid;
