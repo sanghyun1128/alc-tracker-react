@@ -33,7 +33,7 @@ interface DatePickerProps {
 }
 
 //TODO: Remake DatePicker with select dropdowns for day, month, and year
-export function DatePicker({
+export default function DatePicker({
   gridColumn,
   gridRow,
   isError,

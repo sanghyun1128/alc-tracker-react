@@ -93,7 +93,7 @@ interface SelectorProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function Selector({
+export default function Selector({
   gridColumn,
   gridRow,
   labelText,

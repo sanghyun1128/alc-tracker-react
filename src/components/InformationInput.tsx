@@ -35,7 +35,7 @@ interface InformationInputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function InformationInput({
+export default function InformationInput({
   placeholder,
   maxLength,
   gridColumn,
