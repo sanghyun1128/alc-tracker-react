@@ -3,9 +3,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import { IconLabel, TextLabel } from '.';
-import { CocktailCard } from '../types/api/cocktailCard';
-import { WhiskeyCard } from '../types/api/whiskeyCard';
-import { WineCard } from '../types/api/wineCard';
+import { CocktailCard, WhiskeyCard, WineCard } from '../types/api';
 
 const Container = styled.div<{ $type: string }>`
   display: flex;
