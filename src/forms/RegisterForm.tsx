@@ -186,7 +186,10 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         onChange={handleInputChange}
         hideShowButton={true}
       />
-      <SubmitButton text="Register" gridColumn="2 / 6" gridRow="8 / 9" />
+      <SubmitButton
+        text="Register"
+        style={{ gridColumn: '2 / 6', gridRow: '8 / 9' }}
+      />
       <TextButton
         text="Already have an account?"
         textSize=""

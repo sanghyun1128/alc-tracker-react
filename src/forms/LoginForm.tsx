@@ -94,7 +94,10 @@ export default function LoginForm({ theme }: LoginFormProps) {
         justifyContent="flex-end"
         onClick={() => navigate('/register')}
       />
-      <SubmitButton text="Log In" gridColumn="2 / 5" gridRow="3 / 4" />
+      <SubmitButton
+        text="Log In"
+        style={{ gridColumn: '2 / 5', gridRow: '3 / 4' }}
+      />
     </Form>
   );
 }
