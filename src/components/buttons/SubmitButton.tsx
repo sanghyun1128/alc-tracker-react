@@ -2,9 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const Button = styled.button<{ $gridColumn: string; $gridRow: string }>`
-  grid-column: ${props => props.$gridColumn};
-  grid-row: ${props => props.$gridRow};
+const Button = styled.button`
   width: auto;
   min-height: 3rem;
   display: inline-flex;
@@ -36,17 +34,17 @@ const Button = styled.button<{ $gridColumn: string; $gridRow: string }>`
 
 interface SubmitButtonProps {
   text: string;
-  gridColumn: string;
-  gridRow: string;
+  style: React.CSSProperties;
 }
 
-export default function SubmitButton({
-  text,
-  gridColumn,
-  gridRow,
-}: SubmitButtonProps) {
+/**
+ * @param {SubmitButtonProps} props
+ * @param {String} props.text text to be displayed on the button
+ * @param {Object} props.style React.CSSProperties to be applied to the button
+ */
+export default function SubmitButton({ text, style }: SubmitButtonProps) {
   return (
-    <Button type="submit" $gridColumn={gridColumn} $gridRow={gridRow}>
+    <Button type="submit" style={style}>
       {text}
     </Button>
   );
