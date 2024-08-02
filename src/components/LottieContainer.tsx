@@ -19,7 +19,7 @@ interface LottieContainerProps {
 /**
  * @param {LottieContainerProps} props
  * @param {LottieComponentProps} props.animation find the animation data in 'src/assets/lottie/index.ts'
- * @param {React.CSSProperties} props.style React.CSSProperties to be applied to the container
+ * @param {Object} props.style React.CSSProperties to be applied to the container
  */
 export default function LottieContainer({
   animation,
