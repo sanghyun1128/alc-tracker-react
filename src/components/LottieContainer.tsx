@@ -16,16 +16,18 @@ interface LottieContainerProps {
   style: React.CSSProperties;
 }
 
+/**
+ * @param {LottieContainerProps} props
+ * @param {LottieComponentProps} props.animation find the animation data in 'src/assets/lottie/index.ts'
+ * @param {React.CSSProperties} props.style React.CSSProperties to be applied to the container
+ */
 export default function LottieContainer({
   animation,
   style,
 }: LottieContainerProps) {
   return (
     <Container style={style}>
-      <Lottie
-        animationData={animation.animationData}
-        style={{ width: '100%', height: '100%' }}
-      />
+      <Lottie animationData={animation.animationData} style={style} />
     </Container>
   );
 }
