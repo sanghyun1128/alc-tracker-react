@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { InputStyle, TextButtonStyle } from '../styles';
+import { TextButton } from '.';
+import { InputStyle } from '../styles';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   display: grid;
@@ -17,12 +18,6 @@ const Input = styled(InputStyle)`
   grid-column: 1 / 7;
   grid-row: 1 / 2;
   margin: 0;
-`;
-
-const Button = styled(TextButtonStyle)`
-  grid-column: 6 / 7;
-  grid-row: 1 / 2;
-  justify-self: end;
 `;
 
 interface InformationInputProps {
@@ -61,9 +56,15 @@ export default function InformationInput({
         onChange={onChange}
       />
       {hideShowButton && (
-        <Button type="button" onClick={toggleInputVisibility}>
-          {showInput ? 'Hide' : 'Show'}
-        </Button>
+        <TextButton
+          text={showInput ? 'Hide' : 'Show'}
+          style={{
+            gridColumn: '6 / 7',
+            gridRow: '1 / 2',
+            justifySelf: 'flex-end',
+          }}
+          onClick={toggleInputVisibility}
+        />
       )}
     </Container>
   );
