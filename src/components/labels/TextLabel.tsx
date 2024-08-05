@@ -43,22 +43,24 @@ interface TextLabelProps {
  * @param {Object} props.style React.CSSProperties to be applied to the text
  */
 export default function TextLabel({ text, size, type, style }: TextLabelProps) {
-  if (size === 'h1')
-    return (
-      <H1 $type={type} style={style}>
-        {text}
-      </H1>
-    );
-  else if (size === 'h2')
-    return (
-      <H2 $type={type} style={style}>
-        {text}
-      </H2>
-    );
-  else
-    return (
-      <H3 $type={type} style={style}>
-        {text}
-      </H3>
-    );
+  switch (size) {
+    case 'h1':
+      return (
+        <H1 $type={type} style={style}>
+          {text}
+        </H1>
+      );
+    case 'h2':
+      return (
+        <H2 $type={type} style={style}>
+          {text}
+        </H2>
+      );
+    default:
+      return (
+        <H3 $type={type} style={style}>
+          {text}
+        </H3>
+      );
+  }
 }
