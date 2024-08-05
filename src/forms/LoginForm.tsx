@@ -78,20 +78,24 @@ export default function LoginForm({ theme }: LoginFormProps) {
       />
       <TextButton
         text="Forgot Password?"
-        textSize=""
-        textColor={theme.colors.secondary}
-        gridColumn="1 / 3"
-        gridRow="4 / 5"
-        justifyContent="flex-start"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.secondary,
+          gridColumn: '1 / 3',
+          gridRow: '4 / 5',
+          justifySelf: 'flex-start',
+        }}
         onClick={() => navigate('/forgot-password')}
       />
       <TextButton
         text="Register"
-        textSize=""
-        textColor={theme.colors.secondary}
-        gridColumn="4 / 6"
-        gridRow="4 / 5"
-        justifyContent="flex-end"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.secondary,
+          gridColumn: '4 / 6',
+          gridRow: '4 / 5',
+          justifySelf: 'flex-end',
+        }}
         onClick={() => navigate('/register')}
       />
       <SubmitButton

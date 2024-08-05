@@ -192,11 +192,13 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       />
       <TextButton
         text="Already have an account?"
-        textSize=""
-        textColor={theme.colors.secondary}
-        gridColumn="1 / 7"
-        gridRow="9 / 10"
-        justifyContent="flex-end"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.secondary,
+          gridColumn: '1 / 7',
+          gridRow: '9 / 10',
+          justifySelf: 'flex-end',
+        }}
         onClick={() => navigate('/login')}
       />
     </Form>
