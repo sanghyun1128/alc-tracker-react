@@ -19,19 +19,31 @@ const Container = styled.div`
 
 interface CardViewProps {
   arr: Array<WineCard | WhiskeyCard | CocktailCard>;
+  numOfRows: number;
+  numOfColumns: number;
   style: React.CSSProperties;
 }
 
-export default function CardView({ arr, style }: CardViewProps) {
-  const numOfRows = 2;
-  const numOfColumns = arr.length / numOfRows;
-
+/**
+ * @param {CardViewProps} props
+ * @param {Array<WineCard | WhiskeyCard | CocktailCard>} props.arr array of cards to be displayed
+ * @param {Number} props.numOfRows number of rows to display
+ * @param {Number} props.numOfColumns number of columns to display
+ * @param {Object} props.style React.CSSProperties to be applied to the container
+ */
+export default function CardView({
+  arr,
+  numOfRows,
+  numOfColumns,
+  style,
+}: CardViewProps) {
+  arr = arr.slice(0, numOfRows * numOfColumns);
   return (
     <Container
       style={{
         ...style,
-        gridTemplateColumns: `repeat(${numOfRows}, 1fr)`,
-        gridTemplateRows: `repeat(${numOfColumns}, 1fr)`,
+        gridTemplateColumns: `repeat(${numOfColumns}, 1fr)`,
+        gridTemplateRows: `repeat(${numOfRows}, 1fr)`,
       }}>
       {arr.map((wineCard, index) => {
         return (
@@ -39,8 +51,8 @@ export default function CardView({ arr, style }: CardViewProps) {
             key={index}
             card={wineCard}
             style={{
-              gridColumn: `${~~(index / numOfColumns) + 1} / ${~~(index / numOfColumns) + 2}`,
-              gridRow: `${(index + 1) % numOfColumns} / ${((index + 1) % numOfColumns) + 1}`,
+              gridColumn: `${Math.floor(index / numOfRows) + 1} / ${Math.floor(index / numOfRows) + 2}`,
+              gridRow: `${(index % numOfRows) + 1} / ${(index % numOfRows) + 2}`,
             }}
           />
         );
