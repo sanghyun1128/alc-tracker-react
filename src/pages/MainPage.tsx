@@ -71,20 +71,6 @@ export default function MainPage() {
   const mainViewRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (mainViewRef.current) {
-      setIsScrolling(true);
-      mainViewRef.current.scrollTo({
-        top: pageIndex * mainViewRef.current.clientHeight,
-        behavior: 'smooth',
-      });
-      const timer = setTimeout(() => {
-        setIsScrolling(false);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [pageIndex]);
-
   const handleScroll = () => {
     if (mainViewRef.current && !isScrolling) {
       const newIndex = Math.round(
@@ -115,6 +101,20 @@ export default function MainPage() {
     navigate(`/${e.currentTarget.id}`);
   };
 
+  useEffect(() => {
+    if (mainViewRef.current) {
+      setIsScrolling(true);
+      mainViewRef.current.scrollTo({
+        top: pageIndex * mainViewRef.current.clientHeight,
+        behavior: 'smooth',
+      });
+      const timer = setTimeout(() => {
+        setIsScrolling(false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [pageIndex]);
+
   return (
     <Container>
       <DotPagination
@@ -135,6 +135,7 @@ export default function MainPage() {
           padding: '10px',
         }}
       />
+
       <MainViewSection ref={mainViewRef} onScroll={handleScroll}>
         {pageList.map((page, index) =>
           cardData[index].length === 0 ? (
