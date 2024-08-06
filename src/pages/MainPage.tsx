@@ -140,7 +140,13 @@ export default function MainPage() {
           cardData[index].length === 0 ? (
             <EmptyView key={index} theme={theme} style={{}} />
           ) : (
-            <CardView key={index} arr={cardData[index]} style={{}} />
+            <CardView
+              key={index}
+              arr={cardData[index]}
+              numOfRows={5}
+              numOfColumns={2}
+              style={{}}
+            />
           ),
         )}
       </MainViewSection>
