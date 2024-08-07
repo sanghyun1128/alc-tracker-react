@@ -29,7 +29,7 @@ const H3 = styled.h3<{ $type: string }>`
       : props.theme.colors.textDark};
 `;
 
-interface TextLabelProps {
+interface HeadingLabelProps {
   text: string;
   size: 'h1' | 'h2' | 'h3';
   type: 'light' | 'dark';
@@ -43,7 +43,12 @@ interface TextLabelProps {
  * @param {String} props.type color of the text 'light' | 'dark'
  * @param {Object} props.style React.CSSProperties to be applied to the text
  */
-export default function TextLabel({ text, size, type, style }: TextLabelProps) {
+export default function HeadingLabel({
+  text,
+  size,
+  type,
+  style,
+}: HeadingLabelProps) {
   switch (size) {
     case 'h1':
       return (

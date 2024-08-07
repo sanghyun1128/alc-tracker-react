@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { IconLabel, TextLabel } from '.';
+import { IconLabel, HeadingLabel } from '.';
 import { CocktailCard, WhiskeyCard, WineCard } from '../types/api';
 
 const Container = styled.div<{ $type: string }>`
@@ -78,7 +78,7 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   return (
     <Container $type={type} style={style}>
       <IconLabel icon={iconName} size={30} style={{ flexBasis: '50px' }} />
-      <TextLabel
+      <HeadingLabel
         text={name + ' ' + vintage}
         size="h3"
         type="light"

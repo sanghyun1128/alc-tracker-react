@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
-import { LottieContainer, TextLabel } from '.';
+import { LottieContainer, HeadingLabel } from '.';
 import { Animations } from '../assets/lottie';
 
 const Container = styled.div`
@@ -28,7 +28,7 @@ export default function EmptyView({ style, theme }: EmptyViewProps) {
         animation={Animations.NO_DATA}
         style={{ width: '50%', height: '50%' }}
       />
-      <TextLabel
+      <HeadingLabel
         type="dark"
         text="Click the button to add a new item"
         size="h3"
