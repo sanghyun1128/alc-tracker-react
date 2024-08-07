@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { Icons } from '../assets/svg';
 import { useOnClickOutside } from '../hooks/useOnClickOutSide';
-import { LabelStyle } from '../styles';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   grid-column: ${props => props.$gridColumn};
@@ -16,7 +15,10 @@ const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   margin: 0;
 `;
 
-const Label = styled(LabelStyle)`
+const Label = styled.label`
+  flex: 1 1 0;
+  font-weight: bold;
+  font-family: inherit;
   grid-column: 1 / 2;
 `;
 
