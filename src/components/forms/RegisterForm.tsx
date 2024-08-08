@@ -14,7 +14,6 @@ import { fadeInRightToCenter } from '../../animations/basicAnimations';
 import { deviceSizes } from '../../const/deviceSizes';
 import { genderList } from '../../const/gender';
 import { registerFormReducer } from '../../reducers/registerFormReducer';
-import { FormStyle } from '../../styles';
 import { RegisterFormState } from '../../types/registerForm';
 import {
   emailValidation,
@@ -22,7 +21,7 @@ import {
   nicknameValidation,
 } from '../../validation';
 
-const Form = styled(FormStyle)`
+const Form = styled.form`
   display: grid;
   align-items: center;
   justify-items: stretch;

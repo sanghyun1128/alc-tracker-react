@@ -6,10 +6,9 @@ import { DefaultTheme, styled } from 'styled-components';
 import { InformationInput, SubmitButton, TextButton } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
 import { deviceSizes } from '../../const/deviceSizes';
-import { FormStyle } from '../../styles';
 import { emailValidation, passwordValidation } from '../../validation';
 
-const Form = styled(FormStyle)`
+const Form = styled.form`
   display: grid;
   align-items: center;
   justify-items: stretch;
