@@ -3,23 +3,23 @@ import React, { useCallback, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
 
-import { fadeInRightToCenter } from '../animations/basicAnimations';
 import {
   InformationInput,
   DatePicker,
   SubmitButton,
   TextButton,
   Selector,
-} from '../components';
-import { genderList } from '../const/gender';
-import { registerFormReducer } from '../reducers/registerFormReducer';
-import { FormStyle } from '../styles';
-import { RegisterFormState } from '../types/registerForm';
+} from '..';
+import { fadeInRightToCenter } from '../../animations/basicAnimations';
+import { genderList } from '../../const/gender';
+import { registerFormReducer } from '../../reducers/registerFormReducer';
+import { FormStyle } from '../../styles';
+import { RegisterFormState } from '../../types/registerForm';
 import {
   emailValidation,
   passwordValidation,
   nicknameValidation,
-} from '../validation';
+} from '../../validation';
 
 const Form = styled(FormStyle)`
   grid-template-columns: repeat(6, 1fr);

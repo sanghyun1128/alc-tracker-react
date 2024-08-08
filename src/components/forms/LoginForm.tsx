@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { fadeInBottomToCenter } from '../animations/basicAnimations';
-import { InformationInput, SubmitButton, TextButton } from '../components';
-import { FormStyle } from '../styles';
-import { emailValidation, passwordValidation } from '../validation';
+import { InformationInput, SubmitButton, TextButton } from '..';
+import { fadeInBottomToCenter } from '../../animations/basicAnimations';
+import { FormStyle } from '../../styles';
+import { emailValidation, passwordValidation } from '../../validation';
 
 const Form = styled(FormStyle)`
   grid-template-columns: repeat(5, 1fr);
