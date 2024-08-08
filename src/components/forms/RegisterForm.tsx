@@ -11,6 +11,7 @@ import {
   Selector,
 } from '..';
 import { fadeInRightToCenter } from '../../animations/basicAnimations';
+import { deviceSizes } from '../../const/deviceSizes';
 import { genderList } from '../../const/gender';
 import { registerFormReducer } from '../../reducers/registerFormReducer';
 import { FormStyle } from '../../styles';
@@ -22,11 +23,32 @@ import {
 } from '../../validation';
 
 const Form = styled(FormStyle)`
+  display: grid;
+  align-items: center;
+  justify-items: stretch;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(7, 1fr) 1.5fr 1fr;
+  border-radius: ${props => props.theme.borderRadius};
+  background-color: ${props => props.theme.colors.formBackground};
+  animation: ${fadeInRightToCenter} 1.3s;
   height: 750px;
 
-  animation: ${fadeInRightToCenter} 1.3s;
+  ${deviceSizes.abnormal} {
+    width: 375px;
+    padding: 20px 20px 0px 20px;
+  }
+  ${deviceSizes.small} {
+    width: 375px;
+    padding: 20px 20px 0px 20px;
+  }
+  ${deviceSizes.medium} {
+    width: 500px;
+    padding: 50px 50px 0px 50px;
+  }
+  ${deviceSizes.large} {
+    width: 550px;
+    padding: 50px 50px 0px 50px;
+  }
 `;
 
 interface RegisterFormProps {
