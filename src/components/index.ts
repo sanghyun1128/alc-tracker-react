@@ -5,6 +5,8 @@ import CardView from './CardView';
 import DatePicker from './DatePicker';
 import DotPagination from './DotPagination';
 import EmptyView from './EmptyView';
+import LoginForm from './forms/LoginForm';
+import RegisterForm from './forms/RegisterForm';
 import InformationInput from './InformationInput';
 import HeadingLabel from './labels/HeadingLabel';
 import IconLabel from './labels/IconLabel';
@@ -14,6 +16,7 @@ import Selector from './Selector';
 
 export { TextButton, IconButton, SubmitButton };
 export { IconLabel, HeadingLabel };
+export { LoginForm, RegisterForm };
 export {
   CardView,
   DatePicker,
