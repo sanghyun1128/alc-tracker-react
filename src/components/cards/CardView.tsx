@@ -2,10 +2,10 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { ReviewCard } from '.';
-import { CocktailCard } from '../types/api/cocktailCard';
-import { WhiskeyCard } from '../types/api/whiskeyCard';
-import { WineCard } from '../types/api/wineCard';
+import { ReviewCard } from '..';
+import { CocktailCard } from '../../types/api/cocktailCard';
+import { WhiskeyCard } from '../../types/api/whiskeyCard';
+import { WineCard } from '../../types/api/wineCard';
 
 const Container = styled.div`
   display: grid;
@@ -38,6 +38,7 @@ export default function CardView({
   style,
 }: CardViewProps) {
   arr = arr.slice(0, numOfRows * numOfColumns);
+
   return (
     <Container
       style={{
