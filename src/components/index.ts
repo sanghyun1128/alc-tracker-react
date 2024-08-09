@@ -4,11 +4,11 @@ import TextButton from './buttons/TextButton';
 import CardView from './cards/CardView';
 import ReviewCard from './cards/ReviewCard';
 import EmptyView from './EmptyView';
-import DatePicker from './forms/DatePicker';
-import InformationInput from './forms/InformationInput';
 import LoginForm from './forms/LoginForm';
 import RegisterForm from './forms/RegisterForm';
-import Selector from './forms/Selector';
+import DatePicker from './forms/tools/DatePicker';
+import InformationInput from './forms/tools/InformationInput';
+import Selector from './forms/tools/Selector';
 import HeadingLabel from './labels/HeadingLabel';
 import IconLabel from './labels/IconLabel';
 import LottieContainer from './layout/LottieContainer';
@@ -21,7 +21,10 @@ export { TextButton, IconButton, SubmitButton };
 export { CardView, ReviewCard };
 
 // Form Components
-export { DatePicker, InformationInput, Selector, LoginForm, RegisterForm };
+export { LoginForm, RegisterForm };
+
+// Form Tools Components
+export { DatePicker, InformationInput, Selector };
 
 // Label Components
 export { IconLabel, HeadingLabel };
