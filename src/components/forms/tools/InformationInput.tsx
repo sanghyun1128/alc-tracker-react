@@ -5,13 +5,11 @@ import styled, { css } from 'styled-components';
 import { TextButton } from '../..';
 import { shake } from '../../../animations/basicAnimations';
 
-const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
+const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr;
   align-items: center;
-  grid-column: ${props => props.$gridColumn};
-  grid-row: ${props => props.$gridRow};
 `;
 
 const Input = styled.input<{
@@ -49,20 +47,27 @@ const Input = styled.input<{
 interface InformationInputProps {
   placeholder: string;
   maxLength: number;
-  gridColumn: string;
-  gridRow: string;
   isError: boolean;
-  hideShowButton?: boolean;
+  hideShowButton: boolean;
+  style: React.CSSProperties;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+/**
+ * @param {InformationInputProps} props
+ * @param {String} props.placeholder placeholder text for the input field
+ * @param {Number} props.maxLength maximum length of the input field
+ * @param {Boolean} props.isError whether the input field is in an error state
+ * @param {Boolean} props.hideShowButton whether to show a button to hide/show the input
+ * @param {React.CSSProperties} props.style custom styles for the input field
+ * @param {Function} props.onChange function to handle input changes
+ */
 export default function InformationInput({
   placeholder,
   maxLength,
-  gridColumn,
-  gridRow,
   isError,
   hideShowButton,
+  style,
   onChange,
 }: InformationInputProps) {
   const [showInput, setShowInput] = useState<boolean>(false);
@@ -72,7 +77,7 @@ export default function InformationInput({
   };
 
   return (
-    <Container $gridColumn={gridColumn} $gridRow={gridRow}>
+    <Container style={style}>
       <Input
         id={placeholder.toLowerCase()}
         type={hideShowButton && !showInput ? 'password' : 'text'}
