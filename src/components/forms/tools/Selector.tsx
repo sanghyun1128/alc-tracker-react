@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
-import { Icons } from '../assets/svg';
-import { useOnClickOutside } from '../hooks/useOnClickOutSide';
+import { Icons } from '../../../assets/svg';
+import { useOnClickOutside } from '../../../hooks/useOnClickOutSide';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   grid-column: ${props => props.$gridColumn};

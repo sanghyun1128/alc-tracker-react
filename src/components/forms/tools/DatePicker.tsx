@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled, { css } from 'styled-components';
 
-import { shake } from '../animations/basicAnimations';
+import { shake } from '../../../animations/basicAnimations';
 
 const Container = styled.div`
   display: grid;

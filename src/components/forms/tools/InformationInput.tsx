@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import styled, { css } from 'styled-components';
 
-import { TextButton } from '.';
-import { shake } from '../animations/basicAnimations';
+import { TextButton } from '../..';
+import { shake } from '../../../animations/basicAnimations';
 
 const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
   display: grid;
