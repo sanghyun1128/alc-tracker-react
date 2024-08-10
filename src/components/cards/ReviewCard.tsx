@@ -2,8 +2,8 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { IconLabel, HeadingLabel } from '.';
-import { CocktailCard, WhiskeyCard, WineCard } from '../types/api';
+import { IconLabel, HeadingLabel } from '../';
+import { CocktailCard, WhiskeyCard, WineCard } from '../../types/api';
 
 const Container = styled.div<{ $type: string }>`
   display: flex;
@@ -51,6 +51,11 @@ interface ReviewCardProps {
   style?: React.CSSProperties;
 }
 
+/**
+ * @param {ReviewCardProps} props
+ * @param {WineCard | WhiskeyCard | CocktailCard} props.card card to be displayed
+ * @param {Object} props.style React.CSSProperties to be applied to the container
+ */
 export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   const { name, totalStar } = card;
   const fullStars = Math.floor(Number(totalStar));
