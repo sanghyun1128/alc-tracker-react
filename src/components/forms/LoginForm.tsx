@@ -83,19 +83,18 @@ export default function LoginForm({ theme }: LoginFormProps) {
       <InformationInput
         placeholder="Email"
         maxLength={254}
-        gridColumn="1 / 6"
-        gridRow="1 / 2"
         isError={isEmailError}
+        hideShowButton={false}
+        style={{ gridColumn: '1 / 6', gridRow: '1 / 2' }}
         onChange={emailChange}
       />
       <InformationInput
         placeholder="Password"
         maxLength={20}
-        gridColumn="1 / 6"
-        gridRow="2 / 3"
         isError={isPasswordError}
-        onChange={passwordChange}
         hideShowButton={true}
+        style={{ gridColumn: '1 / 6', gridRow: '2 / 3' }}
+        onChange={passwordChange}
       />
       <TextButton
         text="Forgot Password?"

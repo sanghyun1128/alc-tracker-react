@@ -150,25 +150,25 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         placeholder="Nickname"
         maxLength={15}
-        gridColumn="1 / 7"
-        gridRow="1 / 2"
         isError={!state.isNicknameValid}
+        style={{ gridColumn: '1 / 7', gridRow: '1 / 2' }}
+        hideShowButton={false}
         onChange={handleInputChange}
       />
       <InformationInput
         placeholder="Email"
         maxLength={254}
-        gridColumn="1 / 7"
-        gridRow="2 / 3"
         isError={!state.isEmailValid}
+        style={{ gridColumn: '1 / 7', gridRow: '2 / 3' }}
+        hideShowButton={false}
         onChange={handleInputChange}
       />
       <InformationInput
         placeholder="Email confirmation code"
         maxLength={5}
-        gridColumn="1 / 7"
-        gridRow="3 / 4"
         isError={!state.isEmailConfirmed}
+        style={{ gridColumn: '1 / 7', gridRow: '3 / 4' }}
+        hideShowButton={false}
         onChange={handleInputChange}
       />
       <DatePicker
@@ -194,20 +194,18 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         placeholder="Password"
         maxLength={20}
-        gridColumn="1 / 7"
-        gridRow="6 / 7"
         isError={!state.isPasswordValid}
-        onChange={handleInputChange}
+        style={{ gridColumn: '1 / 7', gridRow: '6 / 7' }}
         hideShowButton={true}
+        onChange={handleInputChange}
       />
       <InformationInput
         placeholder="Re enter password"
         maxLength={20}
-        gridColumn="1 / 7"
-        gridRow="7 / 8"
         isError={!state.isPasswordConfirmed}
-        onChange={handleInputChange}
+        style={{ gridColumn: '1 / 7', gridRow: '7 / 8' }}
         hideShowButton={true}
+        onChange={handleInputChange}
       />
       <SubmitButton
         text="Register"
