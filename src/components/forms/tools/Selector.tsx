@@ -5,10 +5,7 @@ import styled from 'styled-components';
 import { Icons } from '../../../assets/svg';
 import { useOnClickOutside } from '../../../hooks/useOnClickOutSide';
 
-const Container = styled.div<{ $gridColumn: string; $gridRow: string }>`
-  grid-column: ${props => props.$gridColumn};
-  grid-row: ${props => props.$gridRow};
-
+const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
@@ -86,22 +83,29 @@ const ArrowIcon = styled(Icons.ARROW_LEFT).attrs({
 `;
 
 interface SelectorProps {
-  gridColumn: string;
-  gridRow: string;
   labelText: string;
   labelSize: string;
   labelColor: string;
   options: string[];
+  style: React.CSSProperties;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+/**
+ * @param {SelectorProps} props
+ * @param {string} props.labelText text to be displayed as the label
+ * @param {string} props.labelSize font size of the label
+ * @param {string} props.labelColor color of the label
+ * @param {string[]} props.options array of strings to be displayed as options
+ * @param {Object} props.style React.CSSProperties to be applied to the container
+ * @param {Function} props.onChange function to be called when the selected option changes
+ */
 export default function Selector({
-  gridColumn,
-  gridRow,
   labelText,
   labelSize,
   labelColor,
   options,
+  style,
   onChange,
 }: SelectorProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -137,7 +141,7 @@ export default function Selector({
   }, [selectedOption, onChange, id]);
 
   return (
-    <Container $gridColumn={gridColumn} $gridRow={gridRow} ref={selectorRef}>
+    <Container style={style} ref={selectorRef}>
       <Label htmlFor={id} style={{ fontSize: labelSize, color: labelColor }}>
         {labelText}
       </Label>
