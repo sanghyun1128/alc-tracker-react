@@ -173,13 +173,13 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       />
       <DatePicker
         isError={!state.isBirthValid}
+        labelText="Birth"
+        labelSize="1rem"
+        labelColor={theme.colors.primary}
         style={{
           gridColumn: '1 / 7',
           gridRow: '4 / 5',
-          fontSize: '1rem',
-          color: theme.colors.primary,
         }}
-        labelText="Birth"
         onChange={handleInputChange}
       />
       <Selector

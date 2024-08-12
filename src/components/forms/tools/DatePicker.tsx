@@ -3,19 +3,13 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { shake } from '../../../animations/basicAnimations';
+import SimpleLabel from '../../labels/SimpleLabel';
 
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr;
   align-items: center;
-`;
-
-const Label = styled.label`
-  flex: 1 1 0;
-  font-weight: bold;
-  font-family: inherit;
-  grid-column: 1 / 2;
 `;
 
 const Input = styled.input<{
@@ -52,6 +46,8 @@ const Input = styled.input<{
 interface DatePickerProps {
   isError: boolean;
   labelText: string;
+  labelSize: string;
+  labelColor: string;
   style: React.CSSProperties;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -61,18 +57,30 @@ interface DatePickerProps {
  * @param {DatePickerProps} props
  * @param {Boolean} props.isError if the input is in an error state
  * @param {String} props.labelText the text to display as the label
+ * @param {String} props.labelSize the font size of the label
+ * @param {String} props.labelColor the color of the label
  * @param {Object} props.style React.CSSProperties to be applied to the container
  * @param {Function} props.onChange function to be called when the input changes
  */
 export default function DatePicker({
   isError,
-  style,
   labelText,
+  labelSize,
+  labelColor,
+  style,
   onChange,
 }: DatePickerProps) {
   return (
     <Container style={style}>
-      <Label htmlFor={labelText.toLowerCase()}>{labelText}</Label>
+      <SimpleLabel
+        text={labelText}
+        style={{
+          fontSize: labelSize,
+          color: labelColor,
+          gridColumn: '1 / 2',
+          margin: '8px',
+        }}
+      />
       <Input
         type="date"
         id={labelText.toLowerCase()}
