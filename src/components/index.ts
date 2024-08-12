@@ -11,6 +11,7 @@ import InformationInput from './forms/tools/InformationInput';
 import Selector from './forms/tools/Selector';
 import HeadingLabel from './labels/HeadingLabel';
 import IconLabel from './labels/IconLabel';
+import SimpleLabel from './labels/SimpleLabel';
 import LottieContainer from './layout/LottieContainer';
 import DotPagination from './navigation/DotPagination';
 
@@ -27,7 +28,7 @@ export { LoginForm, RegisterForm };
 export { DatePicker, InformationInput, Selector };
 
 // Label Components
-export { IconLabel, HeadingLabel };
+export { IconLabel, HeadingLabel, SimpleLabel };
 
 // Layout Components
 export { LottieContainer };
