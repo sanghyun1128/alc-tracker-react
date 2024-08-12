@@ -183,12 +183,11 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         onChange={handleInputChange}
       />
       <Selector
-        gridColumn="1 / 7"
-        gridRow="5 / 6"
         labelText="Gender"
         labelSize="1rem"
         labelColor={theme.colors.primary}
         options={genderList}
+        style={{ gridColumn: '1 / 7', gridRow: '5 / 6' }}
         onChange={handleInputChange}
       />
       <InformationInput
