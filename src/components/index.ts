@@ -2,8 +2,8 @@ import IconButton from './buttons/IconButton';
 import SubmitButton from './buttons/SubmitButton';
 import TextButton from './buttons/TextButton';
 import CardView from './cards/CardView';
+import EmptyView from './cards/EmptyView';
 import ReviewCard from './cards/ReviewCard';
-import EmptyView from './EmptyView';
 import LoginForm from './forms/LoginForm';
 import RegisterForm from './forms/RegisterForm';
 import DatePicker from './forms/tools/DatePicker';
@@ -18,7 +18,7 @@ import DotPagination from './navigation/DotPagination';
 export { TextButton, IconButton, SubmitButton };
 
 // Card Components
-export { CardView, ReviewCard };
+export { EmptyView, CardView, ReviewCard };
 
 // Form Components
 export { LoginForm, RegisterForm };
@@ -36,4 +36,3 @@ export { LottieContainer };
 export { DotPagination };
 
 // Other Components
-export { EmptyView };

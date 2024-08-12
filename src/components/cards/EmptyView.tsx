@@ -2,8 +2,8 @@ import React from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
-import { LottieContainer, HeadingLabel } from '.';
-import { Animations } from '../assets/lottie';
+import { LottieContainer, HeadingLabel } from '..';
+import { Animations } from '../../assets/lottie';
 
 const Container = styled.div`
   display: flex;
