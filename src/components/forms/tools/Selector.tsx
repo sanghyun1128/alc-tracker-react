@@ -4,19 +4,13 @@ import styled from 'styled-components';
 
 import { Icons } from '../../../assets/svg';
 import { useOnClickOutside } from '../../../hooks/useOnClickOutSide';
+import SimpleLabel from '../../labels/SimpleLabel';
 
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
   margin: 0;
-`;
-
-const Label = styled.label`
-  flex: 1 1 0;
-  font-weight: bold;
-  font-family: inherit;
-  grid-column: 1 / 2;
 `;
 
 const SelectContainer = styled.div`
@@ -142,9 +136,15 @@ export default function Selector({
 
   return (
     <Container style={style} ref={selectorRef}>
-      <Label htmlFor={id} style={{ fontSize: labelSize, color: labelColor }}>
-        {labelText}
-      </Label>
+      <SimpleLabel
+        text={labelText}
+        style={{
+          fontSize: labelSize,
+          color: labelColor,
+          gridColumn: '1 / 2',
+          margin: '8px',
+        }}
+      />
       <SelectContainer>
         <SelectTrigger onClick={toggleDropdown}>
           {options[selectedOption]}
