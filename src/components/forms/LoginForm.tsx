@@ -3,17 +3,38 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { fadeInBottomToCenter } from '../animations/basicAnimations';
-import { InformationInput, SubmitButton, TextButton } from '../components';
-import { FormStyle } from '../styles';
-import { emailValidation, passwordValidation } from '../validation';
+import { InformationInput, SubmitButton, TextButton } from '..';
+import { fadeInBottomToCenter } from '../../animations/basicAnimations';
+import { deviceSizes } from '../../const/deviceSizes';
+import { emailValidation, passwordValidation } from '../../validation';
 
-const Form = styled(FormStyle)`
+const Form = styled.form`
+  display: grid;
+  align-items: center;
+  justify-items: stretch;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1.5fr) repeat(2, 1fr);
+  border-radius: ${props => props.theme.borderRadius};
+  background-color: ${props => props.theme.colors.formBackground};
+  animation: ${fadeInBottomToCenter} 1.3s;
   height: 450px;
 
-  animation: ${fadeInBottomToCenter} 1.3s;
+  ${deviceSizes.abnormal} {
+    width: 375px;
+    padding: 20px 20px 0px 20px;
+  }
+  ${deviceSizes.small} {
+    width: 375px;
+    padding: 20px 20px 0px 20px;
+  }
+  ${deviceSizes.medium} {
+    width: 500px;
+    padding: 50px 50px 0px 50px;
+  }
+  ${deviceSizes.large} {
+    width: 550px;
+    padding: 50px 50px 0px 50px;
+  }
 `;
 
 interface LoginFormProps {
@@ -62,39 +83,45 @@ export default function LoginForm({ theme }: LoginFormProps) {
       <InformationInput
         placeholder="Email"
         maxLength={254}
-        gridColumn="1 / 6"
-        gridRow="1 / 2"
         isError={isEmailError}
+        hideShowButton={false}
+        style={{ gridColumn: '1 / 6', gridRow: '1 / 2' }}
         onChange={emailChange}
       />
       <InformationInput
         placeholder="Password"
         maxLength={20}
-        gridColumn="1 / 6"
-        gridRow="2 / 3"
         isError={isPasswordError}
-        onChange={passwordChange}
         hideShowButton={true}
+        style={{ gridColumn: '1 / 6', gridRow: '2 / 3' }}
+        onChange={passwordChange}
       />
       <TextButton
         text="Forgot Password?"
-        textSize=""
-        textColor={theme.colors.secondary}
-        gridColumn="1 / 3"
-        gridRow="4 / 5"
-        justifyContent="flex-start"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.secondary,
+          gridColumn: '1 / 3',
+          gridRow: '4 / 5',
+          justifySelf: 'flex-start',
+        }}
         onClick={() => navigate('/forgot-password')}
       />
       <TextButton
         text="Register"
-        textSize=""
-        textColor={theme.colors.secondary}
-        gridColumn="4 / 6"
-        gridRow="4 / 5"
-        justifyContent="flex-end"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.secondary,
+          gridColumn: '4 / 6',
+          gridRow: '4 / 5',
+          justifySelf: 'flex-end',
+        }}
         onClick={() => navigate('/register')}
       />
-      <SubmitButton text="Log In" gridColumn="2 / 5" gridRow="3 / 4" />
+      <SubmitButton
+        text="Log In"
+        style={{ gridColumn: '2 / 5', gridRow: '3 / 4' }}
+      />
     </Form>
   );
 }

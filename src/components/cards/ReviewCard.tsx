@@ -2,11 +2,8 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { CocktailCard } from '../types/api/cocktailCard';
-import { WhiskeyCard } from '../types/api/whiskeyCard';
-import { WineCard } from '../types/api/wineCard';
-import IconLabel from './IconLabel';
-import TextLabel from './TextLabel';
+import { IconLabel, HeadingLabel } from '../';
+import { CocktailCard, WhiskeyCard, WineCard } from '../../types/api';
 
 const Container = styled.div<{ $type: string }>`
   display: flex;
@@ -54,6 +51,11 @@ interface ReviewCardProps {
   style?: React.CSSProperties;
 }
 
+/**
+ * @param {ReviewCardProps} props
+ * @param {WineCard | WhiskeyCard | CocktailCard} props.card card to be displayed
+ * @param {Object} props.style React.CSSProperties to be applied to the container
+ */
 export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   const { name, totalStar } = card;
   const fullStars = Math.floor(Number(totalStar));
@@ -81,7 +83,7 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   return (
     <Container $type={type} style={style}>
       <IconLabel icon={iconName} size={30} style={{ flexBasis: '50px' }} />
-      <TextLabel
+      <HeadingLabel
         text={name + ' ' + vintage}
         size="h3"
         type="light"

@@ -2,8 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { shake } from '../animations/basicAnimations';
-import { Icons, IconType } from '../assets/svg';
+import { shake } from '../../animations/basicAnimations';
+import { Icons, IconType } from '../../assets/svg';
 
 const Button = styled.button<{ $buttonColor: string }>`
   display: flex;

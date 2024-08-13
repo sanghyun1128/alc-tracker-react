@@ -35,7 +35,7 @@ interface IndicatorProps {
 /**
  * @param {IndicatorProps} props
  * @param {Number} props.numOfPages number of pages to be displayed
- * @param {String} props.align direction of the pagination
+ * @param {String} props.align direction of the pagination 'row' | 'column'
  * @param {Number} props.page current page
  * @param {Function} props.setPage function to set the current page
  * @param {Object} props.style React.CSSProperties to be applied to the container

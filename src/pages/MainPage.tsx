@@ -3,11 +3,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import CardView from '../components/CardView';
-import DotPagination from '../components/DotPagination';
-import EmptyView from '../components/EmptyView';
-import IconButton from '../components/IconButton';
-import IconLabel from '../components/IconLabel';
+import {
+  IconLabel,
+  DotPagination,
+  IconButton,
+  CardView,
+  EmptyView,
+} from '../components';
 import {
   cocktailCardList,
   whiskeyCardList,
@@ -69,20 +71,6 @@ export default function MainPage() {
   const mainViewRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (mainViewRef.current) {
-      setIsScrolling(true);
-      mainViewRef.current.scrollTo({
-        top: pageIndex * mainViewRef.current.clientHeight,
-        behavior: 'smooth',
-      });
-      const timer = setTimeout(() => {
-        setIsScrolling(false);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [pageIndex]);
-
   const handleScroll = () => {
     if (mainViewRef.current && !isScrolling) {
       const newIndex = Math.round(
@@ -113,6 +101,20 @@ export default function MainPage() {
     navigate(`/${e.currentTarget.id}`);
   };
 
+  useEffect(() => {
+    if (mainViewRef.current) {
+      setIsScrolling(true);
+      mainViewRef.current.scrollTo({
+        top: pageIndex * mainViewRef.current.clientHeight,
+        behavior: 'smooth',
+      });
+      const timer = setTimeout(() => {
+        setIsScrolling(false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [pageIndex]);
+
   return (
     <Container>
       <DotPagination
@@ -133,12 +135,19 @@ export default function MainPage() {
           padding: '10px',
         }}
       />
+
       <MainViewSection ref={mainViewRef} onScroll={handleScroll}>
         {pageList.map((page, index) =>
           cardData[index].length === 0 ? (
             <EmptyView key={index} theme={theme} style={{}} />
           ) : (
-            <CardView key={index} arr={cardData[index]} style={{}} />
+            <CardView
+              key={index}
+              arr={cardData[index]}
+              numOfRows={5}
+              numOfColumns={2}
+              style={{}}
+            />
           ),
         )}
       </MainViewSection>

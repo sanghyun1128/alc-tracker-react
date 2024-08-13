@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RegisterForm from '../forms/RegisterForm';
+import { RegisterForm } from '../components';
 import { useTheme } from '../hooks/useTheme';
 
 export default function RegisterPage() {

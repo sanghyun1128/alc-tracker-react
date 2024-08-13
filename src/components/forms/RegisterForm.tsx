@@ -3,30 +3,51 @@ import React, { useCallback, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
 
-import { fadeInRightToCenter } from '../animations/basicAnimations';
 import {
   InformationInput,
   DatePicker,
   SubmitButton,
   TextButton,
   Selector,
-} from '../components';
-import { genderList } from '../const/gender';
-import { registerFormReducer } from '../reducers/registerFormReducer';
-import { FormStyle } from '../styles';
-import { RegisterFormState } from '../types/registerForm';
+} from '..';
+import { fadeInRightToCenter } from '../../animations/basicAnimations';
+import { deviceSizes } from '../../const/deviceSizes';
+import { genderList } from '../../const/gender';
+import { registerFormReducer } from '../../reducers/registerFormReducer';
+import { RegisterFormState } from '../../types/registerForm';
 import {
   emailValidation,
   passwordValidation,
   nicknameValidation,
-} from '../validation';
+} from '../../validation';
 
-const Form = styled(FormStyle)`
+const Form = styled.form`
+  display: grid;
+  align-items: center;
+  justify-items: stretch;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(7, 1fr) 1.5fr 1fr;
+  border-radius: ${props => props.theme.borderRadius};
+  background-color: ${props => props.theme.colors.formBackground};
+  animation: ${fadeInRightToCenter} 1.3s;
   height: 750px;
 
-  animation: ${fadeInRightToCenter} 1.3s;
+  ${deviceSizes.abnormal} {
+    width: 375px;
+    padding: 20px 20px 0px 20px;
+  }
+  ${deviceSizes.small} {
+    width: 375px;
+    padding: 20px 20px 0px 20px;
+  }
+  ${deviceSizes.medium} {
+    width: 500px;
+    padding: 50px 50px 0px 50px;
+  }
+  ${deviceSizes.large} {
+    width: 550px;
+    padding: 50px 50px 0px 50px;
+  }
 `;
 
 interface RegisterFormProps {
@@ -129,71 +150,75 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       <InformationInput
         placeholder="Nickname"
         maxLength={15}
-        gridColumn="1 / 7"
-        gridRow="1 / 2"
         isError={!state.isNicknameValid}
+        style={{ gridColumn: '1 / 7', gridRow: '1 / 2' }}
+        hideShowButton={false}
         onChange={handleInputChange}
       />
       <InformationInput
         placeholder="Email"
         maxLength={254}
-        gridColumn="1 / 7"
-        gridRow="2 / 3"
         isError={!state.isEmailValid}
+        style={{ gridColumn: '1 / 7', gridRow: '2 / 3' }}
+        hideShowButton={false}
         onChange={handleInputChange}
       />
       <InformationInput
         placeholder="Email confirmation code"
         maxLength={5}
-        gridColumn="1 / 7"
-        gridRow="3 / 4"
         isError={!state.isEmailConfirmed}
+        style={{ gridColumn: '1 / 7', gridRow: '3 / 4' }}
+        hideShowButton={false}
         onChange={handleInputChange}
       />
       <DatePicker
-        gridColumn="1 / 7"
-        gridRow="4 / 5"
         isError={!state.isBirthValid}
         labelText="Birth"
         labelSize="1rem"
         labelColor={theme.colors.primary}
+        style={{
+          gridColumn: '1 / 7',
+          gridRow: '4 / 5',
+        }}
         onChange={handleInputChange}
       />
       <Selector
-        gridColumn="1 / 7"
-        gridRow="5 / 6"
         labelText="Gender"
         labelSize="1rem"
         labelColor={theme.colors.primary}
         options={genderList}
+        style={{ gridColumn: '1 / 7', gridRow: '5 / 6' }}
         onChange={handleInputChange}
       />
       <InformationInput
         placeholder="Password"
         maxLength={20}
-        gridColumn="1 / 7"
-        gridRow="6 / 7"
         isError={!state.isPasswordValid}
-        onChange={handleInputChange}
+        style={{ gridColumn: '1 / 7', gridRow: '6 / 7' }}
         hideShowButton={true}
+        onChange={handleInputChange}
       />
       <InformationInput
         placeholder="Re enter password"
         maxLength={20}
-        gridColumn="1 / 7"
-        gridRow="7 / 8"
         isError={!state.isPasswordConfirmed}
-        onChange={handleInputChange}
+        style={{ gridColumn: '1 / 7', gridRow: '7 / 8' }}
         hideShowButton={true}
+        onChange={handleInputChange}
       />
-      <SubmitButton text="Register" gridColumn="2 / 6" gridRow="8 / 9" />
+      <SubmitButton
+        text="Register"
+        style={{ gridColumn: '2 / 6', gridRow: '8 / 9' }}
+      />
       <TextButton
         text="Already have an account?"
-        textSize=""
-        textColor={theme.colors.secondary}
-        gridColumn="1 / 7"
-        gridRow="9 / 10"
-        justifyContent="flex-end"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.secondary,
+          gridColumn: '1 / 7',
+          gridRow: '9 / 10',
+          justifySelf: 'flex-end',
+        }}
         onClick={() => navigate('/login')}
       />
     </Form>
