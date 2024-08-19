@@ -2,6 +2,8 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
+import IconButton from '../buttons/IconButton';
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -23,7 +25,13 @@ interface ItemInputModalProps {
 export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
   return (
     <Container>
-      <button onClick={() => setModalOpen(false)}>close</button>
+      <IconButton
+        icon="CLOSE"
+        size={20}
+        buttonColor="secondary"
+        style={{}}
+        onClick={() => setModalOpen(false)}
+      />
     </Container>
   );
 }
