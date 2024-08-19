@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { styled } from 'styled-components';
 
+import { Alcohol } from '../../types/const';
 import IconButton from '../buttons/IconButton';
 
 const Container = styled.div`
@@ -23,6 +24,8 @@ interface ItemInputModalProps {
 }
 
 export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
+  const [typeOfAlcohol, setTypeOfAlcohol] = useState<Alcohol>('WINE');
+
   return (
     <Container>
       <IconButton
