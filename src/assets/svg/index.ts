@@ -1,4 +1,5 @@
 import { ReactComponent as ArrowLeft } from './arrow-left.svg';
+import { ReactComponent as Close } from './close.svg';
 import { ReactComponent as Cocktail } from './cocktail.svg';
 import { ReactComponent as FileEmpty } from './file-empty.svg';
 import { ReactComponent as Plus } from './plus.svg';
@@ -32,4 +33,5 @@ export const Icons: { [src: string]: IconType } = {
   STAR_FULL: StarFull,
   STAR_HALF: StarHalf,
   FILE_EMPTY: FileEmpty,
+  CLOSE: Close,
 };
