@@ -38,7 +38,6 @@ interface ItemInputModalProps {
 export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
   const [typeOfAlcohol, setTypeOfAlcohol] = useState<Alcohol>('WINE');
 
-  console.log(typeof AlcoholList);
   return (
     <Container>
       <Modal>
@@ -46,7 +45,7 @@ export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
           labelText={''}
           labelSize={''}
           labelColor={''}
-          options={['WINE', 'WHISKEY', 'COCKTAIL']}
+          options={AlcoholList}
           style={{ gridColumn: '1 / 5', gridRow: '1 / 2' }}
           onChange={e => setTypeOfAlcohol(e.target.value as Alcohol)}
         />
