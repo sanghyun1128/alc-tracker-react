@@ -46,8 +46,10 @@ export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
           labelSize={''}
           labelColor={''}
           options={AlcoholList}
-          style={{ gridColumn: '1 / 5', gridRow: '1 / 2' }}
-          onChange={e => setTypeOfAlcohol(e.target.value as Alcohol)}
+          style={{ gridColumn: '1 / 3', gridRow: '1 / 2' }}
+          onChange={e =>
+            setTypeOfAlcohol(AlcoholList[+e.target.value] as Alcohol)
+          }
         />
         <IconButton
           icon="CLOSE"
