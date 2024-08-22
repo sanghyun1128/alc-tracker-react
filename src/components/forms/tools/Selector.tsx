@@ -4,17 +4,8 @@ import styled from 'styled-components';
 
 import { Icons } from '../../../assets/svg';
 import { useOnClickOutside } from '../../../hooks/useOnClickOutSide';
-import SimpleLabel from '../../labels/SimpleLabel';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  align-items: center;
-  margin: 0;
-`;
 
 const SelectContainer = styled.div`
-  grid-column: 2 / 7;
   position: relative;
   margin: 0;
   width: 100%;
@@ -77,9 +68,7 @@ const ArrowIcon = styled(Icons.ARROW_LEFT).attrs({
 `;
 
 interface SelectorProps {
-  labelText: string;
-  labelSize: string;
-  labelColor: string;
+  id: string;
   options: string[];
   style: React.CSSProperties;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -95,9 +84,7 @@ interface SelectorProps {
  * @param {Function} props.onChange function to be called when the selected option changes
  */
 export default function Selector({
-  labelText,
-  labelSize,
-  labelColor,
+  id,
   options,
   style,
   onChange,
@@ -105,7 +92,6 @@ export default function Selector({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const selectorRef = useRef<HTMLDivElement>(null);
-  const id = labelText.toLowerCase();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -135,30 +121,19 @@ export default function Selector({
   }, [selectedOption, onChange, id]);
 
   return (
-    <Container style={style} ref={selectorRef}>
-      <SimpleLabel
-        text={labelText}
-        style={{
-          fontSize: labelSize,
-          color: labelColor,
-          gridColumn: '1 / 2',
-          margin: '8px',
-        }}
-      />
-      <SelectContainer>
-        <SelectTrigger onClick={toggleDropdown}>
-          {options[selectedOption]}
-          <ArrowIcon $isOpen={isOpen} />
-        </SelectTrigger>
+    <SelectContainer style={style}>
+      <SelectTrigger onClick={toggleDropdown}>
+        {options[selectedOption]}
+        <ArrowIcon $isOpen={isOpen} />
+      </SelectTrigger>
 
-        <SelectOptionList $isOpen={isOpen}>
-          {options.map((option, index) => (
-            <SelectOption key={index} onClick={() => handleOptionClick(index)}>
-              {option}
-            </SelectOption>
-          ))}
-        </SelectOptionList>
-      </SelectContainer>
-    </Container>
+      <SelectOptionList $isOpen={isOpen}>
+        {options.map((option, index) => (
+          <SelectOption key={index} onClick={() => handleOptionClick(index)}>
+            {option}
+          </SelectOption>
+        ))}
+      </SelectOptionList>
+    </SelectContainer>
   );
 }

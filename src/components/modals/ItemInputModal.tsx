@@ -42,9 +42,7 @@ export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
     <Container>
       <Modal>
         <Selector
-          labelText={''}
-          labelSize={''}
-          labelColor={''}
+          id="selector"
           options={AlcoholList}
           style={{ gridColumn: '1 / 3', gridRow: '1 / 2' }}
           onChange={e =>

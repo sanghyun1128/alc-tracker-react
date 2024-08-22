@@ -9,6 +9,7 @@ import {
   SubmitButton,
   TextButton,
   Selector,
+  SimpleLabel,
 } from '..';
 import { fadeInRightToCenter } from '../../animations/basicAnimations';
 import { deviceSizes } from '../../const/deviceSizes';
@@ -182,12 +183,20 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         }}
         onChange={handleInputChange}
       />
+      <SimpleLabel
+        text="Gender"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.primary,
+          gridColumn: '1 / 2',
+          gridRow: '5 / 6',
+          margin: '8px',
+        }}
+      />
       <Selector
-        labelText="Gender"
-        labelSize="1rem"
-        labelColor={theme.colors.primary}
+        id="gender"
         options={genderList}
-        style={{ gridColumn: '1 / 7', gridRow: '5 / 6' }}
+        style={{ gridColumn: '2 / 7', gridRow: '5 / 6' }}
         onChange={handleInputChange}
       />
       <InformationInput
