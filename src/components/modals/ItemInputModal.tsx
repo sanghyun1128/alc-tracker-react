@@ -44,7 +44,11 @@ export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
         <Selector
           id="selector"
           options={AlcoholList}
-          style={{ gridColumn: '1 / 3', gridRow: '1 / 2' }}
+          style={{
+            gridColumn: '1 / 3',
+            gridRow: '1 / 2',
+            width: '80%',
+          }}
           onChange={e =>
             setTypeOfAlcohol(AlcoholList[+e.target.value] as Alcohol)
           }
