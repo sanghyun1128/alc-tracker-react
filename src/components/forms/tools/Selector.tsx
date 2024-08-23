@@ -28,8 +28,6 @@ const SelectTrigger = styled.div`
 const SelectOptionList = styled.ul<{
   $isOpen: boolean;
 }>`
-  grid-column: 2 / 7;
-
   position: absolute;
   width: 100%;
   top: 100%;
@@ -47,8 +45,6 @@ const SelectOptionList = styled.ul<{
 `;
 
 const SelectOption = styled.li`
-  grid-column: 2 / 7;
-
   width: 100%;
   padding: 10px;
   color: ${props => props.theme.colors.textDark};
