@@ -27,7 +27,6 @@ const Button = styled.button<{ $buttonColor: string }>`
       props.$buttonColor === 'primary'
         ? props.theme.colors.primaryOn
         : props.theme.colors.secondaryOn};
-    animation: ${shake} 0.5s;
   }
 `;
 
