@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { styled } from 'styled-components';
+import { DefaultTheme, styled } from 'styled-components';
 
 import { IconButton, SubmitButton, ItemInputForm, Selector } from '..';
 import { Alcohol, AlcoholList } from '../../types/const';
@@ -33,9 +33,13 @@ const Modal = styled.div`
 
 interface ItemInputModalProps {
   setModalOpen: (arg: boolean) => void;
+  theme: DefaultTheme;
 }
 
-export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
+export default function ItemInputModal({
+  setModalOpen,
+  theme,
+}: ItemInputModalProps) {
   const [typeOfAlcohol, setTypeOfAlcohol] = useState<Alcohol>('WINE');
 
   return (
@@ -63,6 +67,7 @@ export default function ItemInputModal({ setModalOpen }: ItemInputModalProps) {
         <ItemInputForm
           inputType={typeOfAlcohol}
           style={{ gridColumn: '1 / 11', gridRow: '2 / 3' }}
+          theme={theme}
         />
         <SubmitButton
           text="Add Item"

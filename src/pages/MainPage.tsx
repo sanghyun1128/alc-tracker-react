@@ -155,7 +155,7 @@ export default function MainPage() {
       </MainViewSection>
 
       {itemInputModalOpen && (
-        <ItemInputModal setModalOpen={setItemInputModalOpen} />
+        <ItemInputModal setModalOpen={setItemInputModalOpen} theme={theme} />
       )}
 
       <ControlSection>
