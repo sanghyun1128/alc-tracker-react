@@ -72,9 +72,7 @@ interface SelectorProps {
 
 /**
  * @param {SelectorProps} props
- * @param {string} props.labelText text to be displayed as the label
- * @param {string} props.labelSize font size of the label
- * @param {string} props.labelColor color of the label
+ * @param {string} props.id id to be used in the event target
  * @param {string[]} props.options array of strings to be displayed as options
  * @param {Object} props.style React.CSSProperties to be applied to the container
  * @param {Function} props.onChange function to be called when the selected option changes
