@@ -10,6 +10,7 @@ import RegisterForm from './forms/RegisterForm';
 import DatePicker from './forms/tools/DatePicker';
 import InformationInput from './forms/tools/InformationInput';
 import Selector from './forms/tools/Selector';
+import FiveStarLabel from './labels/FiveStarLabel';
 import HeadingLabel from './labels/HeadingLabel';
 import IconLabel from './labels/IconLabel';
 import SimpleLabel from './labels/SimpleLabel';
@@ -30,7 +31,7 @@ export { LoginForm, RegisterForm, ItemInputForm };
 export { DatePicker, InformationInput, Selector };
 
 // Label Components
-export { IconLabel, HeadingLabel, SimpleLabel };
+export { IconLabel, HeadingLabel, SimpleLabel, FiveStarLabel };
 
 // Layout Components
 export { LottieContainer };
