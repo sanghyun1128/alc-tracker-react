@@ -2,7 +2,13 @@ import React, { useCallback } from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
-import { InformationInput, Selector, SimpleLabel } from '..';
+import {
+  FiveStarLabel,
+  IconButton,
+  InformationInput,
+  Selector,
+  SimpleLabel,
+} from '..';
 import { Alcohol, AlcoholList } from '../../types/const';
 
 const Container = styled.div`
@@ -41,7 +47,7 @@ export default function ItemInputForm({
         maxLength={20}
         isError={false}
         hideShowButton={false}
-        style={{ gridColumn: '1 / 8', gridRow: '1 / 2' }}
+        style={{ gridColumn: '1 / 7', gridRow: '1 / 2' }}
         onChange={handleInputChange}
       />
       <InformationInput
@@ -49,7 +55,7 @@ export default function ItemInputForm({
         maxLength={20}
         isError={false}
         hideShowButton={false}
-        style={{ gridColumn: '8 / 11', gridRow: '1 / 2' }}
+        style={{ gridColumn: '7 / 9', gridRow: '1 / 2' }}
         onChange={handleInputChange}
       />
       <InformationInput
@@ -57,7 +63,7 @@ export default function ItemInputForm({
         maxLength={20}
         isError={false}
         hideShowButton={false}
-        style={{ gridColumn: '8 / 11', gridRow: '2 / 3' }}
+        style={{ gridColumn: '9 / 11', gridRow: '1 / 2' }}
         onChange={handleInputChange}
       />
       <SimpleLabel
@@ -65,16 +71,46 @@ export default function ItemInputForm({
         style={{
           fontSize: '1rem',
           color: theme.colors.primary,
-          gridColumn: '1 / 2',
+          gridColumn: '8 / 9',
           gridRow: '2 / 3',
           margin: '8px',
+          justifySelf: 'center',
         }}
       />
       <Selector
         id="type"
         options={detailType[AlcoholList.indexOf(inputType)]}
-        style={{ gridColumn: '2 / 4', gridRow: '2 / 3' }}
+        style={{ gridColumn: '9 / 11', gridRow: '2 / 3' }}
         onChange={handleInputChange}
+      />
+      <SimpleLabel
+        text="Total Stars"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.primary,
+          gridColumn: '1 / 3',
+          gridRow: '2 / 3',
+          margin: '8px',
+          justifySelf: 'start',
+        }}
+      />
+      <IconButton
+        icon="MINUS"
+        onClick={() => handleInputChange}
+        size={20}
+        buttonColor="secondary"
+        style={{ gridColumn: '3 / 4', gridRow: '2 / 3' }}
+      />
+      <FiveStarLabel
+        numOfStars={5}
+        style={{ gridColumn: '4 / 5', gridRow: '2 / 3', justifySelf: 'center' }}
+      />
+      <IconButton
+        icon="PLUS"
+        onClick={() => handleInputChange}
+        size={20}
+        buttonColor="secondary"
+        style={{ gridColumn: '5 / 6', gridRow: '2 / 3' }}
       />
     </Container>
   );
