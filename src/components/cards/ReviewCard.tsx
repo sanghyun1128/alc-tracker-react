@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { IconLabel, HeadingLabel } from '../';
+import { IconLabel, HeadingLabel, FiveStarLabel } from '../';
 import { CocktailCard, WhiskeyCard, WineCard } from '../../types/api';
 
 const Container = styled.div<{ $type: string }>`
@@ -58,9 +58,6 @@ interface ReviewCardProps {
  */
 export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   const { name, totalStar } = card;
-  const fullStars = Math.floor(Number(totalStar));
-  const hasHalfStar = Number(totalStar) % 1 !== 0;
-  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   const type = 'type' in card ? String(card.type) : '';
   const vintage = 'vintage' in card ? String(card.vintage) : '';
@@ -94,29 +91,7 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
           marginRight: '10px',
         }}
       />
-      {new Array(fullStars).fill(0).map((_, index) => (
-        <IconLabel
-          key={`full-${index}`}
-          icon="STAR_FULL"
-          size={15}
-          style={{ padding: '0px', flexBasis: '15px' }}
-        />
-      ))}
-      {hasHalfStar && (
-        <IconLabel
-          icon="STAR_HALF"
-          size={15}
-          style={{ padding: '0px', flexBasis: '15px' }}
-        />
-      )}
-      {new Array(emptyStars).fill(0).map((_, index) => (
-        <IconLabel
-          key={`empty-${index}`}
-          icon="STAR_EMPTY"
-          size={15}
-          style={{ padding: '0px', flexBasis: '15px' }}
-        />
-      ))}
+      <FiveStarLabel numOfStars={+totalStar} style={{}} />
     </Container>
   );
 }
