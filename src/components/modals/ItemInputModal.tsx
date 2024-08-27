@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { DefaultTheme, styled } from 'styled-components';
 
 import { IconButton, SubmitButton, ItemInputForm, Selector } from '..';
+import { fadeInBottomToCenter } from '../../animations/basicAnimations';
 import { Alcohol, AlcoholList } from '../../types/const';
 
 const Container = styled.div`
@@ -29,6 +30,8 @@ const Modal = styled.div`
   grid-template-rows: 1fr 8fr 1fr;
   align-items: center;
   justify-items: center;
+
+  animation: ${fadeInBottomToCenter} 1.3s;
 `;
 
 interface ItemInputModalProps {
