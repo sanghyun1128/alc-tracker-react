@@ -20,9 +20,12 @@ export default [
       '@typescript-eslint/no-unused-expressions': 'warn',
       '@typescript-eslint/naming-convention': [
         'warn',
-        { selector: 'variable', format: ['camelCase', 'UPPER_CASE', 'PascalCase'] },
+        {
+          selector: 'variable',
+          format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+        },
       ],
-      'react/require-default-props': 'warn',
+      'react/require-default-props': 'off',
     },
     settings: {
       'import/resolver': {
