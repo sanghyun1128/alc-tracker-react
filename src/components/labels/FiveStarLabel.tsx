@@ -14,12 +14,17 @@ const Container = styled.div`
 
 interface FiveStarLabelProps {
   numOfStars: number;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
+/**
+ * @param {FiveStarLabelProps} props
+ * @param {number} props.numOfStars value of useState<number> to be used as the number of stars
+ * @param {React.CSSProperties} props.style(optional) React.CSSProperties to be applied to the container
+ */
 export default function FiveStarLabel({
   numOfStars,
-  style,
+  style = {},
 }: FiveStarLabelProps) {
   const fullStars = Math.floor(Number(numOfStars));
   const hasHalfStar = Number(numOfStars) % 1 !== 0;
