@@ -1,15 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
-import {
-  FiveStarLabel,
-  IconButton,
-  InformationInput,
-  Selector,
-  SimpleLabel,
-} from '..';
+import { InformationInput, Selector, SimpleLabel } from '..';
 import { Alcohol, AlcoholList } from '../../types/const';
+import FiveStarInput from './tools/FiveStarInput';
 
 const Container = styled.div`
   display: grid;
@@ -30,6 +25,7 @@ export default function ItemInputForm({
   style,
   theme,
 }: ItemInputFormProps) {
+  const [mainStars, setMainStars] = useState<number>(0);
   const detailType = [
     ['Red', 'White', 'Rose', 'Sparkling', 'Dessert'],
     ['Whiskey', 'Brandy', 'Vodka', 'Gin', 'Rum', 'Tequila'],
@@ -84,7 +80,7 @@ export default function ItemInputForm({
         onChange={handleInputChange}
       />
       <SimpleLabel
-        text="Total Stars"
+        text="Total"
         style={{
           fontSize: '1rem',
           color: theme.colors.primary,
@@ -94,23 +90,58 @@ export default function ItemInputForm({
           justifySelf: 'start',
         }}
       />
-      <IconButton
-        icon="MINUS"
-        onClick={() => handleInputChange}
-        size={20}
-        buttonColor="secondary"
-        style={{ gridColumn: '3 / 4', gridRow: '2 / 3' }}
+      <FiveStarInput
+        numOfStars={mainStars}
+        setStars={setMainStars}
+        style={{ gridColumn: '3 / 5', gridRow: '2 / 3' }}
       />
-      <FiveStarLabel
-        numOfStars={5}
-        style={{ gridColumn: '4 / 5', gridRow: '2 / 3', justifySelf: 'center' }}
+      <SimpleLabel
+        text="Nose"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.primary,
+          gridColumn: '1 / 3',
+          gridRow: '3 / 4',
+          margin: '8px',
+          justifySelf: 'start',
+        }}
       />
-      <IconButton
-        icon="PLUS"
-        onClick={() => handleInputChange}
-        size={20}
-        buttonColor="secondary"
-        style={{ gridColumn: '5 / 6', gridRow: '2 / 3' }}
+      <FiveStarInput
+        numOfStars={mainStars}
+        setStars={setMainStars}
+        style={{ gridColumn: '3 / 5', gridRow: '3 / 4' }}
+      />
+      <SimpleLabel
+        text="Palate"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.primary,
+          gridColumn: '1 / 3',
+          gridRow: '4 / 5',
+          margin: '8px',
+          justifySelf: 'start',
+        }}
+      />
+      <FiveStarInput
+        numOfStars={mainStars}
+        setStars={setMainStars}
+        style={{ gridColumn: '3 / 5', gridRow: '4 / 5' }}
+      />
+      <SimpleLabel
+        text="Finish"
+        style={{
+          fontSize: '1rem',
+          color: theme.colors.primary,
+          gridColumn: '1 / 3',
+          gridRow: '5 / 6',
+          margin: '8px',
+          justifySelf: 'start',
+        }}
+      />
+      <FiveStarInput
+        numOfStars={mainStars}
+        setStars={setMainStars}
+        style={{ gridColumn: '3 / 5', gridRow: '5 / 6' }}
       />
     </Container>
   );
