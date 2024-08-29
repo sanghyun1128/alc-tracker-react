@@ -14,6 +14,11 @@ const Container = styled.div`
   width: 90%;
   height: 100%;
 `;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  height: 100%;
+`;
 interface ItemInputFormProps {
   inputType: Alcohol;
   style: React.CSSProperties;
@@ -167,6 +172,7 @@ export default function ItemInputForm({
         style={{ gridColumn: '5 / 11', gridRow: '5 / 6' }}
         onChange={handleInputChange}
       />
+      <TextArea style={{ gridColumn: '1 / 11', gridRow: '7 / 10' }} />
     </Container>
   );
 }
