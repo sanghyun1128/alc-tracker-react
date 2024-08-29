@@ -67,16 +67,16 @@ export default function ItemInputForm({
         style={{
           fontSize: '1rem',
           color: theme.colors.primary,
-          gridColumn: '8 / 9',
+          gridColumn: '5 / 6',
           gridRow: '2 / 3',
           margin: '8px',
-          justifySelf: 'center',
+          justifySelf: 'start',
         }}
       />
       <Selector
         id="type"
         options={detailType[AlcoholList.indexOf(inputType)]}
-        style={{ gridColumn: '9 / 11', gridRow: '2 / 3' }}
+        style={{ gridColumn: '6 / 11', gridRow: '2 / 3' }}
         onChange={handleInputChange}
       />
       <SimpleLabel
@@ -84,7 +84,7 @@ export default function ItemInputForm({
         style={{
           fontSize: '1rem',
           color: theme.colors.primary,
-          gridColumn: '1 / 3',
+          gridColumn: '1 / 2',
           gridRow: '2 / 3',
           margin: '8px',
           justifySelf: 'start',
@@ -93,14 +93,14 @@ export default function ItemInputForm({
       <FiveStarInput
         numOfStars={mainStars}
         setStars={setMainStars}
-        style={{ gridColumn: '3 / 5', gridRow: '2 / 3' }}
+        style={{ gridColumn: '2 / 4', gridRow: '2 / 3' }}
       />
       <SimpleLabel
         text="Nose"
         style={{
           fontSize: '1rem',
           color: theme.colors.primary,
-          gridColumn: '1 / 3',
+          gridColumn: '1 / 2',
           gridRow: '3 / 4',
           margin: '8px',
           justifySelf: 'start',
@@ -109,14 +109,22 @@ export default function ItemInputForm({
       <FiveStarInput
         numOfStars={mainStars}
         setStars={setMainStars}
-        style={{ gridColumn: '3 / 5', gridRow: '3 / 4' }}
+        style={{ gridColumn: '2 / 4', gridRow: '3 / 4' }}
+      />
+      <InformationInput
+        placeholder={'Notes'}
+        maxLength={20}
+        isError={false}
+        hideShowButton={false}
+        style={{ gridColumn: '5 / 11', gridRow: '3 / 4' }}
+        onChange={handleInputChange}
       />
       <SimpleLabel
         text="Palate"
         style={{
           fontSize: '1rem',
           color: theme.colors.primary,
-          gridColumn: '1 / 3',
+          gridColumn: '1 / 2',
           gridRow: '4 / 5',
           margin: '8px',
           justifySelf: 'start',
@@ -125,14 +133,22 @@ export default function ItemInputForm({
       <FiveStarInput
         numOfStars={mainStars}
         setStars={setMainStars}
-        style={{ gridColumn: '3 / 5', gridRow: '4 / 5' }}
+        style={{ gridColumn: '2 / 4', gridRow: '4 / 5' }}
+      />
+      <InformationInput
+        placeholder={'Notes'}
+        maxLength={20}
+        isError={false}
+        hideShowButton={false}
+        style={{ gridColumn: '5 / 11', gridRow: '4 / 5' }}
+        onChange={handleInputChange}
       />
       <SimpleLabel
         text="Finish"
         style={{
           fontSize: '1rem',
           color: theme.colors.primary,
-          gridColumn: '1 / 3',
+          gridColumn: '1 / 2',
           gridRow: '5 / 6',
           margin: '8px',
           justifySelf: 'start',
@@ -141,7 +157,15 @@ export default function ItemInputForm({
       <FiveStarInput
         numOfStars={mainStars}
         setStars={setMainStars}
-        style={{ gridColumn: '3 / 5', gridRow: '5 / 6' }}
+        style={{ gridColumn: '2 / 4', gridRow: '5 / 6' }}
+      />
+      <InformationInput
+        placeholder={'Notes'}
+        maxLength={20}
+        isError={false}
+        hideShowButton={false}
+        style={{ gridColumn: '5 / 11', gridRow: '5 / 6' }}
+        onChange={handleInputChange}
       />
     </Container>
   );
