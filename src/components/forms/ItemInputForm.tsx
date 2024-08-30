@@ -18,6 +18,18 @@ const Container = styled.div`
 const TextArea = styled.textarea`
   width: 100%;
   height: 100%;
+  resize: none;
+  border-radius: ${props => props.theme.borderRadius};
+  border: none;
+  background-color: ${props => props.theme.colors.secondary};
+  padding: 10px;
+  justify-self: center;
+  align-self: center;
+  color: ${props => props.theme.colors.textDark};
+
+  &:focus {
+    outline: none;
+  }
 `;
 interface ItemInputFormProps {
   inputType: Alcohol;
@@ -172,7 +184,10 @@ export default function ItemInputForm({
         style={{ gridColumn: '5 / 11', gridRow: '5 / 6' }}
         onChange={handleInputChange}
       />
-      <TextArea style={{ gridColumn: '1 / 11', gridRow: '7 / 10' }} />
+      <TextArea
+        placeholder="Overall Review"
+        style={{ gridColumn: '1 / 11', gridRow: '7 / 10' }}
+      />
     </Container>
   );
 }
