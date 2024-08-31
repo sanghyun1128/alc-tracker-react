@@ -44,9 +44,9 @@ export default function ItemInputForm({
 }: ItemInputFormProps) {
   const [mainStars, setMainStars] = useState<number>(0);
   const detailType = [
-    ['Red', 'White', 'Rose', 'Sparkling', 'Dessert'],
-    ['Whiskey', 'Brandy', 'Vodka', 'Gin', 'Rum', 'Tequila'],
-    ['Shacking', 'Stirring', 'Blending', 'Layering'],
+    ['Red', 'White', 'Rose', 'Sparkling', 'Dessert', 'Etc'],
+    ['Whiskey', 'Brandy', 'Vodka', 'Gin', 'Rum', 'Tequila', 'Etc'],
+    ['Shacking', 'Stirring', 'Blending', 'Layering', 'Etc'],
   ];
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {},
