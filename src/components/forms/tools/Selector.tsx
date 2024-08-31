@@ -39,7 +39,7 @@ const SelectOptionList = styled.ul<{
   background-color: ${props => props.theme.colors.secondaryOn};
   list-style: none;
 
-  max-height: ${({ $isOpen }) => ($isOpen ? '250px' : '0px')};
+  max-height: ${({ $isOpen }) => ($isOpen ? '300px' : '0px')};
   overflow: hidden;
   transition: max-height 1s cubic-bezier(0.16, 1, 0.3, 1);
 `;
