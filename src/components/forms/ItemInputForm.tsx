@@ -2,9 +2,14 @@ import React, { useCallback, useState } from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
-import { InformationInput, Selector, SimpleLabel } from '..';
+import {
+  InformationInput,
+  MultiLineInput,
+  Selector,
+  SimpleLabel,
+  FiveStarInput,
+} from '..';
 import { Alcohol, AlcoholList } from '../../types/const';
-import FiveStarInput from './tools/FiveStarInput';
 
 const Container = styled.div`
   display: grid;
@@ -15,22 +20,6 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const TextArea = styled.textarea`
-  width: 100%;
-  height: 100%;
-  resize: none;
-  border-radius: ${props => props.theme.borderRadius};
-  border: none;
-  background-color: ${props => props.theme.colors.secondary};
-  padding: 10px;
-  justify-self: center;
-  align-self: center;
-  color: ${props => props.theme.colors.textDark};
-
-  &:focus {
-    outline: none;
-  }
-`;
 interface ItemInputFormProps {
   inputType: Alcohol;
   style: React.CSSProperties;
@@ -184,7 +173,7 @@ export default function ItemInputForm({
         style={{ gridColumn: '5 / 11', gridRow: '5 / 6' }}
         onChange={handleInputChange}
       />
-      <TextArea
+      <MultiLineInput
         placeholder="Overall Review"
         style={{ gridColumn: '1 / 11', gridRow: '7 / 10' }}
       />
