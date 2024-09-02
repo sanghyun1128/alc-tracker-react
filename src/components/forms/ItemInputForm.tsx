@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useReducer, useState } from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
@@ -9,7 +9,9 @@ import {
   SimpleLabel,
   FiveStarInput,
 } from '..';
-import { Alcohol, AlcoholList } from '../../types/const';
+import { itemInputFormReducer } from '../../reducers/itemInputFormReducer';
+import { Alcohol, AlcoholList, subtypeList } from '../../types/const';
+import { ItemInputFormState } from '../../types/itemInputForm';
 
 const Container = styled.div`
   display: grid;
@@ -26,17 +28,27 @@ interface ItemInputFormProps {
   theme: DefaultTheme;
 }
 
+const initialState: ItemInputFormState = {
+  name: '',
+  vintage: null,
+  price: null,
+  type: '',
+  subtype: '',
+  detail: null,
+
+  isVintageValid: true,
+  isPriceValid: true,
+  isDetailValid: true,
+};
+
 export default function ItemInputForm({
   inputType,
   style,
   theme,
 }: ItemInputFormProps) {
+  const [state, dispatch] = useReducer(itemInputFormReducer, initialState);
   const [mainStars, setMainStars] = useState<number>(0);
-  const detailType = [
-    ['Red', 'White', 'Rose', 'Sparkling', 'Dessert', 'Etc'],
-    ['Whiskey', 'Brandy', 'Vodka', 'Gin', 'Rum', 'Tequila', 'Etc'],
-    ['Shacking', 'Stirring', 'Blending', 'Layering', 'Etc'],
-  ];
+
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {},
     [],
@@ -81,7 +93,7 @@ export default function ItemInputForm({
       />
       <Selector
         id="type"
-        options={detailType[AlcoholList.indexOf(inputType)]}
+        options={subtypeList[AlcoholList.indexOf(inputType)]}
         style={{ gridColumn: '6 / 11', gridRow: '2 / 3' }}
         onChange={handleInputChange}
       />
