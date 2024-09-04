@@ -13,7 +13,7 @@ import { itemInputFormReducer } from '../../reducers/itemInputFormReducer';
 import { Alcohol, AlcoholList, subtypeList } from '../../types/const';
 import { ItemInputFormState } from '../../types/itemInputForm';
 
-const Container = styled.div`
+const Form = styled.form`
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -55,7 +55,7 @@ export default function ItemInputForm({
   );
 
   return (
-    <Container style={style}>
+    <Form style={style}>
       <InformationInput
         placeholder={'Name'}
         maxLength={20}
@@ -189,6 +189,6 @@ export default function ItemInputForm({
         placeholder="Overall Review"
         style={{ gridColumn: '1 / 11', gridRow: '7 / 10' }}
       />
-    </Container>
+    </Form>
   );
 }
