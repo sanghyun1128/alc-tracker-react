@@ -11,7 +11,7 @@ import {
 } from '../../animations/basicAnimations';
 import { Alcohol, AlcoholList } from '../../types/const';
 
-const Container = styled.div<{ isClosing: boolean }>`
+const Container = styled.div<{ $isClosing: boolean }>`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -24,10 +24,10 @@ const Container = styled.div<{ isClosing: boolean }>`
   justify-content: center;
   align-items: center;
 
-  animation: ${props => (props.isClosing ? fadeOut : fadeIn)} 1.3s;
+  animation: ${props => (props.$isClosing ? fadeOut : fadeIn)} 1.3s;
 `;
 
-const Modal = styled.div<{ isClosing: boolean }>`
+const Modal = styled.div<{ $isClosing: boolean }>`
   width: 80%;
   height: 90%;
   background-color: ${props => props.theme.colors.formBackground};
@@ -39,7 +39,7 @@ const Modal = styled.div<{ isClosing: boolean }>`
   justify-items: center;
 
   animation: ${props =>
-      props.isClosing ? fadeOutCenterToBottom : fadeInBottomToCenter}
+      props.$isClosing ? fadeOutCenterToBottom : fadeInBottomToCenter}
     1.3s;
 `;
 
@@ -63,8 +63,8 @@ export default function ItemInputModal({
   };
 
   return (
-    <Container isClosing={isClosing}>
-      <Modal isClosing={isClosing}>
+    <Container $isClosing={isClosing}>
+      <Modal $isClosing={isClosing}>
         <Selector
           id="selector"
           options={AlcoholList}
