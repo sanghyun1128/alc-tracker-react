@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useState } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
@@ -8,6 +8,7 @@ import {
   Selector,
   SimpleLabel,
   FiveStarInput,
+  SubmitButton,
 } from '..';
 import { itemInputFormReducer } from '../../reducers/itemInputFormReducer';
 import { Alcohol, AlcoholList, subtypeList } from '../../types/const';
@@ -35,6 +36,13 @@ const initialState: ItemInputFormState = {
   type: '',
   subtype: '',
   detail: null,
+  totalStars: 0,
+  noseStars: 0,
+  palateStars: 0,
+  finishStars: 0,
+  noseNotes: '',
+  palateNotes: '',
+  finishNotes: '',
 
   isVintageValid: true,
   isPriceValid: true,
@@ -47,15 +55,74 @@ export default function ItemInputForm({
   theme,
 }: ItemInputFormProps) {
   const [state, dispatch] = useReducer(itemInputFormReducer, initialState);
-  const [mainStars, setMainStars] = useState<number>(0);
+
+  useEffect(() => {
+    dispatch({ type: 'SET_TYPE', payload: inputType });
+  }, [inputType]);
+
+  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const isVintageValid = state.vintage !== null;
+    const isPriceValid = state.price !== null;
+    const isDetailValid = state.detail !== null;
+
+    dispatch({ type: 'SET_VINTAGE_VALID', payload: isVintageValid });
+    dispatch({ type: 'SET_PRICE_VALID', payload: isPriceValid });
+    dispatch({ type: 'SET_DETAIL_VALID', payload: isDetailValid });
+
+    if (isVintageValid && isPriceValid && isDetailValid) {
+      console.log('Form submitted');
+      console.log(state);
+    } else {
+      console.log(state);
+    }
+  };
 
   const handleInputChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {},
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { id, value } = event.target;
+
+      switch (id) {
+        case 'name':
+          dispatch({ type: 'SET_NAME', payload: value });
+          break;
+        case 'vintage':
+          dispatch({ type: 'SET_VINTAGE', payload: parseInt(value) });
+          break;
+        case 'price':
+          dispatch({ type: 'SET_PRICE', payload: value });
+          break;
+        case 'type':
+          dispatch({ type: 'SET_TYPE', payload: value });
+          break;
+        case 'subtype':
+          dispatch({ type: 'SET_SUBTYPE', payload: value });
+          break;
+        case 'detail':
+          dispatch({ type: 'SET_DETAIL', payload: value });
+          break;
+        case 'finish stars':
+          dispatch({ type: 'SET_FINISH_STARS', payload: parseInt(value) });
+          break;
+        case 'nose notes':
+          dispatch({ type: 'SET_NOSE_NOTES', payload: value });
+          break;
+        case 'palate notes':
+          dispatch({ type: 'SET_PALATE_NOTES', payload: value });
+          break;
+        case 'finish notes':
+          dispatch({ type: 'SET_FINISH_NOTES', payload: value });
+          break;
+        default:
+          break;
+      }
+    },
     [],
   );
 
   return (
-    <Form style={style}>
+    <Form style={style} onSubmit={event => submitForm(event)}>
       <InformationInput
         placeholder={'Name'}
         maxLength={20}
@@ -92,7 +159,7 @@ export default function ItemInputForm({
         }}
       />
       <Selector
-        id="type"
+        id="subtype"
         options={subtypeList[AlcoholList.indexOf(inputType)]}
         style={{ gridColumn: '6 / 11', gridRow: '2 / 3' }}
         onChange={handleInputChange}
@@ -109,8 +176,10 @@ export default function ItemInputForm({
         }}
       />
       <FiveStarInput
-        numOfStars={mainStars}
-        setStars={setMainStars}
+        numOfStars={state.totalStars}
+        setStars={stars =>
+          dispatch({ type: 'SET_TOTAL_STARS', payload: stars })
+        }
         style={{ gridColumn: '2 / 4', gridRow: '2 / 3' }}
       />
       <SimpleLabel
@@ -125,12 +194,12 @@ export default function ItemInputForm({
         }}
       />
       <FiveStarInput
-        numOfStars={mainStars}
-        setStars={setMainStars}
+        numOfStars={state.noseStars}
+        setStars={stars => dispatch({ type: 'SET_NOSE_STARS', payload: stars })}
         style={{ gridColumn: '2 / 4', gridRow: '3 / 4' }}
       />
       <InformationInput
-        placeholder={'Notes'}
+        placeholder={'Nose Notes'}
         maxLength={20}
         isError={false}
         hideShowButton={false}
@@ -149,12 +218,14 @@ export default function ItemInputForm({
         }}
       />
       <FiveStarInput
-        numOfStars={mainStars}
-        setStars={setMainStars}
+        numOfStars={state.palateStars}
+        setStars={stars =>
+          dispatch({ type: 'SET_PALATE_STARS', payload: stars })
+        }
         style={{ gridColumn: '2 / 4', gridRow: '4 / 5' }}
       />
       <InformationInput
-        placeholder={'Notes'}
+        placeholder={'Palate Notes'}
         maxLength={20}
         isError={false}
         hideShowButton={false}
@@ -173,12 +244,14 @@ export default function ItemInputForm({
         }}
       />
       <FiveStarInput
-        numOfStars={mainStars}
-        setStars={setMainStars}
+        numOfStars={state.finishStars}
+        setStars={stars =>
+          dispatch({ type: 'SET_FINISH_STARS', payload: stars })
+        }
         style={{ gridColumn: '2 / 4', gridRow: '5 / 6' }}
       />
       <InformationInput
-        placeholder={'Notes'}
+        placeholder={'Finish Notes'}
         maxLength={20}
         isError={false}
         hideShowButton={false}
@@ -186,8 +259,14 @@ export default function ItemInputForm({
         onChange={handleInputChange}
       />
       <MultiLineInput
-        placeholder="Overall Review"
+        placeholder="Detail"
         style={{ gridColumn: '1 / 11', gridRow: '7 / 10' }}
+        onChange={handleInputChange}
+      />
+
+      <SubmitButton
+        text="Add Item"
+        style={{ gridColumn: '5 / 7', gridRow: '10 / 11' }}
       />
     </Form>
   );
