@@ -20,6 +20,20 @@ export const itemInputFormReducer = (
       return { ...state, subtype: action.payload };
     case 'SET_DETAIL':
       return { ...state, detail: action.payload };
+    case 'SET_TOTAL_STARS':
+      return { ...state, totalStars: action.payload };
+    case 'SET_NOSE_STARS':
+      return { ...state, noseStars: action.payload };
+    case 'SET_PALATE_STARS':
+      return { ...state, palateStars: action.payload };
+    case 'SET_FINISH_STARS':
+      return { ...state, finishStars: action.payload };
+    case 'SET_NOSE_NOTES':
+      return { ...state, noseNotes: action.payload };
+    case 'SET_PALATE_NOTES':
+      return { ...state, palateNotes: action.payload };
+    case 'SET_FINISH_NOTES':
+      return { ...state, finishNotes: action.payload };
     case 'SET_VINTAGE_VALID':
       return { ...state, isVintageValid: action.payload };
     case 'SET_PRICE_VALID':
