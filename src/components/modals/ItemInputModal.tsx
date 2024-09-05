@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { DefaultTheme, styled } from 'styled-components';
 
-import { IconButton, SubmitButton, ItemInputForm, Selector } from '..';
+import { IconButton, ItemInputForm, Selector } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
 import { Alcohol, AlcoholList } from '../../types/const';
 
@@ -27,7 +27,7 @@ const Modal = styled.div`
   border-radius: ${props => props.theme.borderRadius};
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 8fr;
   align-items: center;
   justify-items: center;
 
@@ -71,10 +71,6 @@ export default function ItemInputModal({
           inputType={typeOfAlcohol}
           style={{ gridColumn: '1 / 11', gridRow: '2 / 3' }}
           theme={theme}
-        />
-        <SubmitButton
-          text="Add Item"
-          style={{ gridColumn: '5 / 7', gridRow: '3 / 4' }}
         />
       </Modal>
     </Container>
