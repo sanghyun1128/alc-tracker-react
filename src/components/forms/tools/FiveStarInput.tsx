@@ -13,14 +13,14 @@ const Container = styled.div`
 
 interface FiveStarInputProps {
   numOfStars: number;
-  setStars: React.Dispatch<React.SetStateAction<number>>;
+  setStars: (stars: number) => void;
   style?: React.CSSProperties;
 }
 
 /**
  * @param {FiveStarInputProps} props
  * @param {number} props.numOfStars value of useState<number> to be used as the number of stars
- * @param {React.Dispatch<React.SetStateAction<number>>} props.setStars function of useState<number> to set the value of numOfStars
+ * @param {Function} props.setStars (stars: number) => void function to set the number of stars
  * @param {React.CSSProperties} props.style React.CSSProperties to be applied to the container
  */
 export default function FiveStarInput({
