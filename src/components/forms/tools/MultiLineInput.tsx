@@ -22,16 +22,26 @@ const TextArea = styled.textarea`
 interface MultiLineInputProps {
   placeholder: string;
   style?: React.CSSProperties;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 /**
  * @param {MultiLineInputProps} props
  * @param {String} props.placeholder the text to display as the placeholder
  * @param {React.CSSProperties} props.style the style of the input
+ * @param {React.ChangeEvent<HTMLTextAreaElement>} props.onChange the function to call when the input changes
  */
 export default function MultiLineInput({
   placeholder,
   style = {},
+  onChange,
 }: MultiLineInputProps) {
-  return <TextArea placeholder={placeholder} style={style} />;
+  return (
+    <TextArea
+      id={placeholder.toLowerCase()}
+      placeholder={placeholder}
+      style={style}
+      onChange={onChange}
+    />
+  );
 }
