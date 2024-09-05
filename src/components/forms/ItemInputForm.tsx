@@ -260,13 +260,13 @@ export default function ItemInputForm({
       />
       <MultiLineInput
         placeholder="Detail"
-        style={{ gridColumn: '1 / 11', gridRow: '7 / 10' }}
+        style={{ gridColumn: '1 / 11', gridRow: '7 / 9' }}
         onChange={handleInputChange}
       />
 
       <SubmitButton
         text="Add Item"
-        style={{ gridColumn: '5 / 7', gridRow: '10 / 11' }}
+        style={{ gridColumn: '5 / 7', gridRow: '9 / 11' }}
       />
     </Form>
   );
