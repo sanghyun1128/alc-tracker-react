@@ -3,10 +3,15 @@ import React, { useState } from 'react';
 import { DefaultTheme, styled } from 'styled-components';
 
 import { IconButton, ItemInputForm, Selector } from '..';
-import { fadeInBottomToCenter } from '../../animations/basicAnimations';
+import {
+  fadeIn,
+  fadeInBottomToCenter,
+  fadeOut,
+  fadeOutCenterToBottom,
+} from '../../animations/basicAnimations';
 import { Alcohol, AlcoholList } from '../../types/const';
 
-const Container = styled.div`
+const Container = styled.div<{ isClosing: boolean }>`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -18,9 +23,11 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  animation: ${props => (props.isClosing ? fadeOut : fadeIn)} 1.3s;
 `;
 
-const Modal = styled.div`
+const Modal = styled.div<{ isClosing: boolean }>`
   width: 80%;
   height: 90%;
   background-color: ${props => props.theme.colors.formBackground};
@@ -31,7 +38,9 @@ const Modal = styled.div`
   align-items: center;
   justify-items: center;
 
-  animation: ${fadeInBottomToCenter} 1.3s;
+  animation: ${props =>
+      props.isClosing ? fadeOutCenterToBottom : fadeInBottomToCenter}
+    1.3s;
 `;
 
 interface ItemInputModalProps {
@@ -44,10 +53,18 @@ export default function ItemInputModal({
   theme,
 }: ItemInputModalProps) {
   const [typeOfAlcohol, setTypeOfAlcohol] = useState<Alcohol>('WINE');
+  const [isClosing, setIsClosing] = useState<boolean>(false);
+
+  const closeModal = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setModalOpen(false); // Close modal after animation ends
+    }, 1300); // Match the duration of the animation
+  };
 
   return (
-    <Container>
-      <Modal>
+    <Container isClosing={isClosing}>
+      <Modal isClosing={isClosing}>
         <Selector
           id="selector"
           options={AlcoholList}
@@ -65,7 +82,7 @@ export default function ItemInputModal({
           size={20}
           buttonColor="primary"
           style={{ gridColumn: '10 / 11', gridRow: '1 / 2' }}
-          onClick={() => setModalOpen(false)}
+          onClick={closeModal}
         />
         <ItemInputForm
           inputType={typeOfAlcohol}
