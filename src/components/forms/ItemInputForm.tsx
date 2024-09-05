@@ -11,7 +11,7 @@ import {
   SubmitButton,
 } from '..';
 import { itemInputFormReducer } from '../../reducers/itemInputFormReducer';
-import { Alcohol, AlcoholList, subtypeList } from '../../types/const';
+import { Alcohol, AlcoholList, SubtypeList } from '../../types/const';
 import { ItemInputFormState } from '../../types/itemInputForm';
 
 const Form = styled.form`
@@ -97,7 +97,10 @@ export default function ItemInputForm({
           dispatch({ type: 'SET_TYPE', payload: value });
           break;
         case 'subtype':
-          dispatch({ type: 'SET_SUBTYPE', payload: value });
+          dispatch({
+            type: 'SET_SUBTYPE',
+            payload: SubtypeList[AlcoholList.indexOf(inputType)][+value],
+          });
           break;
         case 'detail':
           dispatch({ type: 'SET_DETAIL', payload: value });
@@ -160,7 +163,7 @@ export default function ItemInputForm({
       />
       <Selector
         id="subtype"
-        options={subtypeList[AlcoholList.indexOf(inputType)]}
+        options={SubtypeList[AlcoholList.indexOf(inputType)]}
         style={{ gridColumn: '6 / 11', gridRow: '2 / 3' }}
         onChange={handleInputChange}
       />
