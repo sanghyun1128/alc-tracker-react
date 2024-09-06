@@ -2,7 +2,6 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { shake } from '../../animations/basicAnimations';
 import { Icons, IconType } from '../../assets/svg';
 
 const Button = styled.button<{ $buttonColor: string }>`
@@ -27,7 +26,6 @@ const Button = styled.button<{ $buttonColor: string }>`
       props.$buttonColor === 'primary'
         ? props.theme.colors.primaryOn
         : props.theme.colors.secondaryOn};
-    animation: ${shake} 0.5s;
   }
 `;
 

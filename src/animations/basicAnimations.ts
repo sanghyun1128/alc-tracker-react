@@ -13,6 +13,19 @@ export const fadeInBottomToCenter = keyframes`
   }
 `;
 
+export const fadeOutCenterToBottom = keyframes`
+    0% {
+        opacity: 1;
+        transform: translateZ(0);
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+`;
+
 export const fadeInRightToCenter = keyframes`
   0% {
       opacity: 0;

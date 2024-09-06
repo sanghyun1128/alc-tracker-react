@@ -9,6 +9,7 @@ import {
   IconButton,
   CardView,
   EmptyView,
+  ItemInputModal,
 } from '../components';
 import {
   cocktailCardList,
@@ -68,6 +69,7 @@ export default function MainPage() {
   ]);
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
+  const [itemInputModalOpen, setItemInputModalOpen] = useState<boolean>(false);
   const mainViewRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -152,6 +154,10 @@ export default function MainPage() {
         )}
       </MainViewSection>
 
+      {itemInputModalOpen && (
+        <ItemInputModal setModalOpen={setItemInputModalOpen} theme={theme} />
+      )}
+
       <ControlSection>
         <IconButton
           icon="SETTING"
@@ -161,7 +167,7 @@ export default function MainPage() {
         />
         <IconButton
           icon="PLUS"
-          onClick={handleIconClick}
+          onClick={() => setItemInputModalOpen(true)}
           size={20}
           buttonColor="primary"
         />
