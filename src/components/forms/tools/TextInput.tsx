@@ -44,7 +44,7 @@ const Input = styled.input<{
   }
 `;
 
-interface InformationInputProps {
+interface TextInputProps {
   placeholder: string;
   maxLength: number;
   isError: boolean;
@@ -54,7 +54,7 @@ interface InformationInputProps {
 }
 
 /**
- * @param {InformationInputProps} props
+ * @param {TextInputProps} props
  * @param {String} props.placeholder placeholder text for the input field
  * @param {Number} props.maxLength maximum length of the input field
  * @param {Boolean} props.isError whether the input field is in an error state
@@ -62,14 +62,14 @@ interface InformationInputProps {
  * @param {React.CSSProperties} props.style custom styles for the input field
  * @param {Function} props.onChange function to handle input changes
  */
-export default function InformationInput({
+export default function TextInput({
   placeholder,
   maxLength,
   isError,
   hideShowButton,
   style,
   onChange,
-}: InformationInputProps) {
+}: TextInputProps) {
   const [showInput, setShowInput] = useState<boolean>(false);
 
   const toggleInputVisibility = () => {

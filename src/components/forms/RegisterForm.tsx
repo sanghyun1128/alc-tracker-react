@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
 
 import {
-  InformationInput,
+  TextInput,
   DatePicker,
   SubmitButton,
   TextButton,
@@ -148,7 +148,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
 
   return (
     <Form onSubmit={event => submitForm(event)}>
-      <InformationInput
+      <TextInput
         placeholder="Nickname"
         maxLength={15}
         isError={!state.isNicknameValid}
@@ -156,7 +156,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         hideShowButton={false}
         onChange={handleInputChange}
       />
-      <InformationInput
+      <TextInput
         placeholder="Email"
         maxLength={254}
         isError={!state.isEmailValid}
@@ -164,7 +164,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         hideShowButton={false}
         onChange={handleInputChange}
       />
-      <InformationInput
+      <TextInput
         placeholder="Email confirmation code"
         maxLength={5}
         isError={!state.isEmailConfirmed}
@@ -199,7 +199,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         style={{ gridColumn: '2 / 7', gridRow: '5 / 6' }}
         onChange={handleInputChange}
       />
-      <InformationInput
+      <TextInput
         placeholder="Password"
         maxLength={20}
         isError={!state.isPasswordValid}
@@ -207,7 +207,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         hideShowButton={true}
         onChange={handleInputChange}
       />
-      <InformationInput
+      <TextInput
         placeholder="Re enter password"
         maxLength={20}
         isError={!state.isPasswordConfirmed}

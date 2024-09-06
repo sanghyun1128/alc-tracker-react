@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { InformationInput, SubmitButton, TextButton } from '..';
+import { TextInput, SubmitButton, TextButton } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
 import { deviceSizes } from '../../const/deviceSizes';
 import { emailValidation, passwordValidation } from '../../validation';
@@ -80,7 +80,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
 
   return (
     <Form onSubmit={event => submitForm(event)}>
-      <InformationInput
+      <TextInput
         placeholder="Email"
         maxLength={254}
         isError={isEmailError}
@@ -88,7 +88,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
         style={{ gridColumn: '1 / 6', gridRow: '1 / 2' }}
         onChange={emailChange}
       />
-      <InformationInput
+      <TextInput
         placeholder="Password"
         maxLength={20}
         isError={isPasswordError}

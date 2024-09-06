@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useReducer } from 'react';
 import { DefaultTheme, styled } from 'styled-components';
 
 import {
-  InformationInput,
+  TextInput,
   MultiLineInput,
   Selector,
   SimpleLabel,
@@ -126,7 +126,7 @@ export default function ItemInputForm({
 
   return (
     <Form style={style} onSubmit={event => submitForm(event)}>
-      <InformationInput
+      <TextInput
         placeholder={'Name'}
         maxLength={20}
         isError={false}
@@ -134,7 +134,7 @@ export default function ItemInputForm({
         style={{ gridColumn: '1 / 7', gridRow: '1 / 2' }}
         onChange={handleInputChange}
       />
-      <InformationInput
+      <TextInput
         placeholder={'Vintage'}
         maxLength={20}
         isError={false}
@@ -142,7 +142,7 @@ export default function ItemInputForm({
         style={{ gridColumn: '7 / 9', gridRow: '1 / 2' }}
         onChange={handleInputChange}
       />
-      <InformationInput
+      <TextInput
         placeholder={'Price'}
         maxLength={20}
         isError={false}
@@ -201,7 +201,7 @@ export default function ItemInputForm({
         setStars={stars => dispatch({ type: 'SET_NOSE_STARS', payload: stars })}
         style={{ gridColumn: '2 / 4', gridRow: '3 / 4' }}
       />
-      <InformationInput
+      <TextInput
         placeholder={'Nose Notes'}
         maxLength={20}
         isError={false}
@@ -227,7 +227,7 @@ export default function ItemInputForm({
         }
         style={{ gridColumn: '2 / 4', gridRow: '4 / 5' }}
       />
-      <InformationInput
+      <TextInput
         placeholder={'Palate Notes'}
         maxLength={20}
         isError={false}
@@ -253,7 +253,7 @@ export default function ItemInputForm({
         }
         style={{ gridColumn: '2 / 4', gridRow: '5 / 6' }}
       />
-      <InformationInput
+      <TextInput
         placeholder={'Finish Notes'}
         maxLength={20}
         isError={false}
