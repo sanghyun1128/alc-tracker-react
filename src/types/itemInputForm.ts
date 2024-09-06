@@ -9,13 +9,9 @@ export type ItemInputFormState = {
   noseStars: number;
   palateStars: number;
   finishStars: number;
-  noseNotes: string;
-  palateNotes: string;
-  finishNotes: string;
-
-  isVintageValid: boolean;
-  isPriceValid: boolean;
-  isDetailValid: boolean;
+  noseNotes: string | null;
+  palateNotes: string | null;
+  finishNotes: string | null;
 };
 
 export type ItemInputFormAction =
@@ -31,7 +27,4 @@ export type ItemInputFormAction =
   | { type: 'SET_FINISH_STARS'; payload: number }
   | { type: 'SET_NOSE_NOTES'; payload: string }
   | { type: 'SET_PALATE_NOTES'; payload: string }
-  | { type: 'SET_FINISH_NOTES'; payload: string }
-  | { type: 'SET_VINTAGE_VALID'; payload: boolean }
-  | { type: 'SET_PRICE_VALID'; payload: boolean }
-  | { type: 'SET_DETAIL_VALID'; payload: boolean };
+  | { type: 'SET_FINISH_NOTES'; payload: string };

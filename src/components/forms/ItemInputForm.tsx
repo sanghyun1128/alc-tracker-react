@@ -40,13 +40,9 @@ const initialState: ItemInputFormState = {
   noseStars: 2.5,
   palateStars: 2.5,
   finishStars: 2.5,
-  noseNotes: '',
-  palateNotes: '',
-  finishNotes: '',
-
-  isVintageValid: true,
-  isPriceValid: true,
-  isDetailValid: true,
+  noseNotes: null,
+  palateNotes: null,
+  finishNotes: null,
 };
 
 export default function ItemInputForm({
@@ -63,15 +59,9 @@ export default function ItemInputForm({
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isVintageValid = state.vintage !== null;
-    const isPriceValid = state.price !== null;
-    const isDetailValid = state.detail !== null;
+    const isNameValid = state.name.length > 0;
 
-    dispatch({ type: 'SET_VINTAGE_VALID', payload: isVintageValid });
-    dispatch({ type: 'SET_PRICE_VALID', payload: isPriceValid });
-    dispatch({ type: 'SET_DETAIL_VALID', payload: isDetailValid });
-
-    if (isVintageValid && isPriceValid && isDetailValid) {
+    if (isNameValid) {
       console.log('Form submitted');
       console.log(state);
     } else {

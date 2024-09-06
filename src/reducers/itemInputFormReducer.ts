@@ -34,11 +34,5 @@ export const itemInputFormReducer = (
       return { ...state, palateNotes: action.payload };
     case 'SET_FINISH_NOTES':
       return { ...state, finishNotes: action.payload };
-    case 'SET_VINTAGE_VALID':
-      return { ...state, isVintageValid: action.payload };
-    case 'SET_PRICE_VALID':
-      return { ...state, isPriceValid: action.payload };
-    case 'SET_DETAIL_VALID':
-      return { ...state, isDetailValid: action.payload };
   }
 };
