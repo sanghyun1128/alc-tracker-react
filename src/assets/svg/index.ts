@@ -4,6 +4,7 @@ import { ReactComponent as Cocktail } from './cocktail.svg';
 import { ReactComponent as FileEmpty } from './file-empty.svg';
 import { ReactComponent as Minus } from './minus.svg';
 import { ReactComponent as Plus } from './plus.svg';
+import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Setting } from './setting.svg';
 import { ReactComponent as StarEmpty } from './star-empty.svg';
 import { ReactComponent as StarFull } from './star-full.svg';
@@ -36,4 +37,5 @@ export const Icons: { [src: string]: IconType } = {
   STAR_HALF: StarHalf,
   FILE_EMPTY: FileEmpty,
   CLOSE: Close,
+  SEARCH: Search,
 };
