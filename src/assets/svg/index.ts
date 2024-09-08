@@ -3,12 +3,14 @@ import { ReactComponent as Close } from './close.svg';
 import { ReactComponent as Cocktail } from './cocktail.svg';
 import { ReactComponent as FileEmpty } from './file-empty.svg';
 import { ReactComponent as Minus } from './minus.svg';
+import { ReactComponent as Moon } from './moon.svg';
 import { ReactComponent as Plus } from './plus.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Setting } from './setting.svg';
 import { ReactComponent as StarEmpty } from './star-empty.svg';
 import { ReactComponent as StarFull } from './star-full.svg';
 import { ReactComponent as StarHalf } from './star-half.svg';
+import { ReactComponent as Sun } from './sun.svg';
 import { ReactComponent as User } from './user.svg';
 import { ReactComponent as Whiskey } from './whiskey.svg';
 import { ReactComponent as WineRed } from './wine-red.svg';
@@ -38,4 +40,6 @@ export const Icons: { [src: string]: IconType } = {
   FILE_EMPTY: FileEmpty,
   CLOSE: Close,
   SEARCH: Search,
+  MOON: Moon,
+  SUN: Sun,
 };
