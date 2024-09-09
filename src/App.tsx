@@ -3,6 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
+import NavigationBar from './components/navigation/NavigationBar';
 import { useTheme } from './hooks/useTheme';
 import IntroPage from './pages/IntroPage';
 import LoginPage from './pages/LoginPage';
@@ -26,6 +27,7 @@ function App() {
         <Route path="/my" element={<MyPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <NavigationBar />
     </ThemeProvider>
   );
 }
