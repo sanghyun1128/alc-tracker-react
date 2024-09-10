@@ -14,7 +14,7 @@ import RegisterPage from './pages/RegisterPage';
 import { GlobalStyle } from './themes';
 
 function App() {
-  const [theme] = useTheme();
+  const [theme, toggleTheme] = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
@@ -27,7 +27,7 @@ function App() {
         <Route path="/my" element={<MyPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <NavigationBar />
+      <NavigationBar theme={theme} toggleTheme={toggleTheme} />
     </ThemeProvider>
   );
 }

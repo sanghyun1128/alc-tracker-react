@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { styled } from 'styled-components';
+import { DefaultTheme, styled } from 'styled-components';
+
+import { IconButton } from '..';
 
 const Container = styled.div`
   position: fixed;
@@ -17,10 +19,23 @@ const Container = styled.div`
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 `;
 
-export default function NavigationBar() {
+interface NavigationBarProps {
+  theme: DefaultTheme;
+  toggleTheme: () => void;
+}
+
+export default function NavigationBar({
+  theme,
+  toggleTheme,
+}: NavigationBarProps) {
   return (
     <Container>
-      <div>Footer</div>
+      <IconButton
+        icon={theme.alt === 'light' ? 'SUN' : 'MOON'}
+        size={30}
+        buttonColor={'primary'}
+        onClick={toggleTheme}
+      />
     </Container>
   );
 }
