@@ -20,7 +20,7 @@ const Container = styled.div`
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 `;
 
-const MainPathContainer = styled.div`
+const DynamicPathContainer = styled.div`
   grid-column: 2 / 3;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -57,7 +57,7 @@ export default function NavigationBar({
       />
 
       {currentLocation === '/main' && (
-        <MainPathContainer>
+        <DynamicPathContainer>
           <IconButton
             icon="PLUS"
             onClick={() => setItemInputModalOpen(true)}
@@ -82,7 +82,7 @@ export default function NavigationBar({
               theme={theme}
             />
           )}
-        </MainPathContainer>
+        </DynamicPathContainer>
       )}
 
       <IconButton
