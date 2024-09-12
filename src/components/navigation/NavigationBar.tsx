@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { IconButton } from '..';
+import { IconButton, ItemInputModal } from '..';
 
 const Container = styled.div`
   position: fixed;
@@ -30,6 +30,7 @@ export default function NavigationBar({
 }: NavigationBarProps) {
   const navigate = useNavigate();
   const currentLocation = useLocation().pathname;
+  const [itemInputModalOpen, setItemInputModalOpen] = useState<boolean>(false);
 
   const handleIconClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -50,11 +51,14 @@ export default function NavigationBar({
       {currentLocation === '/main' && (
         <IconButton
           icon="PLUS"
-          onClick={handleIconClick}
+          onClick={() => setItemInputModalOpen(true)}
           size={20}
           buttonColor="primary"
           style={{ gridColumn: '5 / 7' }}
         />
+      )}
+      {itemInputModalOpen && (
+        <ItemInputModal setModalOpen={setItemInputModalOpen} theme={theme} />
       )}
 
       <IconButton
