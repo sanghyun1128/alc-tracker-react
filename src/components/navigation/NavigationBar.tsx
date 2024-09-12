@@ -4,19 +4,27 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
 import { IconButton, ItemInputModal } from '..';
+import { shake } from '../../animations/basicAnimations';
 
 const Container = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.formBackground};
   color: ${props => props.theme.colors.textLight};
   text-align: center;
   padding: 1rem 0;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: 1fr 10fr 1fr;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+`;
+
+const MainPathContainer = styled.div`
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  animation: ${shake} 0.5s ease-in-out;
 `;
 
 interface NavigationBarProps {
@@ -43,30 +51,46 @@ export default function NavigationBar({
       <IconButton
         icon={theme.alt === 'light' ? 'SUN' : 'MOON'}
         size={20}
-        buttonColor={'primary'}
+        buttonColor="secondary"
         onClick={toggleTheme}
         style={{ gridColumn: '1 / 2' }}
       />
 
       {currentLocation === '/main' && (
-        <IconButton
-          icon="PLUS"
-          onClick={() => setItemInputModalOpen(true)}
-          size={20}
-          buttonColor="primary"
-          style={{ gridColumn: '5 / 7' }}
-        />
-      )}
-      {itemInputModalOpen && (
-        <ItemInputModal setModalOpen={setItemInputModalOpen} theme={theme} />
+        <MainPathContainer>
+          <IconButton
+            icon="PLUS"
+            onClick={() => setItemInputModalOpen(true)}
+            size={20}
+            buttonColor="primary"
+            style={{
+              gridColumn: '5 / 7',
+              width: '90%',
+              borderRadius: '10px',
+            }}
+          />
+          <IconButton
+            icon="SEARCH"
+            onClick={() => setItemInputModalOpen(true)}
+            size={20}
+            buttonColor="primary"
+            style={{ gridColumn: '7 / 8', justifySelf: 'start' }}
+          />
+          {itemInputModalOpen && (
+            <ItemInputModal
+              setModalOpen={setItemInputModalOpen}
+              theme={theme}
+            />
+          )}
+        </MainPathContainer>
       )}
 
       <IconButton
         icon="USER"
         onClick={handleIconClick}
         size={20}
-        buttonColor="primary"
-        style={{ gridColumn: '10 / 11' }}
+        buttonColor="secondary"
+        style={{ gridColumn: '3 / 4' }}
       />
     </Container>
   );
