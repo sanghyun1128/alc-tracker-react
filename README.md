@@ -14,7 +14,7 @@
 </br></br>
 
 <div align=center>
-  <a href="https://www.google.com" target="_blank">
+  <a href="https://alc-tracker-react.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/Click Here-D14836?style=for-the-badge&logoColor=white" />
   </a>
 </div>
