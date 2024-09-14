@@ -74,7 +74,11 @@ export default function NavigationBar({
             onClick={() => setItemInputModalOpen(true)}
             size={20}
             buttonColor="primary"
-            style={{ gridColumn: '7 / 8', justifySelf: 'start' }}
+            style={{
+              gridColumn: '7 / 8',
+              justifySelf: 'start',
+              borderRadius: '10px',
+            }}
           />
           {itemInputModalOpen && (
             <ItemInputModal
