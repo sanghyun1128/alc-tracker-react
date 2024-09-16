@@ -19,6 +19,7 @@ import SimpleLabel from './labels/SimpleLabel';
 import LottieContainer from './layout/LottieContainer';
 import ItemInputModal from './modals/ItemInputModal';
 import DotPagination from './navigation/DotPagination';
+import NavigationBar from './navigation/NavigationBar';
 
 // Button Components
 export { TextButton, IconButton, SubmitButton };
@@ -42,6 +43,6 @@ export { LottieContainer };
 export { ItemInputModal };
 
 // Navigation Components
-export { DotPagination };
+export { DotPagination, NavigationBar };
 
 // Other Components

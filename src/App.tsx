@@ -3,7 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import NavigationBar from './components/navigation/NavigationBar';
+import { NavigationBar } from './components';
 import { useTheme } from './hooks/useTheme';
 import IntroPage from './pages/IntroPage';
 import LoginPage from './pages/LoginPage';
