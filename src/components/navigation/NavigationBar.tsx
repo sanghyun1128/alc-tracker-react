@@ -39,6 +39,7 @@ export default function NavigationBar({
   const navigate = useNavigate();
   const currentLocation = useLocation().pathname;
   const [itemInputModalOpen, setItemInputModalOpen] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const handleIconClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -46,13 +47,17 @@ export default function NavigationBar({
     navigate(`/${e.currentTarget.id}`);
   };
 
+  const openMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <Container>
       <IconButton
-        icon={theme.alt === 'light' ? 'SUN' : 'MOON'}
+        icon={menuOpen ? 'CLOSE' : 'MENU'}
         size={20}
         buttonColor="secondary"
-        onClick={toggleTheme}
+        onClick={openMenu}
         style={{ gridColumn: '1 / 2' }}
       />
 
@@ -69,17 +74,6 @@ export default function NavigationBar({
               borderRadius: '10px',
             }}
           />
-          <IconButton
-            icon="SEARCH"
-            onClick={() => setItemInputModalOpen(true)}
-            size={20}
-            buttonColor="primary"
-            style={{
-              gridColumn: '7 / 8',
-              justifySelf: 'start',
-              borderRadius: '10px',
-            }}
-          />
           {itemInputModalOpen && (
             <ItemInputModal
               setModalOpen={setItemInputModalOpen}
@@ -90,7 +84,7 @@ export default function NavigationBar({
       )}
 
       <IconButton
-        icon="USER"
+        icon="SEARCH"
         onClick={handleIconClick}
         size={20}
         buttonColor="secondary"
