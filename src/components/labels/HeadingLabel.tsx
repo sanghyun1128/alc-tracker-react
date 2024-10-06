@@ -6,6 +6,7 @@ const H1 = styled.h1<{ $type: string }>`
   font-size: 1.5rem;
   font-weight: bold;
   font-family: inherit;
+  margin: 0;
   color: ${props =>
     props.$type === 'light'
       ? props.theme.colors.textLight
@@ -16,6 +17,7 @@ const H2 = styled.h2<{ $type: string }>`
   font-size: 1.2rem;
   font-weight: bold;
   font-family: inherit;
+  margin: 0;
   color: ${props =>
     props.$type === 'light'
       ? props.theme.colors.textLight
@@ -26,6 +28,7 @@ const H3 = styled.h3<{ $type: string }>`
   font-size: 0.9rem;
   font-weight: bold;
   font-family: inherit;
+  margin: 0;
   color: ${props =>
     props.$type === 'light'
       ? props.theme.colors.textLight
