@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { IconButton, ItemInputModal } from '..';
-import { shake } from '../../animations/basicAnimations';
+import { HeadingLabel, IconButton, IconLabel, ItemInputModal } from '..';
+import { shake, slideLeft, slideRight } from '../../animations/basicAnimations';
 
 const Container = styled.div`
   position: fixed;
@@ -27,6 +27,40 @@ const DynamicPathContainer = styled.div`
   animation: ${shake} 0.5s ease-in-out;
 `;
 
+const MenuContainer = styled.div<{ menuOpen: boolean }>`
+  position: absolute;
+  bottom: 72px;
+  left: 0px;
+  width: 150px;
+  background-color: ${props => props.theme.colors.formBackground};
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: ${props => props.theme.borderRadius}
+    ${props => props.theme.borderRadius} 0 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  animation: ${props => (props.menuOpen ? slideRight : slideLeft)} 0.3s ease-out
+    forwards;
+`;
+
+const MenuItem = styled.button`
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background-color: ${props => props.theme.colors.primary};
+  border: none;
+  border-radius: ${props => props.theme.borderRadius};
+  margin: 5px 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.theme.colors.primaryOn};
+  }
+`;
+
 interface NavigationBarProps {
   theme: DefaultTheme;
   toggleTheme: () => void;
@@ -40,6 +74,20 @@ export default function NavigationBar({
   const currentLocation = useLocation().pathname;
   const [itemInputModalOpen, setItemInputModalOpen] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+
+  // For handle menu opening and closing
+  useEffect(() => {
+    if (menuOpen) {
+      setShowMenu(true);
+    } else {
+      const timeoutId = setTimeout(() => {
+        setShowMenu(false);
+      }, 300); // Match the duration of the slideDown animation (0.3s)
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [menuOpen]);
 
   const handleIconClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -61,6 +109,24 @@ export default function NavigationBar({
         style={{ gridColumn: '1 / 2' }}
       />
 
+      {/* Render the sliding menu when showMenu is true */}
+      {showMenu && (
+        <MenuContainer menuOpen={menuOpen}>
+          <MenuItem onClick={() => navigate('/my')}>
+            <IconLabel icon="USER" size={20} />
+            <HeadingLabel text="My Page" size="h3" type="dark" />
+          </MenuItem>
+          <MenuItem onClick={() => navigate('/')}>
+            <IconLabel icon="LOGOUT" size={20} />
+            <HeadingLabel text="Logout" size="h3" type="dark" />
+          </MenuItem>
+          <MenuItem onClick={toggleTheme}>
+            <HeadingLabel text="Theme" size="h3" type="dark" />
+          </MenuItem>
+        </MenuContainer>
+      )}
+
+      {/* PLUS button for /main path */}
       {currentLocation === '/main' && (
         <DynamicPathContainer>
           <IconButton
