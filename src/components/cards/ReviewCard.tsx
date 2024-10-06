@@ -82,7 +82,7 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
       <IconLabel icon={iconName} size={30} style={{ flexBasis: '50px' }} />
       <HeadingLabel
         text={name + ' ' + vintage}
-        size="h3"
+        size="h2"
         type="light"
         style={{
           flexBasis: '100px',
