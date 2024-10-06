@@ -2,6 +2,7 @@ import { ReactComponent as ArrowLeft } from './arrow-left.svg';
 import { ReactComponent as Close } from './close.svg';
 import { ReactComponent as Cocktail } from './cocktail.svg';
 import { ReactComponent as FileEmpty } from './file-empty.svg';
+import { ReactComponent as Logout } from './logout.svg';
 import { ReactComponent as Menu } from './menu.svg';
 import { ReactComponent as Minus } from './minus.svg';
 import { ReactComponent as Moon } from './moon.svg';
@@ -44,4 +45,5 @@ export const Icons: { [src: string]: IconType } = {
   MOON: Moon,
   SUN: Sun,
   MENU: Menu,
+  LOGOUT: Logout,
 };
