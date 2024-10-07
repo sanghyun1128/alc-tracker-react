@@ -210,13 +210,16 @@ export default function NavigationBar({
         </SearchBarContainer>
       )}
 
-      <IconButton
-        icon={searchBarOpen ? 'CLOSE' : 'SEARCH'}
-        size={20}
-        buttonColor="secondary"
-        style={{ gridColumn: '3 / 4' }}
-        onClick={toggleSearchBar}
-      />
+      {/* SEARCH button for /main path */}
+      {currentLocation === '/main' && (
+        <IconButton
+          icon={searchBarOpen ? 'CLOSE' : 'SEARCH'}
+          size={20}
+          buttonColor="secondary"
+          style={{ gridColumn: '3 / 4' }}
+          onClick={toggleSearchBar}
+        />
+      )}
     </Container>
   );
 }
