@@ -27,7 +27,7 @@ const DynamicPathContainer = styled.div`
   animation: ${shake} 0.5s ease-in-out;
 `;
 
-const MenuContainer = styled.div<{ menuOpen: boolean }>`
+const MenuContainer = styled.div<{ $menuOpen: boolean }>`
   position: absolute;
   bottom: 72px;
   left: 0px;
@@ -40,8 +40,8 @@ const MenuContainer = styled.div<{ menuOpen: boolean }>`
   border-radius: ${props => props.theme.borderRadius}
     ${props => props.theme.borderRadius} 0 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  animation: ${props => (props.menuOpen ? slideRight : slideLeft)} 0.3s ease-out
-    forwards;
+  animation: ${props => (props.$menuOpen ? slideRight : slideLeft)} 0.3s
+    ease-out forwards;
 `;
 
 const MenuItem = styled.button`
@@ -61,7 +61,7 @@ const MenuItem = styled.button`
   }
 `;
 
-const SearchBarContainer = styled.div<{ searchBarOpen: boolean }>`
+const SearchBarContainer = styled.div<{ $searchBarOpen: boolean }>`
   position: absolute;
   bottom: 72px;
   right: -318px;
@@ -74,7 +74,7 @@ const SearchBarContainer = styled.div<{ searchBarOpen: boolean }>`
   border-radius: ${props => props.theme.borderRadius}
     ${props => props.theme.borderRadius} 0 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  animation: ${props => (props.searchBarOpen ? slideLeft : slideRight)} 0.3s
+  animation: ${props => (props.$searchBarOpen ? slideLeft : slideRight)} 0.3s
     ease-out forwards;
 `;
 
@@ -104,6 +104,7 @@ export default function NavigationBar({
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState<boolean>(false);
+  const [searchText, setSearchText] = useState<string>('');
 
   // For handle menu opening and closing
   useEffect(() => {
@@ -151,7 +152,7 @@ export default function NavigationBar({
 
       {/* Render the sliding menu when showMenu is true */}
       {showMenu && (
-        <MenuContainer menuOpen={menuOpen}>
+        <MenuContainer $menuOpen={menuOpen}>
           <MenuItem onClick={() => navigate('/my')}>
             <IconLabel icon="USER" size={20} />
             <HeadingLabel text="My Page" size="h3" type="dark" />
@@ -161,7 +162,15 @@ export default function NavigationBar({
             <HeadingLabel text="Logout" size="h3" type="dark" />
           </MenuItem>
           <MenuItem onClick={toggleTheme}>
-            <HeadingLabel text="Theme" size="h3" type="dark" />
+            <IconLabel
+              icon={theme.alt === 'light' ? 'SUN' : 'MOON'}
+              size={20}
+            />
+            <HeadingLabel
+              text={theme.alt === 'light' ? 'Light Mode' : 'Dark Mode'}
+              size="h3"
+              type="dark"
+            />
           </MenuItem>
         </MenuContainer>
       )}
@@ -191,8 +200,13 @@ export default function NavigationBar({
 
       {/* Render the search bar when showSearchBar is true */}
       {showSearchBar && (
-        <SearchBarContainer searchBarOpen={searchBarOpen}>
-          <SearchInput placeholder="Search..." autoFocus />
+        <SearchBarContainer $searchBarOpen={searchBarOpen}>
+          <SearchInput
+            placeholder="Search..."
+            autoFocus
+            content={searchText}
+            onChange={e => setSearchText(e.target.value)}
+          />
         </SearchBarContainer>
       )}
 
