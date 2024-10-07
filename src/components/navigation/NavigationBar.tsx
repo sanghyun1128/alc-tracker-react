@@ -61,6 +61,33 @@ const MenuItem = styled.button`
   }
 `;
 
+const SearchBarContainer = styled.div<{ searchBarOpen: boolean }>`
+  position: absolute;
+  bottom: 72px;
+  right: -318px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.theme.colors.formBackground};
+  padding: 9px;
+  border-radius: ${props => props.theme.borderRadius}
+    ${props => props.theme.borderRadius} 0 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: ${props => (props.searchBarOpen ? slideLeft : slideRight)} 0.3s
+    ease-out forwards;
+`;
+
+const SearchInput = styled.input`
+  width: 300px;
+  border: none;
+  padding: 0.5rem;
+  background-color: ${props => props.theme.colors.inputBackground};
+  color: ${props => props.theme.colors.text};
+  border-radius: ${props => props.theme.borderRadius};
+  outline: none;
+`;
+
 interface NavigationBarProps {
   theme: DefaultTheme;
   toggleTheme: () => void;
@@ -75,6 +102,8 @@ export default function NavigationBar({
   const [itemInputModalOpen, setItemInputModalOpen] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
+  const [showSearchBar, setShowSearchBar] = useState<boolean>(false);
 
   // For handle menu opening and closing
   useEffect(() => {
@@ -89,14 +118,25 @@ export default function NavigationBar({
     }
   }, [menuOpen]);
 
-  const handleIconClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    navigate(`/${e.currentTarget.id}`);
+  // For handle search bar opening and closing
+  useEffect(() => {
+    if (searchBarOpen) {
+      setShowSearchBar(true);
+    } else {
+      const timeoutId = setTimeout(() => {
+        setShowSearchBar(false);
+      }, 300); // Match the duration of the slideDown animation (0.3s)
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [searchBarOpen]);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
-  const openMenu = () => {
-    setMenuOpen(!menuOpen);
+  const toggleSearchBar = () => {
+    setSearchBarOpen(!searchBarOpen);
   };
 
   return (
@@ -105,7 +145,7 @@ export default function NavigationBar({
         icon={menuOpen ? 'CLOSE' : 'MENU'}
         size={20}
         buttonColor="secondary"
-        onClick={openMenu}
+        onClick={toggleMenu}
         style={{ gridColumn: '1 / 2' }}
       />
 
@@ -149,12 +189,19 @@ export default function NavigationBar({
         </DynamicPathContainer>
       )}
 
+      {/* Render the search bar when showSearchBar is true */}
+      {showSearchBar && (
+        <SearchBarContainer searchBarOpen={searchBarOpen}>
+          <SearchInput placeholder="Search..." autoFocus />
+        </SearchBarContainer>
+      )}
+
       <IconButton
-        icon="SEARCH"
-        onClick={handleIconClick}
+        icon={searchBarOpen ? 'CLOSE' : 'SEARCH'}
         size={20}
         buttonColor="secondary"
         style={{ gridColumn: '3 / 4' }}
+        onClick={toggleSearchBar}
       />
     </Container>
   );
