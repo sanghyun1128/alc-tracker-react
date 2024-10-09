@@ -4,7 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
 import { HeadingLabel, IconButton, IconLabel, ItemInputModal } from '..';
-import { shake, slideLeft, slideRight } from '../../animations/basicAnimations';
+import {
+  fadeIn,
+  slideLeft,
+  slideRight,
+} from '../../animations/basicAnimations';
 
 const Container = styled.div`
   position: fixed;
@@ -24,7 +28,7 @@ const DynamicPathContainer = styled.div`
   grid-column: 2 / 3;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  animation: ${shake} 0.5s ease-in-out;
+  animation: ${fadeIn} 3s ease-in-out;
 `;
 
 const MenuContainer = styled.div<{ $menuOpen: boolean }>`

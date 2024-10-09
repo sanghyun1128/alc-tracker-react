@@ -2,7 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { styled } from 'styled-components';
 
-import { IconLabel, DotPagination, CardView, EmptyView } from '../components';
+import {
+  IconLabel,
+  DotPagination,
+  CardView,
+  EmptyView,
+  NavigationBar,
+} from '../components';
 import {
   cocktailCardList,
   whiskeyCardList,
@@ -38,7 +44,7 @@ const MainViewSection = styled.div`
 `;
 
 export default function MainPage() {
-  const [theme] = useTheme();
+  const [theme, toggleTheme] = useTheme();
   const pageList = [
     ['WINE', 'Wine'],
     ['WHISKEY', 'Whiskey'],
@@ -128,6 +134,8 @@ export default function MainPage() {
           ),
         )}
       </MainViewSection>
+
+      <NavigationBar theme={theme} toggleTheme={toggleTheme} />
     </Container>
   );
 }

@@ -3,7 +3,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { NavigationBar } from './components';
 import { useTheme } from './hooks/useTheme';
 import IntroPage from './pages/IntroPage';
 import LoginPage from './pages/LoginPage';
@@ -14,7 +13,7 @@ import RegisterPage from './pages/RegisterPage';
 import { GlobalStyle } from './themes';
 
 function App() {
-  const [theme, toggleTheme] = useTheme();
+  const [theme] = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
@@ -27,7 +26,6 @@ function App() {
         <Route path="/my" element={<MyPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <NavigationBar theme={theme} toggleTheme={toggleTheme} />
     </ThemeProvider>
   );
 }
