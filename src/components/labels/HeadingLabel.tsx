@@ -3,8 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const H1 = styled.h1<{ $type: string }>`
+  font-size: 1.5rem;
   font-weight: bold;
   font-family: inherit;
+  margin: 0;
   color: ${props =>
     props.$type === 'light'
       ? props.theme.colors.textLight
@@ -12,8 +14,10 @@ const H1 = styled.h1<{ $type: string }>`
 `;
 
 const H2 = styled.h2<{ $type: string }>`
+  font-size: 1.2rem;
   font-weight: bold;
   font-family: inherit;
+  margin: 0;
   color: ${props =>
     props.$type === 'light'
       ? props.theme.colors.textLight
@@ -21,8 +25,10 @@ const H2 = styled.h2<{ $type: string }>`
 `;
 
 const H3 = styled.h3<{ $type: string }>`
+  font-size: 0.9rem;
   font-weight: bold;
   font-family: inherit;
+  margin: 0;
   color: ${props =>
     props.$type === 'light'
       ? props.theme.colors.textLight
@@ -33,7 +39,7 @@ interface HeadingLabelProps {
   text: string;
   size: 'h1' | 'h2' | 'h3';
   type: 'light' | 'dark';
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 /**
@@ -47,7 +53,7 @@ export default function HeadingLabel({
   text,
   size,
   type,
-  style,
+  style = {},
 }: HeadingLabelProps) {
   switch (size) {
     case 'h1':

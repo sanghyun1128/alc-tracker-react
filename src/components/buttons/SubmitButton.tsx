@@ -20,7 +20,7 @@ const Button = styled.button`
   text-decoration: none;
   cursor: pointer;
   touch-action: manipulation;
-  transition: all 250ms;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     transform: translateY(-2px);

@@ -1,15 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import {
   IconLabel,
   DotPagination,
-  IconButton,
   CardView,
   EmptyView,
-  ItemInputModal,
+  NavigationBar,
 } from '../components';
 import {
   cocktailCardList,
@@ -45,18 +43,8 @@ const MainViewSection = styled.div`
   }
 `;
 
-const ControlSection = styled.div`
-  grid-row: 3 / 4;
-  grid-column: 2 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-`;
-
 export default function MainPage() {
-  const [theme] = useTheme();
-  const navigate = useNavigate();
+  const [theme, toggleTheme] = useTheme();
   const pageList = [
     ['WINE', 'Wine'],
     ['WHISKEY', 'Whiskey'],
@@ -69,7 +57,6 @@ export default function MainPage() {
   ]);
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
-  const [itemInputModalOpen, setItemInputModalOpen] = useState<boolean>(false);
   const mainViewRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -95,12 +82,6 @@ export default function MainPage() {
         });
       }
     }, 100);
-  };
-
-  const handleIconClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    navigate(`/${e.currentTarget.id}`);
   };
 
   useEffect(() => {
@@ -154,30 +135,7 @@ export default function MainPage() {
         )}
       </MainViewSection>
 
-      {itemInputModalOpen && (
-        <ItemInputModal setModalOpen={setItemInputModalOpen} theme={theme} />
-      )}
-
-      <ControlSection>
-        <IconButton
-          icon="SETTING"
-          onClick={handleIconClick}
-          size={20}
-          buttonColor="primary"
-        />
-        <IconButton
-          icon="PLUS"
-          onClick={() => setItemInputModalOpen(true)}
-          size={20}
-          buttonColor="primary"
-        />
-        <IconButton
-          icon="USER"
-          onClick={handleIconClick}
-          size={20}
-          buttonColor="primary"
-        />
-      </ControlSection>
+      <NavigationBar theme={theme} toggleTheme={toggleTheme} />
     </Container>
   );
 }

@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 export const lightTheme: DefaultTheme = {
   alt: 'light',
   borderRadius: '5px',
+  transition: '0.3s ease-in-out',
 
   colors: {
     background: '#F5E7B2',
