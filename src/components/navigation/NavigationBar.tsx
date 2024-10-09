@@ -55,6 +55,7 @@ const MenuItem = styled.button`
   border-radius: ${props => props.theme.borderRadius};
   margin: 5px 0;
   cursor: pointer;
+  transition: background-color ${props => props.theme.transition};
 
   &:hover {
     background-color: ${props => props.theme.colors.primaryOn};

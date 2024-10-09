@@ -19,7 +19,7 @@ const Button = styled.button<{ $buttonColor: string }>`
     props.$buttonColor === 'primary'
       ? props.theme.colors.primary
       : props.theme.colors.secondary};
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color ${props => props.theme.transition};
 
   &:hover {
     background-color: ${props =>
