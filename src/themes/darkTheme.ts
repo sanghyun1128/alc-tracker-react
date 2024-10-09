@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 export const darkTheme: DefaultTheme = {
   alt: 'dark',
   borderRadius: '5px',
+  transition: '0.3s ease-in-out',
 
   colors: {
     background: '#6f523b',
