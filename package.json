@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@redux-devtools/extension": "^3.3.0",
+    "@tanstack/react-query": "^5.66.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -13,8 +15,10 @@
     "lottie-react": "^2.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^6.24.0",
     "react-scripts": "5.0.1",
+    "redux": "^5.0.1",
     "styled-components": "^6.1.11",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
