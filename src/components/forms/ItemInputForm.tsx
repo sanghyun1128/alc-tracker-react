@@ -111,7 +111,7 @@ export default function ItemInputForm({
           break;
       }
     },
-    [],
+    [inputType],
   );
 
   return (
