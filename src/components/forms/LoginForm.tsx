@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
@@ -41,7 +42,6 @@ interface LoginFormProps {
   theme: DefaultTheme;
 }
 
-//TODO: Password 암호화해서 서버로 전송하기
 export default function LoginForm({ theme }: LoginFormProps) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -59,22 +59,49 @@ export default function LoginForm({ theme }: LoginFormProps) {
     setIsPasswordError(false);
   };
 
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (emailValidation(email)) {
-      console.log('Email is valid');
-      setIsEmailError(false);
-    } else {
+
+    const isEmailValid = emailValidation(email);
+    const isPasswordValid = passwordValidation(password);
+
+    if (!isEmailValid) {
       console.log('Email is invalid');
       setIsEmailError(true);
+    } else {
+      console.log('Email is valid');
+      setIsEmailError(false);
     }
 
-    if (passwordValidation(password)) {
-      console.log('Password is valid');
-      setIsPasswordError(false);
-    } else {
+    if (!isPasswordValid) {
       console.log('Password is invalid');
       setIsPasswordError(true);
+    } else {
+      console.log('Password is valid');
+      setIsPasswordError(false);
+    }
+
+    if (isEmailValid && isPasswordValid) {
+      try {
+        // Basic Auth : "Basic <base64(email:password)>"
+        const credentials = `${email}:${password}`;
+        const encodedCredentials = window.btoa(credentials);
+
+        const response = await axios.post(
+          'http://localhost:4000/auth/login/email',
+          {}, // empty body
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Basic ${encodedCredentials}`,
+            },
+          },
+        );
+
+        console.log('Logged in successfully', response.data);
+      } catch (error) {
+        console.error('Error logging in:', error);
+      }
     }
   };
 
