@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
 import { TextInput, SubmitButton, TextButton } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
+import { requests } from '../../api/request';
 import { deviceSizes } from '../../const/deviceSizes';
 import { emailValidation, passwordValidation } from '../../validation';
 
@@ -83,20 +83,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
 
     if (isEmailValid && isPasswordValid) {
       try {
-        // Basic Auth : "Basic <base64(email:password)>"
-        const credentials = `${email}:${password}`;
-        const encodedCredentials = window.btoa(credentials);
-
-        const response = await axios.post(
-          'http://localhost:4000/auth/login/email',
-          {}, // empty body
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Basic ${encodedCredentials}`,
-            },
-          },
-        );
+        const response = await requests.login(email, password);
 
         console.log('Logged in successfully', response.data);
       } catch (error) {
