@@ -14,8 +14,13 @@ const instance: AxiosInstance = axios.create({
 // 요청 인터셉터 추가하기
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // 요청이 전달되기 전에 작업 수행
-    // TODO: Validate request interface
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (accessToken) {
+      instance.defaults.headers.common['Authorization'] =
+        `Bearer ${accessToken}`;
+    }
+
     return config;
   },
   (error: AxiosError) => {
@@ -28,8 +33,9 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
     if (response.data.accessToken) {
-      instance.defaults.headers.common['Authorization'] =
-        `Bearer ${response.data.accessToken}`;
+      const accessToken = response.data.accessToken;
+
+      localStorage.setItem('accessToken', accessToken);
     }
 
     return response;
