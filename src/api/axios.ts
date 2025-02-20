@@ -27,8 +27,11 @@ instance.interceptors.request.use(
 // 응답 인터셉터 추가하기
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
-    // 응답 데이터가 있는 작업 수행
+    if (response.data.accessToken) {
+      instance.defaults.headers.common['Authorization'] =
+        `Bearer ${response.data.accessToken}`;
+    }
+
     return response;
   },
   (error: AxiosError) => {
