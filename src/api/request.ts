@@ -25,4 +25,18 @@ export const requests = {
       },
     );
   },
+
+  getAccessToken: () => {
+    return axios.post('auth/token/access');
+  },
+
+  getMyProfile: () => {
+    const accessToken = localStorage.getItem('accessToken');
+
+    return axios.get(`users/profile/my`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
 };
