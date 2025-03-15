@@ -5,6 +5,8 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios';
 
+import { requests } from './request';
+
 const instance: AxiosInstance = axios.create({
   baseURL: 'http://192.168.0.5:4000/',
   // baseURL: 'http://localhost:4000/',
@@ -41,10 +43,28 @@ instance.interceptors.response.use(
 
     return response;
   },
-  (error: AxiosError) => {
-    // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
-    // 응답 오류가 있는 작업 수행
-    // TODO: Show alert modal or something else
+  async (error: AxiosError) => {
+    const originalRequest = error.config as any;
+
+    console.log(error);
+
+    const errorData = error.response?.data as { message: string };
+
+    if (errorData?.message === 'Invalid token') {
+      originalRequest._retry = true;
+      try {
+        const response = await requests.getAccessToken();
+        const newAccessToken = response.data.accessToken;
+
+        localStorage.setItem('accessToken', newAccessToken);
+        instance.defaults.headers.common['Authorization'] =
+          `Bearer ${newAccessToken}`;
+        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        return instance(originalRequest);
+      } catch (refreshError) {
+        return Promise.reject(refreshError);
+      }
+    }
     return Promise.reject(error);
   },
 );
