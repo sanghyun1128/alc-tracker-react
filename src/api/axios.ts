@@ -6,9 +6,10 @@ import axios, {
 } from 'axios';
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:4000/',
+  baseURL: 'http://192.168.0.5:4000/',
+  // baseURL: 'http://localhost:4000/',
   // timeout: 15000,
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 // 요청 인터셉터 추가하기
