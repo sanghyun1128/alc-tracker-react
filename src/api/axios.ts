@@ -8,8 +8,7 @@ import axios, {
 import { requests } from './request';
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://192.168.0.5:4000/',
-  // baseURL: 'http://localhost:4000/',
+  baseURL: 'https://localhost:4000/',
   // timeout: 15000,
   withCredentials: true,
 });
