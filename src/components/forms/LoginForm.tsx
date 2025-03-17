@@ -83,7 +83,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
 
     if (isEmailValid && isPasswordValid) {
       try {
-        const response = await requests.login(email, password);
+        const response = await requests.emailLogin(email, password);
 
         console.log('Logged in successfully', response.data);
       } catch (error) {
