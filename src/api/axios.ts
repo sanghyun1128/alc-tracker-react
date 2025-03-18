@@ -1,11 +1,17 @@
 import axios, {
   AxiosError,
   AxiosInstance,
+  AxiosRequestHeaders,
   AxiosResponse,
-  InternalAxiosRequestConfig,
+  HeadersDefaults,
+  InternalAxiosRequestConfig as BaseInternalAxiosRequestConfig,
 } from 'axios';
 
 import { requests } from './request';
+
+interface InternalAxiosRequestConfig extends BaseInternalAxiosRequestConfig {
+  _retry?: boolean;
+}
 
 const instance: AxiosInstance = axios.create({
   baseURL: 'https://localhost:4000/',
@@ -13,52 +19,86 @@ const instance: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
-// 요청 인터셉터 추가하기
+const getAccessTokenFromLocalStorage = () => {
+  const accessToken = localStorage.getItem('accessToken');
+
+  if (!accessToken) {
+    throw new Error('Access token not found in local storage');
+  }
+
+  return accessToken;
+};
+
+const setAccessTokenToHeader = (
+  accessToken: string,
+  headers: HeadersDefaults | AxiosRequestHeaders,
+) => {
+  headers.common['Authorization'] = `Bearer ${accessToken}`;
+};
+
+/**
+ * Axios request interceptor - affects before the request is sent.
+ */
 instance.interceptors.request.use(
+  // Before the request is sent
   (config: InternalAxiosRequestConfig) => {
-    const accessToken = localStorage.getItem('accessToken');
-
-    if (accessToken) {
-      instance.defaults.headers.common['Authorization'] =
-        `Bearer ${accessToken}`;
+    try {
+      // 1. Get accessToken from localStorage
+      const accessToken = getAccessTokenFromLocalStorage();
+      // 2. Set the accessToken to the Authorization header
+      setAccessTokenToHeader(accessToken, instance.defaults.headers);
+    } catch (error) {
+      // 1-1. If accessToken is not found, throw an error
+      //TODO: Handle the error
+      console.error('Error setting access token to header:', error);
     }
-
     return config;
   },
+
+  // When the request fails
   (error: AxiosError) => {
-    // 요청 오류가 있는 작업 수행
     return Promise.reject(error);
   },
 );
 
-// 응답 인터셉터 추가하기
+/**
+ * Axios response interceptor - affects after the response is received.
+ */
 instance.interceptors.response.use(
+  // 2xx code response
   (response: AxiosResponse) => {
+    // 1. Check if the response has a new accessToken
     if (response.data.accessToken) {
-      const accessToken = response.data.accessToken;
-
-      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('accessToken', response.data.accessToken);
     }
 
     return response;
   },
+
+  // 4xx, 5xx code response
   async (error: AxiosError) => {
-    const originalRequest = error.config as any;
+    const originalRequest = error.config as InternalAxiosRequestConfig;
 
-    console.log(error);
+    const {
+      message: errorMessage,
+      error: errorType,
+      statusCode: errorStatusCode,
+    } = error.response?.data as {
+      message: string;
+      error: string;
+      statusCode: number;
+    };
 
-    const errorData = error.response?.data as { message: string };
-
-    if (errorData?.message === 'Invalid token') {
+    if (errorMessage === 'Invalid token') {
       originalRequest._retry = true;
       try {
         const response = await requests.getAccessToken();
         const newAccessToken = response.data.accessToken;
 
         localStorage.setItem('accessToken', newAccessToken);
-        instance.defaults.headers.common['Authorization'] =
-          `Bearer ${newAccessToken}`;
-        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        setAccessTokenToHeader(newAccessToken, instance.defaults.headers);
+        setAccessTokenToHeader(newAccessToken, originalRequest.headers);
+
         return instance(originalRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);
