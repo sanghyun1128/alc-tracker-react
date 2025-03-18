@@ -5,6 +5,7 @@ import { DefaultTheme, styled } from 'styled-components';
 
 import { TextInput, SubmitButton, TextButton } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
+import { requests } from '../../api/request';
 import { deviceSizes } from '../../const/deviceSizes';
 import { emailValidation, passwordValidation } from '../../validation';
 
@@ -41,7 +42,6 @@ interface LoginFormProps {
   theme: DefaultTheme;
 }
 
-//TODO: Password 암호화해서 서버로 전송하기
 export default function LoginForm({ theme }: LoginFormProps) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -59,22 +59,36 @@ export default function LoginForm({ theme }: LoginFormProps) {
     setIsPasswordError(false);
   };
 
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (emailValidation(email)) {
-      console.log('Email is valid');
-      setIsEmailError(false);
-    } else {
+
+    const isEmailValid = emailValidation(email);
+    const isPasswordValid = passwordValidation(password);
+
+    if (!isEmailValid) {
       console.log('Email is invalid');
       setIsEmailError(true);
+    } else {
+      console.log('Email is valid');
+      setIsEmailError(false);
     }
 
-    if (passwordValidation(password)) {
-      console.log('Password is valid');
-      setIsPasswordError(false);
-    } else {
+    if (!isPasswordValid) {
       console.log('Password is invalid');
       setIsPasswordError(true);
+    } else {
+      console.log('Password is valid');
+      setIsPasswordError(false);
+    }
+
+    if (isEmailValid && isPasswordValid) {
+      try {
+        const response = await requests.emailLogin(email, password);
+
+        console.log('Logged in successfully', response.data);
+      } catch (error) {
+        console.error('Error logging in:', error);
+      }
     }
   };
 

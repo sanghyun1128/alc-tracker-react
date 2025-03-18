@@ -12,6 +12,8 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "axios": "^1.7.9",
+    "crypto-js": "^4.2.0",
     "lottie-react": "^2.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -25,6 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:mac": "HTTPS=true SSL_CRT_FILE=../certification/localhost.pem SSL_KEY_FILE=../certification/localhost-key.pem npm run start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -51,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@eslint/js": "^9.5.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/styled-components": "^5.1.34",
