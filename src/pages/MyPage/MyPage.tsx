@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import { requests } from '../api/request';
+import { styled } from 'styled-components';
+
+import { requests } from '../../api/request';
+
+const Container = styled.div`
+  display: grid;
+  padding: 0;
+  margin: 0;
+`;
 
 export default function MyPage() {
   const [profile, setProfile] = useState(null);
@@ -19,10 +27,5 @@ export default function MyPage() {
     fetchProfile();
   }, []);
 
-  return (
-    <div>
-      MyPage
-      {profile && <div>{JSON.stringify(profile)}</div>}
-    </div>
-  );
+  return <Container></Container>;
 }

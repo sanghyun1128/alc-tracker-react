@@ -4,12 +4,12 @@ import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { useTheme } from './hooks/useTheme';
-import IntroPage from './pages/IntroPage';
-import LoginPage from './pages/LoginPage';
-import MainPage from './pages/MainPage';
-import MyPage from './pages/MyPage';
+import IntroPage from './pages/IntroPage/IntroPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import MainPage from './pages/MainPage/MainPage';
+import MyPage from './pages/MyPage/MyPage';
 import NotFoundPage from './pages/NotFoundPage';
-import RegisterPage from './pages/RegisterPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 import { GlobalStyle } from './themes';
 
 function App() {

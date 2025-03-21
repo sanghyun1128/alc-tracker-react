@@ -8,13 +8,13 @@ import {
   CardView,
   EmptyView,
   NavigationBar,
-} from '../components';
+} from '../../components';
 import {
   cocktailCardList,
   whiskeyCardList,
   wineCardList,
-} from '../const/dummy';
-import { useTheme } from '../hooks/useTheme';
+} from '../../const/dummy';
+import { useTheme } from '../../hooks/useTheme';
 
 const Container = styled.div`
   display: grid;
