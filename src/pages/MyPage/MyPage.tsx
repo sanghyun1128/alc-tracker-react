@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { styled } from 'styled-components';
 
-import { requests } from '../../api/request';
+import Alcohols from './sections/Alcohols';
+import Profile from './sections/Profile';
 
 const Container = styled.div`
   display: grid;
-  padding: 0;
-  margin: 0;
+  grid-template-rows: 1fr 3fr;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
 `;
 
 export default function MyPage() {
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await requests.getMyProfile();
-        console.log('My profile:', response);
-        setProfile(response.data);
-      } catch (error) {
-        console.error('Failed to fetch profile:', error);
-      }
-    };
-
-    fetchProfile();
-  }, []);
-
-  return <Container></Container>;
+  return (
+    <Container>
+      <Profile />
+      <Alcohols />
+    </Container>
+  );
 }
