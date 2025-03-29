@@ -48,8 +48,7 @@ instance.interceptors.request.use(
       // 2. Set the accessToken to the Authorization header
       setAccessTokenToHeader(accessToken, instance.defaults.headers);
     } catch (error) {
-      //TODO: Handle the error
-      console.error('Error setting access token to header:', error);
+      return Promise.reject(error);
     }
     return config;
   },
@@ -82,8 +81,8 @@ instance.interceptors.response.use(
 
     const {
       message: errorMessage,
-      error: errorType,
-      statusCode: errorStatusCode,
+      // error: errorType,
+      // statusCode: errorStatusCode,
     } = response?.data as {
       message: string;
       error: string;
@@ -91,7 +90,7 @@ instance.interceptors.response.use(
     };
 
     // 2. Check error is token expired
-    if (errorMessage === 'Invalid token' && !originalRequest._retry) {
+    if (errorMessage === 'Invalid access token' && !originalRequest._retry) {
       // 2-1. Set the _retry flag to true
       originalRequest._retry = true;
       try {
@@ -110,6 +109,16 @@ instance.interceptors.response.use(
         return Promise.reject(refreshError);
       }
     }
+
+    // 3. Check error is refresh token expired
+    if (errorMessage === 'Invalid refresh token') {
+      // 3-1. Clear the localStorage
+      localStorage.removeItem('accessToken');
+
+      // 3-2. Redirect to login page
+      window.location.href = '/login';
+    }
+
     return Promise.reject(error);
   },
 );
