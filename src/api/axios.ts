@@ -48,7 +48,7 @@ instance.interceptors.request.use(
       // 2. Set the accessToken to the Authorization header
       setAccessTokenToHeader(accessToken, instance.defaults.headers);
     } catch (error) {
-      return Promise.reject(error);
+      // return Promise.reject(error);
     }
     return config;
   },
@@ -78,6 +78,10 @@ instance.interceptors.response.use(
     // 1. Save the original request
     const { config, response } = error;
     const originalRequest = config as InternalAxiosRequestConfig;
+
+    if (!response || !response.data) {
+      return Promise.reject(error);
+    }
 
     const {
       message: errorMessage,
