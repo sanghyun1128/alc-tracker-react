@@ -63,4 +63,18 @@ export const requests = {
       },
     });
   },
+
+  /**
+   * Get image data from a given path.
+   *
+   * @method GET
+   * @endpoint path
+   * @param path - The path of the image to fetch.
+   * @returns A Promise resolving to the image data.
+   */
+  getImage: (path: string) => {
+    return axios.get(path, {
+      responseType: 'arraybuffer',
+    });
+  },
 };
