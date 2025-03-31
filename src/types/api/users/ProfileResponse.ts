@@ -16,5 +16,11 @@ export interface ProfileResponse {
 }
 
 export interface ProfileImageResponse {
+  id: string;
+  index: number;
+  order: number;
   path: string;
+  type: number;
+  createdAt: string;
+  updatedAt: string;
 }
