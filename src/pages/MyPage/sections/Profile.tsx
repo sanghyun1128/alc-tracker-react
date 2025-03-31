@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import { requests } from '../../../api/request';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
 import { ProfileResponse } from '../../../types/api/users/ProfileResponse';
+import { getProfileImage } from '../../../utils/profileImage';
 
 const Container = styled.div`
   display: flex;
@@ -36,15 +37,9 @@ export default function Profile() {
         setProfile(response.data);
 
         if (response.data.profileImage) {
-          const imageResponse = await requests.getImage(
-            response.data.profileImage.path,
-          );
-
-          const imageType = `image/${response.data.profileImage.path.split('.').pop()}`;
-          const blob = new Blob([imageResponse.data], {
-            type: imageType,
-          });
-          const imageUrl = URL.createObjectURL(blob);
+          const imagePath = response.data.profileImage.path;
+          const image = await getProfileImage(imagePath);
+          const imageUrl = URL.createObjectURL(image);
           setProfileImageSrc(imageUrl);
         }
       } catch (error) {
