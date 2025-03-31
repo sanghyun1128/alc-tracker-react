@@ -1,3 +1,6 @@
+import { AxiosResponse } from 'axios';
+
+import { ProfileResponse } from '../types/api/users/ProfileResponse';
 import axios from './axios';
 
 export const requests = {
@@ -54,7 +57,7 @@ export const requests = {
    * @endpoint /users/profile/my
    * @returns A Promise resolving to the user's profile data.
    */
-  getMyProfile: () => {
+  getMyProfile: (): Promise<AxiosResponse<ProfileResponse>> => {
     const accessToken = localStorage.getItem('accessToken');
 
     return axios.get(`users/profile/my`, {
@@ -72,7 +75,7 @@ export const requests = {
    * @param path - The path of the image to fetch.
    * @returns A Promise resolving to the image data.
    */
-  getImage: (path: string) => {
+  getImage: (path: string): Promise<AxiosResponse<ArrayBuffer>> => {
     return axios.get(path, {
       responseType: 'arraybuffer',
     });
