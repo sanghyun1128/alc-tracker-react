@@ -33,6 +33,9 @@ const setAccessTokenToHeader = (
   accessToken: string,
   headers: HeadersDefaults | AxiosRequestHeaders,
 ) => {
+  if (!headers.common) {
+    headers.common = {};
+  }
   headers.common['Authorization'] = `Bearer ${accessToken}`;
 };
 
