@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 import { requests } from '../../../api/request';
-import DefaultProfileSVG from '../../../assets/svg/cocktail.svg';
+import defaultProfileImage from '../../../assets/image/default-profile.png';
+import { ProfileResponse } from '../../../types/api/users/ProfileResponse';
 
 const Container = styled.div`
   display: flex;
@@ -24,45 +25,25 @@ const Nickname = styled.h2`
   font-size: 24px;
 `;
 
-interface Profile {
-  id: string;
-  index: number;
-  nickname: string;
-  email: string;
-  password: string;
-  birth: string;
-  gender: string;
-  profileImage: ProfileImage | null;
-  profileComment: string | null;
-  profileLanguageISOAlpha2: string | null;
-  profileRegionISOAlpha2: string | null;
-  role: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface ProfileImage {
-  path: string;
-}
-
 export default function Profile() {
-  const [profile, setProfile] = useState<Profile>();
-  const [profileImageSrc, setProfileImageSrc] =
-    useState<string>(DefaultProfileSVG);
+  const [profile, setProfile] = useState<ProfileResponse>();
+  const [profileImageSrc, setProfileImageSrc] = useState<string>();
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const response = await requests.getMyProfile();
-        console.log('My profile:', response.data);
         setProfile(response.data);
+
         if (response.data.profileImage) {
           const imageResponse = await requests.getImage(
             response.data.profileImage.path,
           );
-          console.log('Profile image:', imageResponse.data);
-          // Assume imageResponse.data is a URL to the fetched image
-          const blob = new Blob([imageResponse.data], { type: 'image/png' });
+
+          const imageType = `image/${response.data.profileImage.path.split('.').pop()}`;
+          const blob = new Blob([imageResponse.data], {
+            type: imageType,
+          });
           const imageUrl = URL.createObjectURL(blob);
           setProfileImageSrc(imageUrl);
         }
@@ -76,7 +57,7 @@ export default function Profile() {
 
   return (
     <Container>
-      <ProfileImage src={profileImageSrc} />
+      <ProfileImage src={profileImageSrc || defaultProfileImage} />
       <Nickname>{profile?.nickname}</Nickname>
     </Container>
   );
