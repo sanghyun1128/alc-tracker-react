@@ -6,16 +6,20 @@ export interface ProfileResponse {
   password: string;
   birth: string;
   gender: string;
-  profileImage: ProfileImageResponse | null;
-  profileComment: string | null;
-  profileLanguageISOAlpha2: string | null;
-  profileRegionISOAlpha2: string | null;
+  profile: Profile;
   role: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface ProfileImageResponse {
+interface Profile {
+  image: ProfileImage | null;
+  comment: string | null;
+  languageISOAlpha2: string | null;
+  regionISOAlpha2: string | null;
+}
+
+interface ProfileImage {
   id: string;
   index: number;
   order: number;

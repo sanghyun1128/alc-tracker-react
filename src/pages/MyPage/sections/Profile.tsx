@@ -34,10 +34,11 @@ export default function Profile() {
     const fetchProfile = async () => {
       try {
         const response = await requests.getMyProfile();
+        console.log('🚀 ~ fetchProfile ~ response:', response);
         setProfile(response.data);
 
-        if (response.data.profileImage) {
-          const imagePath = response.data.profileImage.path;
+        if (response.data.profile.image) {
+          const imagePath = response.data.profile.image.path;
           const image = await getProfileImage(imagePath);
           const imageUrl = URL.createObjectURL(image);
           setProfileImageSrc(imageUrl);
