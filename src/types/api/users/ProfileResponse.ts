@@ -15,7 +15,7 @@ export interface ProfileResponse {
 interface Profile {
   image: ProfileImage | null;
   comment: string | null;
-  languageISOAlpha2: string | null;
+  languageISO6391: string | null;
   regionISOAlpha2: string | null;
 }
 
