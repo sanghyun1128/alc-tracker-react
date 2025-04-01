@@ -5,8 +5,10 @@ import { styled } from 'styled-components';
 
 import { requests } from '../../../api/request';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
+import { HeadingLabel } from '../../../components';
 import { ProfileResponse } from '../../../types/api/users/ProfileResponse';
 import { getProfileImage } from '../../../utils/profileImage';
+import CountryFlagIcon from '../components/CountryFlagIcon';
 
 const Container = styled.div`
   display: flex;
@@ -20,11 +22,6 @@ const ProfileImage = styled.img`
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-`;
-
-const Nickname = styled.h2`
-  margin-top: 16px;
-  font-size: 24px;
 `;
 
 export default function Profile() {
@@ -57,7 +54,16 @@ export default function Profile() {
   return (
     <Container>
       <ProfileImage src={profileImageSrc || defaultProfileImage} />
-      <Nickname>{profile?.nickname}</Nickname>
+      <HeadingLabel text={profile?.nickname || ''} size={'h1'} type={'dark'} />
+      <HeadingLabel
+        text={profile?.profile.comment || ''}
+        size={'h3'}
+        type={'dark'}
+      />
+      <CountryFlagIcon
+        region={profile?.profile.regionISOAlpha2 || ''}
+        size={30}
+      />
     </Container>
   );
 }
