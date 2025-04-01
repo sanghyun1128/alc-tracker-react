@@ -1,9 +1,7 @@
 import axios, {
   AxiosError,
   AxiosInstance,
-  AxiosRequestHeaders,
   AxiosResponse,
-  HeadersDefaults,
   InternalAxiosRequestConfig as BaseInternalAxiosRequestConfig,
 } from 'axios';
 
@@ -29,14 +27,14 @@ const getAccessTokenFromLocalStorage = () => {
   return accessToken;
 };
 
-const setAccessTokenToHeader = (
-  accessToken: string,
-  headers: HeadersDefaults | AxiosRequestHeaders,
+const setAuthorizationHeader = (
+  token: string,
+  request?: InternalAxiosRequestConfig,
 ) => {
-  if (!headers.common) {
-    headers.common = {};
+  instance.defaults.headers['Authorization'] = `Bearer ${token}`;
+  if (request && request.headers) {
+    request.headers['Authorization'] = `Bearer ${token}`;
   }
-  headers.common['Authorization'] = `Bearer ${accessToken}`;
 };
 
 /**
@@ -49,9 +47,9 @@ instance.interceptors.request.use(
       // 1. Get accessToken from localStorage
       const accessToken = getAccessTokenFromLocalStorage();
       // 2. Set the accessToken to the Authorization header
-      setAccessTokenToHeader(accessToken, instance.defaults.headers);
+      setAuthorizationHeader(accessToken);
     } catch (error) {
-      // return Promise.reject(error);
+      return Promise.reject(error);
     }
     return config;
   },
@@ -73,6 +71,7 @@ instance.interceptors.response.use(
       localStorage.setItem('accessToken', response.data.accessToken);
     }
 
+    console.log('🚀 ~ response:', response);
     return response;
   },
 
@@ -107,8 +106,7 @@ instance.interceptors.response.use(
 
         // 2-3. Set the new accessToken to the localStorage and header
         localStorage.setItem('accessToken', newAccessToken);
-        setAccessTokenToHeader(newAccessToken, instance.defaults.headers);
-        setAccessTokenToHeader(newAccessToken, originalRequest.headers);
+        setAuthorizationHeader(newAccessToken, originalRequest);
 
         // 2-4. Retry the original request with the new accessToken
         return instance(originalRequest);
@@ -126,7 +124,7 @@ instance.interceptors.response.use(
       window.location.href = '/login';
     }
 
-    return Promise.reject(error);
+    return Promise.resolve({ error: true, originalError: error });
   },
 );
 export default instance;
