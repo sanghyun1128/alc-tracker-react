@@ -64,6 +64,11 @@ export default function Profile() {
         region={profile?.profile.regionISOAlpha2 || ''}
         size={30}
       />
+      <HeadingLabel
+        text={profile?.profile.languageISO6391?.toUpperCase() || ''}
+        size={'h3'}
+        type={'dark'}
+      />
     </Container>
   );
 }
