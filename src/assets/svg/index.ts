@@ -1,6 +1,7 @@
 import { ReactComponent as ArrowLeft } from './arrow-left.svg';
 import { ReactComponent as Close } from './close.svg';
 import { ReactComponent as Cocktail } from './cocktail.svg';
+import { ReactComponent as Edit } from './edit.svg';
 import { ReactComponent as FileEmpty } from './file-empty.svg';
 import { ReactComponent as Logout } from './logout.svg';
 import { ReactComponent as Menu } from './menu.svg';
@@ -46,4 +47,5 @@ export const Icons: { [src: string]: IconType } = {
   SUN: Sun,
   MENU: Menu,
   LOGOUT: Logout,
+  EDIT: Edit,
 };
