@@ -5,16 +5,17 @@ import { styled } from 'styled-components';
 
 import { requests } from '../../../api/request';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
-import { HeadingLabel } from '../../../components';
+import { HeadingLabel, IconButton } from '../../../components';
 import { ProfileResponse } from '../../../types/api/users/ProfileResponse';
 import { getProfileImage } from '../../../utils/profileImage';
 import CountryFlagIcon from '../components/CountryFlagIcon';
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 2fr 3fr 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: stretch;
   align-items: center;
-  justify-content: center;
 `;
 
 const ProfileImage = styled.img`
@@ -22,6 +23,46 @@ const ProfileImage = styled.img`
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+`;
+
+const ProfileImageWrapper = styled.div`
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NicknameWrapper = styled.div`
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const RegionWrapper = styled.div`
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const ControlButtonWrapper = styled.div`
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const BioWrapper = styled.div`
+  grid-column: 2 / 5;
+  grid-row: 2 / 3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export default function Profile() {
@@ -53,22 +94,43 @@ export default function Profile() {
 
   return (
     <Container>
-      <ProfileImage src={profileImageSrc || defaultProfileImage} />
-      <HeadingLabel text={profile?.nickname || ''} size={'h1'} type={'dark'} />
-      <HeadingLabel
-        text={profile?.profile.comment || ''}
-        size={'h3'}
-        type={'dark'}
-      />
-      <CountryFlagIcon
-        region={profile?.profile.regionISOAlpha2 || ''}
-        size={30}
-      />
-      <HeadingLabel
-        text={profile?.profile.languageISO6391?.toUpperCase() || ''}
-        size={'h3'}
-        type={'dark'}
-      />
+      <ProfileImageWrapper>
+        <ProfileImage src={profileImageSrc || defaultProfileImage} />
+      </ProfileImageWrapper>
+      <NicknameWrapper>
+        <HeadingLabel
+          text={profile?.nickname || ''}
+          size={'h1'}
+          type={'dark'}
+        />{' '}
+      </NicknameWrapper>
+      <RegionWrapper>
+        <CountryFlagIcon
+          region={profile?.profile.regionISOAlpha2 || ''}
+          size={30}
+        />
+        <HeadingLabel text={'|'} size={'h3'} type={'dark'} />
+        <HeadingLabel
+          text={profile?.profile.languageISO6391?.toUpperCase() || ''}
+          size={'h3'}
+          type={'dark'}
+        />
+      </RegionWrapper>
+      <ControlButtonWrapper>
+        <IconButton
+          icon="EDIT"
+          size={30}
+          buttonColor="primary"
+          onClick={e => console.log('Button clicked', e)}
+        />
+      </ControlButtonWrapper>
+      <BioWrapper>
+        <HeadingLabel
+          text={profile?.profile.comment || ''}
+          size={'h3'}
+          type={'dark'}
+        />
+      </BioWrapper>
     </Container>
   );
 }
