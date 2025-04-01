@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { requests } from '../../../api/request';
@@ -29,6 +30,7 @@ const Nickname = styled.h2`
 export default function Profile() {
   const [profile, setProfile] = useState<ProfileResponse>();
   const [profileImageSrc, setProfileImageSrc] = useState<string>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -45,6 +47,7 @@ export default function Profile() {
         }
       } catch (error) {
         console.error('Failed to fetch profile:', error);
+        navigate('/login');
       }
     };
 
