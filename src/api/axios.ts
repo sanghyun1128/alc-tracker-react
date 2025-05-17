@@ -20,10 +20,6 @@ const instance: AxiosInstance = axios.create({
 const getAccessTokenFromLocalStorage = () => {
   const accessToken = localStorage.getItem('accessToken');
 
-  if (!accessToken) {
-    throw new Error('Access token not found in local storage');
-  }
-
   return accessToken;
 };
 
@@ -47,7 +43,9 @@ instance.interceptors.request.use(
       // 1. Get accessToken from localStorage
       const accessToken = getAccessTokenFromLocalStorage();
       // 2. Set the accessToken to the Authorization header
-      setAuthorizationHeader(accessToken);
+      if (accessToken) {
+        setAuthorizationHeader(accessToken);
+      }
     } catch (error) {
       return Promise.reject(error);
     }
