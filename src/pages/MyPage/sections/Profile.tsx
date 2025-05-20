@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import 'react-tooltip/dist/react-tooltip.css';
 import { styled } from 'styled-components';
 
 import { requests } from '../../../api/request';
@@ -113,12 +114,14 @@ export default function Profile() {
         <CountryFlagIcon
           region={profile?.profile.regionISOAlpha2 || ''}
           size={30}
+          description="거주 국가"
         />
         <HeadingLabel text={'|'} size={'h3'} type={'dark'} />
         <HeadingLabel
           text={profile?.profile.languageISO6391?.toUpperCase() || ''}
           size={'h3'}
           type={'dark'}
+          description="사용 언어"
         />
       </RegionWrapper>
       <ControlButtonWrapper>

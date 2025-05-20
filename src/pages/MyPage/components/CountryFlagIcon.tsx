@@ -1,10 +1,16 @@
 import React from 'react';
 
+import { Tooltip } from 'react-tooltip';
+import { styled } from 'styled-components';
+
 import { FlagIcons, FlagIconType } from '../../../assets/svg/flag';
+
+const Container = styled.div``;
 
 interface CountryFlagIconProps {
   region: string;
   size: number;
+  description?: string;
 }
 
 /**
@@ -16,6 +22,7 @@ interface CountryFlagIconProps {
 export default function CountryFlagIcon({
   region,
   size,
+  description,
 }: CountryFlagIconProps) {
   let FlagIcon = FlagIcons[region.toUpperCase()] as FlagIconType;
 
@@ -23,5 +30,16 @@ export default function CountryFlagIcon({
     FlagIcon = FlagIcons.OTHER;
   }
 
-  return <FlagIcon width={size} height={size} />;
+  return (
+    <Container>
+      <FlagIcon
+        width={size}
+        height={size}
+        data-tooltip-id="tooltip"
+        data-tooltip-content={description || ''}
+      />
+
+      <Tooltip id="tooltip" place="top" />
+    </Container>
+  );
 }

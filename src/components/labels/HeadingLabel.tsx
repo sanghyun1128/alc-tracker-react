@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { Tooltip } from 'react-tooltip';
 import styled from 'styled-components';
+
+const Container = styled.div``;
 
 const H1 = styled.h1<{ $type: string }>`
   font-size: 1.5rem;
@@ -39,7 +42,7 @@ interface HeadingLabelProps {
   text: string;
   size: 'h1' | 'h2' | 'h3';
   type: 'light' | 'dark';
-  style?: React.CSSProperties;
+  description?: string;
 }
 
 /**
@@ -53,26 +56,25 @@ export default function HeadingLabel({
   text,
   size,
   type,
-  style = {},
+  description,
 }: HeadingLabelProps) {
-  switch (size) {
-    case 'h1':
-      return (
-        <H1 $type={type} style={style}>
-          {text}
-        </H1>
-      );
-    case 'h2':
-      return (
-        <H2 $type={type} style={style}>
-          {text}
-        </H2>
-      );
-    default:
-      return (
-        <H3 $type={type} style={style}>
-          {text}
-        </H3>
-      );
-  }
+  const sizeSelector = () => {
+    switch (size) {
+      case 'h1':
+        return <H1 $type={type}>{text}</H1>;
+      case 'h2':
+        return <H2 $type={type}>{text}</H2>;
+      default:
+        return <H3 $type={type}>{text}</H3>;
+    }
+  };
+
+  return (
+    <Container
+      data-tooltip-id="tooltip"
+      data-tooltip-content={description || ''}>
+      {sizeSelector()}
+      <Tooltip id="tooltip" place="top" />
+    </Container>
+  );
 }
