@@ -9,13 +9,15 @@ export const lightTheme: DefaultTheme = {
   colors: {
     background: '#FDEEDC',
     componentBackground: '#ffffff',
+
     primary: '#F1A661',
     primaryOn: '#FFD8A9',
     secondary: '#eeeeee',
     secondaryOn: '#dddddd',
+    warning: '#e63946',
+
     textDark: '#023047',
     textLight: '#f1faee',
-    warning: '#e63946',
 
     wineWhite: '#C70039',
     wineWhiteOn: '#900C3F',

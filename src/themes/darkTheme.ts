@@ -7,15 +7,17 @@ export const darkTheme: DefaultTheme = {
   transition: '0.3s ease-in-out',
 
   colors: {
-    background: '#6f523b',
+    background: '#222831',
     componentBackground: '#000000',
-    primary: '#900C3F',
-    primaryOn: '#fb8500',
-    secondary: '#8ecae6',
-    secondaryOn: '#219ebc',
-    textDark: '#023047',
-    textLight: '#f1faee',
+
+    primary: '#F1A661',
+    primaryOn: '#FFD8A9',
+    secondary: '#eeeeee',
+    secondaryOn: '#dddddd',
     warning: '#e63946',
+
+    textDark: '#f1faee',
+    textLight: '#023047',
 
     wineWhite: '#C70039',
     wineWhiteOn: '#900C3F',
