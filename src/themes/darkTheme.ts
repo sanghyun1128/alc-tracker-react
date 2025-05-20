@@ -8,8 +8,7 @@ export const darkTheme: DefaultTheme = {
 
   colors: {
     background: '#6f523b',
-    componentBackground: '#023047',
-    formBackground: '#00b4d8',
+    componentBackground: '#000000',
     primary: '#900C3F',
     primaryOn: '#fb8500',
     secondary: '#8ecae6',
@@ -17,6 +16,7 @@ export const darkTheme: DefaultTheme = {
     textDark: '#023047',
     textLight: '#f1faee',
     warning: '#e63946',
+
     wineWhite: '#C70039',
     wineWhiteOn: '#900C3F',
     wineRed: '#C70039',

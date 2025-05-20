@@ -29,7 +29,7 @@ const Form = styled.form`
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(7, 1fr) 1.5fr 1fr;
   border-radius: ${props => props.theme.borderRadius};
-  background-color: ${props => props.theme.colors.formBackground};
+  background-color: ${props => props.theme.colors.componentBackground};
   animation: ${fadeInRightToCenter} 1.3s;
   height: 750px;
 

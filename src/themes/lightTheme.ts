@@ -7,9 +7,8 @@ export const lightTheme: DefaultTheme = {
   transition: '0.3s ease-in-out',
 
   colors: {
-    background: '#F5E7B2',
-    componentBackground: '#f1faee',
-    formBackground: '#023047',
+    background: '#FDEEDC',
+    componentBackground: '#ffffff',
     primary: '#ffb703',
     primaryOn: '#fb8500',
     secondary: '#8ecae6',
@@ -17,6 +16,7 @@ export const lightTheme: DefaultTheme = {
     textDark: '#023047',
     textLight: '#f1faee',
     warning: '#e63946',
+
     wineWhite: '#C70039',
     wineWhiteOn: '#900C3F',
     wineRed: '#C70039',
