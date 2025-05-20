@@ -3,10 +3,12 @@ import { DefaultTheme } from 'styled-components';
 export const lightTheme: DefaultTheme = {
   alt: 'light',
   borderRadius: '5px',
+  margin: '10px',
   transition: '0.3s ease-in-out',
 
   colors: {
     background: '#F5E7B2',
+    componentBackground: '#f1faee',
     formBackground: '#023047',
     primary: '#ffb703',
     primaryOn: '#fb8500',

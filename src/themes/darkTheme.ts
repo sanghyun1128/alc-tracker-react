@@ -3,10 +3,12 @@ import { DefaultTheme } from 'styled-components';
 export const darkTheme: DefaultTheme = {
   alt: 'dark',
   borderRadius: '5px',
+  margin: '10px',
   transition: '0.3s ease-in-out',
 
   colors: {
     background: '#6f523b',
+    componentBackground: '#023047',
     formBackground: '#00b4d8',
     primary: '#900C3F',
     primaryOn: '#fb8500',
