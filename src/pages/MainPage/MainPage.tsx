@@ -122,7 +122,7 @@ export default function MainPage() {
       <MainViewSection ref={mainViewRef} onScroll={handleScroll}>
         {pageList.map((page, index) =>
           cardData[index].length === 0 ? (
-            <EmptyView key={index} theme={theme} style={{}} />
+            <EmptyView key={index} style={{}} />
           ) : (
             <CardView
               key={index}

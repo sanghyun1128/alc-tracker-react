@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DefaultTheme, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 import { LottieContainer, HeadingLabel } from '..';
 import { Animations } from '../../assets/lottie';
@@ -18,10 +18,9 @@ const Container = styled.div`
 
 interface EmptyViewProps {
   style: React.CSSProperties;
-  theme: DefaultTheme;
 }
 
-export default function EmptyView({ style, theme }: EmptyViewProps) {
+export default function EmptyView({ style }: EmptyViewProps) {
   return (
     <Container style={style}>
       <LottieContainer
@@ -32,7 +31,6 @@ export default function EmptyView({ style, theme }: EmptyViewProps) {
         type="dark"
         text="Click the button to add a new item"
         size="h3"
-        style={{ color: theme.colors.textDark, textAlign: 'center' }}
       />
     </Container>
   );

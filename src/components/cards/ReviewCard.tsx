@@ -80,17 +80,7 @@ export default function ReviewCard({ card, style = {} }: ReviewCardProps) {
   return (
     <Container $type={type} style={style}>
       <IconLabel icon={iconName} size={30} style={{ flexBasis: '50px' }} />
-      <HeadingLabel
-        text={name + ' ' + vintage}
-        size="h2"
-        type="light"
-        style={{
-          flexBasis: '100px',
-          flexGrow: '1',
-          marginLeft: '10px',
-          marginRight: '10px',
-        }}
-      />
+      <HeadingLabel text={name + ' ' + vintage} size="h2" type="light" />
       <FiveStarLabel numOfStars={+totalStar} style={{}} />
     </Container>
   );
