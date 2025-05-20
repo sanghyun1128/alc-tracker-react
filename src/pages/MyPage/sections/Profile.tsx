@@ -110,6 +110,13 @@ export default function Profile() {
           type={'dark'}
         />{' '}
       </NicknameWrapper>
+      <BioWrapper>
+        <HeadingLabel
+          text={profile?.profile.comment || ''}
+          size={'h3'}
+          type={'dark'}
+        />
+      </BioWrapper>
       <RegionWrapper>
         <CountryFlagIcon
           region={profile?.profile.regionISOAlpha2 || ''}
@@ -132,13 +139,6 @@ export default function Profile() {
           onClick={e => console.log('Button clicked', e)}
         />
       </ControlButtonWrapper>
-      <BioWrapper>
-        <HeadingLabel
-          text={profile?.profile.comment || ''}
-          size={'h3'}
-          type={'dark'}
-        />
-      </BioWrapper>
     </Container>
   );
 }
