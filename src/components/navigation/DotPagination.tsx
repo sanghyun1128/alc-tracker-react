@@ -29,7 +29,7 @@ interface IndicatorProps {
   align: 'row' | 'column';
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 /**
