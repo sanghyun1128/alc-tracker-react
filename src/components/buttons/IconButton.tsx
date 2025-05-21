@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 import { Icons, IconType } from '../../assets/svg';
 
-const Button = styled.button<{ $buttonColor: string }>`
+const Button = styled.button<{
+  $buttonColor: 'primary' | 'secondary' | 'transparent';
+}>`
   display: flex;
   align-self: center;
   justify-self: center;
@@ -18,21 +20,25 @@ const Button = styled.button<{ $buttonColor: string }>`
   background-color: ${props =>
     props.$buttonColor === 'primary'
       ? props.theme.colors.primary
-      : props.theme.colors.secondary};
+      : props.$buttonColor === 'secondary'
+        ? props.theme.colors.secondary
+        : 'transparent'};
   transition: background-color ${props => props.theme.transition};
 
   &:hover {
     background-color: ${props =>
       props.$buttonColor === 'primary'
         ? props.theme.colors.primaryOn
-        : props.theme.colors.secondaryOn};
+        : props.$buttonColor === 'secondary'
+          ? props.theme.colors.secondaryOn
+          : 'transparent'};
   }
 `;
 
 interface IconButtonProps {
   icon: keyof typeof Icons;
   size: number;
-  buttonColor: 'primary' | 'secondary';
+  buttonColor: 'primary' | 'secondary' | 'transparent';
   style?: React.CSSProperties;
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
