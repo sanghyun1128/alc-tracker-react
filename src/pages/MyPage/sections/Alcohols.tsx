@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { styled } from 'styled-components';
 
-import { DotPagination, IconLabel } from '../../../components';
+import { DotPagination, IconButton } from '../../../components';
 
 const Container = styled.div`
   grid-row: 2 / 3;
@@ -47,15 +47,12 @@ export default function Alcohols() {
     <Container>
       <CategoryWrapper>
         {categoryList.map(([iconName], idx) => (
-          <IconLabel
+          <IconButton
             key={idx}
             icon={iconName}
-            size={30}
-            style={{
-              backgroundColor: 'red',
-              borderRadius: '5px',
-              padding: '10px',
-            }}
+            size={20}
+            buttonColor="transparent"
+            onClick={e => console.log('Button clicked', e)}
           />
         ))}
       </CategoryWrapper>
