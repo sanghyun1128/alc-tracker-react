@@ -7,11 +7,10 @@ import Profile from './sections/Profile';
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 1fr 3fr;
-  height: 100vh;
+  grid-template-rows: auto 1fr;
   height: 100dvh;
-  width: 100vw;
   width: 100dvw;
+  overflow: hidden;
 `;
 
 export default function MyPage() {

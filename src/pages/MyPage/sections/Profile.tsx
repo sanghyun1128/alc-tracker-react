@@ -29,6 +29,7 @@ const ProfileImage = styled.img`
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+  margin: ${props => props.theme.margin};
 `;
 
 const ProfileImageWrapper = styled.div`
