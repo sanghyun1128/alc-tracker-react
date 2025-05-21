@@ -52,7 +52,7 @@ export default function Alcohols() {
             icon={iconName}
             size={20}
             buttonColor={categoryIndex === idx ? 'primary' : 'transparent'}
-            onClick={e => console.log('Button clicked', e)}
+            onClick={() => setCategoryIndex(idx)}
           />
         ))}
       </CategoryWrapper>
