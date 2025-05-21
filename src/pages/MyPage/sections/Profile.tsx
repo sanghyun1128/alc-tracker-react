@@ -136,7 +136,7 @@ export default function Profile() {
         <IconButton
           icon="EDIT"
           size={20}
-          buttonColor="secondary"
+          buttonColor="transparent"
           onClick={e => console.log('Button clicked', e)}
         />
       </ControlButtonWrapper>
