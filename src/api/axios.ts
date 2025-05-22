@@ -42,7 +42,7 @@ instance.interceptors.request.use(
       // 1. Get accessToken from localStorage
       const accessToken = getAccessTokenFromLocalStorage();
       // 2. Set the accessToken to the Authorization header
-      if (accessToken) {
+      if (accessToken && config.url !== 'auth/login/email') {
         setAuthorizationHeader(accessToken, config);
       }
     } catch (error) {
