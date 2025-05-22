@@ -10,12 +10,12 @@ import { ReactComponent as Moon } from './moon.svg';
 import { ReactComponent as Plus } from './plus.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Setting } from './setting.svg';
+import { ReactComponent as Spirit } from './spirit.svg';
 import { ReactComponent as StarEmpty } from './star-empty.svg';
 import { ReactComponent as StarFull } from './star-full.svg';
 import { ReactComponent as StarHalf } from './star-half.svg';
 import { ReactComponent as Sun } from './sun.svg';
 import { ReactComponent as User } from './user.svg';
-import { ReactComponent as Whiskey } from './whiskey.svg';
 import { ReactComponent as WineRed } from './wine-red.svg';
 import { ReactComponent as WineSparkling } from './wine-sparkling.svg';
 import { ReactComponent as WineWhite } from './wine-white.svg';
@@ -31,7 +31,7 @@ export const Icons: { [src: string]: IconType } = {
   WINE_RED: WineRed,
   WINE_WHITE: WineWhite,
   WINE_SPARKLING: WineSparkling,
-  WHISKEY: Whiskey,
+  SPIRIT: Spirit,
   COCKTAIL: Cocktail,
   SETTING: Setting,
   USER: User,
