@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { styled } from 'styled-components';
 
+import { requests } from '../../../api/requests';
 import { DotPagination, IconButton } from '../../../components';
+import {
+  AlcoholType,
+  AlcoholTypeOrder,
+} from '../../../types/api/alcohols/AlcoholType';
 
 const Container = styled.div`
   grid-row: 2 / 3;
@@ -34,25 +39,32 @@ const CategoryWrapper = styled.div`
 `;
 
 export default function Alcohols() {
-  const categoryList = [
-    ['WINE', 'Wine'],
-    ['WHISKEY', 'Whiskey'],
-    ['COCKTAIL', 'Cocktail'],
-  ];
-
-  const [categoryIndex, setCategoryIndex] = useState<number>(0);
+  const [category, setCategory] = useState<AlcoholType>(AlcoholType.WINE);
   const [pageIndex, setPageIndex] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchAlcohols = async () => {
+      try {
+        const response = await requests.getMyAlcohols(category);
+        console.log('🚀 ~ fetchAlcohols ~ response:', response);
+      } catch (error) {
+        console.error('Failed to fetch alcohols:', error);
+      }
+    };
+
+    fetchAlcohols();
+  }, [category, pageIndex]);
 
   return (
     <Container>
       <CategoryWrapper>
-        {categoryList.map(([iconName], idx) => (
+        {AlcoholTypeOrder.map(type => (
           <IconButton
-            key={idx}
-            icon={iconName}
+            key={type}
+            icon={type.toUpperCase()}
             size={20}
-            buttonColor={categoryIndex === idx ? 'primary' : 'transparent'}
-            onClick={() => setCategoryIndex(idx)}
+            buttonColor={category === type ? 'primary' : 'transparent'}
+            onClick={() => setCategory(type)}
           />
         ))}
       </CategoryWrapper>
