@@ -60,7 +60,11 @@ export default function IconButton({
   style = {},
   onClick,
 }: IconButtonProps) {
-  const Icon = Icons[icon] as IconType;
+  let Icon = Icons[icon] as IconType;
+
+  if (!Icon) {
+    Icon = Icons.FILE_EMPTY;
+  }
 
   return (
     <Button
