@@ -27,7 +27,6 @@ const setAuthorizationHeader = (
   token: string,
   request?: InternalAxiosRequestConfig,
 ) => {
-  instance.defaults.headers['Authorization'] = `Bearer ${token}`;
   if (request && request.headers) {
     request.headers['Authorization'] = `Bearer ${token}`;
   }
@@ -44,7 +43,7 @@ instance.interceptors.request.use(
       const accessToken = getAccessTokenFromLocalStorage();
       // 2. Set the accessToken to the Authorization header
       if (accessToken) {
-        setAuthorizationHeader(accessToken);
+        setAuthorizationHeader(accessToken, config);
       }
     } catch (error) {
       return Promise.reject(error);
