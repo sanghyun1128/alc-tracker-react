@@ -67,8 +67,6 @@ instance.interceptors.response.use(
     if (response.data.accessToken) {
       localStorage.setItem('accessToken', response.data.accessToken);
     }
-
-    console.log('🚀 ~ response:', response);
     return response;
   },
 
