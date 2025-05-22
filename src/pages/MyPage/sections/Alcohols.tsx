@@ -5,6 +5,11 @@ import { styled } from 'styled-components';
 import { requests } from '../../../api/requests';
 import { DotPagination, IconButton } from '../../../components';
 import {
+  CocktailResponse,
+  SpiritResponse,
+  WineResponse,
+} from '../../../types/api/alcohols/AlcoholResponse';
+import {
   AlcoholType,
   AlcoholTypeOrder,
 } from '../../../types/api/alcohols/AlcoholType';
@@ -39,7 +44,10 @@ const CategoryWrapper = styled.div`
 `;
 
 export default function Alcohols() {
-  const [category, setCategory] = useState<AlcoholType>(AlcoholType.WINE);
+  const [alcoholList, setAlcoholList] = useState<
+    SpiritResponse[] | WineResponse[] | CocktailResponse[]
+  >([]);
+  const [category, setCategory] = useState<AlcoholType>(AlcoholTypeOrder[0]);
   const [pageIndex, setPageIndex] = useState<number>(0);
 
   useEffect(() => {
@@ -47,6 +55,8 @@ export default function Alcohols() {
       try {
         const response = await requests.getMyAlcohols(category);
         console.log('🚀 ~ fetchAlcohols ~ response:', response);
+        setAlcoholList(response.data.data);
+        console.log('🚀 ~ fetchAlcohols ~ alcohols:', alcoholList);
       } catch (error) {
         console.error('Failed to fetch alcohols:', error);
       }
