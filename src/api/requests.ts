@@ -58,13 +58,7 @@ export const requests = {
    * @returns A Promise resolving to the user's profile data.
    */
   getMyProfile: (): Promise<AxiosResponse<ProfileResponse>> => {
-    const accessToken = localStorage.getItem('accessToken');
-
-    return axios.get(`users/profile/my`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    return axios.get(`users/profile/my`);
   },
 
   /**
