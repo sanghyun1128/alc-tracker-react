@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 
+import { AlcoholType } from '../types/api/alcohols/AlcoholType';
 import { ProfileResponse } from '../types/api/users/ProfileResponse';
 import axios from './axios';
 
@@ -73,5 +74,17 @@ export const requests = {
     return axios.get(path, {
       responseType: 'arraybuffer',
     });
+  },
+
+  /**
+   * Get a list of alcohols for the current user by type.
+   *
+   * @method GET
+   * @endpoint /alcohol/my/{type}
+   * @param type - The type of alcohol to fetch.
+   * @returns A Promise resolving to the list of alcohols.
+   */
+  getMyAlcohols: (type: AlcoholType) => {
+    return axios.get(`alcohol/my/${type}`);
   },
 };
