@@ -3,3 +3,9 @@ export enum AlcoholType {
   WINE = 'wine',
   COCKTAIL = 'cocktail',
 }
+
+export const AlcoholTypeOrder: AlcoholType[] = [
+  AlcoholType.SPIRIT,
+  AlcoholType.WINE,
+  AlcoholType.COCKTAIL,
+];
