@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import 'react-tooltip/dist/react-tooltip.css';
 import { styled } from 'styled-components';
 
-import { requests } from '../../../api/request';
+import { requests } from '../../../api/requests';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
 import { HeadingLabel, IconButton } from '../../../components';
 import { ProfileResponse } from '../../../types/api/users/ProfileResponse';

@@ -1,4 +1,4 @@
-import { requests } from '../api/request';
+import { requests } from '../api/requests';
 
 export const getProfileImage = async (imagePath: string): Promise<Blob> => {
   const response = await requests.getImage(imagePath);

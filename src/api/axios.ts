@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig as BaseInternalAxiosRequestConfig,
 } from 'axios';
 
-import { requests } from './request';
+import { requests } from './requests';
 
 interface InternalAxiosRequestConfig extends BaseInternalAxiosRequestConfig {
   _retry?: boolean;

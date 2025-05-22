@@ -5,7 +5,7 @@ import { DefaultTheme, styled } from 'styled-components';
 
 import { TextInput, SubmitButton, TextButton } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
-import { requests } from '../../api/request';
+import { requests } from '../../api/requests';
 import { deviceSizes } from '../../const/deviceSizes';
 import { emailValidation, passwordValidation } from '../../validation';
 
