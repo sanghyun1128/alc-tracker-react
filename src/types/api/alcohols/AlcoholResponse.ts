@@ -1,3 +1,9 @@
+import { CocktailCategoryEnum } from '../../alcohols/CocktailCategoryEnum';
+import { SpiritCaskEnum } from '../../alcohols/SpiritCaskEnum';
+import { SpiritCategoryEnum } from '../../alcohols/SpiritCategoryEnum';
+import { WineCategoryEnum } from '../../alcohols/WineCategoryEnum';
+import { WineGrapeEnum } from '../../alcohols/WineGrapeEnum';
+
 export interface OwnerResponse {
   id: string;
   createdAt: string;
@@ -22,18 +28,18 @@ export interface AlcoholResponse {
 }
 
 export interface SpiritResponse extends AlcoholResponse {
-  category: string | null;
-  cask: number | null;
+  category: SpiritCategoryEnum | null;
+  cask: SpiritCaskEnum | null;
 }
 
 export interface WineResponse extends AlcoholResponse {
-  category: string | null;
+  category: WineCategoryEnum | null;
   appellation: string | null;
-  grape: string | null;
+  grape: WineGrapeEnum | null;
   region: string | null;
 }
 
 export interface CocktailResponse extends AlcoholResponse {
-  category: string | null;
+  category: CocktailCategoryEnum | null;
   base: string | null;
 }
