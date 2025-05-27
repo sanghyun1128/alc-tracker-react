@@ -1,4 +1,15 @@
 export enum SpainAppellationEnum {
-  OTHER = 'other',
-  // ...add Spain appellations here...
+  RIOJA = 'rioja',
+  RIBERA_DEL_DUERO = 'ribera_del_duero',
+  PRIORAT = 'priorat',
+  RIAS_BAIXAS = 'rias_baixas',
+  TORO = 'toro',
+  CAVA = 'cava',
+  RUEDA = 'rueda',
+  BIERZO = 'bierzo',
+  JUMILLA = 'jumilla',
+  VALDEPENAS = 'valdepenas',
+  LA_MANCHA = 'la_mancha',
+  VALENCIA = 'valencia',
+  MONTSANT = 'montsant',
 }

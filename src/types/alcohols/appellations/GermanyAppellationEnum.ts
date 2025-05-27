@@ -1,4 +1,15 @@
 export enum GermanyAppellationEnum {
-  OTHER = 'other',
-  // ...add Germany appellations here...
+  AHR = 'ahr',
+  MOSEL = 'mosel',
+  RHEINGAU = 'rheingau',
+  PFALZ = 'pfalz',
+  RHEINHESSEN = 'rheinhessen',
+  BADEN = 'baden',
+  WUERTTEMBERG = 'wuerttemberg',
+  NAHE = 'nahe',
+  MITTELRHEIN = 'mittelrhein',
+  HESSISCHE_BERGSTRASSE = 'hessische_bergstrasse',
+  FRANKEN = 'franken',
+  SAALE_UNSTRUT = 'saale_unstrut',
+  SACHSEN = 'sachsen',
 }

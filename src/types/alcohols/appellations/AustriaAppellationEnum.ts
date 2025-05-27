@@ -1,4 +1,17 @@
 export enum AustriaAppellationEnum {
-  OTHER = 'other',
-  // ...add Austria appellations here...
+  NIEDEROESTERREICH = 'niederosterreich',
+  WEINVIERTEL = 'weinviertel',
+  KREMSTAL = 'kremstal',
+  KAMPTAL = 'kamptal',
+  TRAISENTAL = 'traisental',
+  WAGRAM = 'wagram',
+  WACHAU = 'wachau',
+  THERMENREGION = 'thermenregion',
+  CARNUNTUM = 'carnuntum',
+  LEITHABERG = 'leithaberg',
+  MITTELBURGENLAND = 'mittelburgenland',
+  NEUSIEDLERSEE = 'neusiedlersee',
+  SUEDBURGENLAND = 'suedburgenland',
+  SUDSTEIERMARK = 'suedsteiermark',
+  VULKANLAND_STEIERMARK = 'vulkanland_steiermark',
 }

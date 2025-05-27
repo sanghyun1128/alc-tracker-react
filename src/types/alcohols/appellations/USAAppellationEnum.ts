@@ -1,4 +1,18 @@
 export enum USAAppellationEnum {
-  OTHER = 'other',
-  // ...add USA appellations here...
+  CALIFORNIA = 'california',
+  NAPA_VALLEY = 'napa_valley',
+  SONOMA_COUNTY = 'sonoma_county',
+  RUSSIAN_RIVER_VALLEY = 'russian_river_valley',
+  PASO_ROBLES = 'paso_robles',
+  SANTA_BARBARA_COUNTY = 'santa_barbara_county',
+  SANTA_YNEZ_VALLEY = 'santa_ynez_valley',
+  COLUMBIA_VALLEY = 'columbia_valley',
+  WILLAMETTE_VALLEY = 'willamette_valley',
+  FINGER_LAKES = 'finger_lakes',
+  OREGON = 'oregon',
+  WASHINGTON = 'washington',
+  NEW_YORK = 'new_york',
+  VIRGINIA = 'virginia',
+  TEXAS = 'texas',
+  MICHIGAN = 'michigan',
 }

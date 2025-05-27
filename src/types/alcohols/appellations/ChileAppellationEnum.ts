@@ -1,4 +1,20 @@
 export enum ChileAppellationEnum {
-  OTHER = 'other',
-  // ...add Chile appellations here...
+  ACONCAGUA_VALLEY = 'aconcagua_valley',
+  ACONCAGUA_COAST = 'aconcagua_coast',
+  ELQUI_VALLEY = 'elqui_valley',
+  LIMARI_VALLEY = 'limari_valley',
+  CHOAPA_VALLEY = 'choapa_valley',
+  CASABLANCA_VALLEY = 'casablanca_valley',
+  SAN_ANTONIO_VALLEY = 'san_antonio_valley',
+  MAIPO_VALLEY = 'maipo_valley',
+  RAPEL_VALLEY = 'rapel_valley',
+  CACHAPOAL_VALLEY = 'cachapoal_valley',
+  COLCHAGUA_VALLEY = 'colchagua_valley',
+  CURICO_VALLEY = 'curico_valley',
+  MAULE_VALLEY = 'maule_valley',
+  BIO_BIO_VALLEY = 'bio_bio_valley',
+  ITATA_VALLEY = 'itata_valley',
+  MALLECO_VALLEY = 'malleco_valley',
+  OSORNO = 'osorno',
+  AUSTRAL_REGION = 'austral_region',
 }

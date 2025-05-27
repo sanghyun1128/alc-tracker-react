@@ -1,4 +1,15 @@
 export enum PortugalAppellationEnum {
-  OTHER = 'other',
-  // ...add Portugal appellations here...
+  VINHO_VERDE = 'vinho_verde',
+  DOURO = 'douro',
+  DAO = 'dao',
+  BAIRRADA = 'bairrada',
+  ALENTEJO = 'alentejo',
+  PENINSULA_DE_SETUBAL = 'peninsula_de_setubal',
+  TEJO = 'tejo',
+  LISBOA = 'lisboa',
+  ALGARVE = 'algarve',
+  MADEIRA = 'madeira',
+  BEIRA_INTERIOR = 'beira_interior',
+  TRAS_OS_MONTES = 'tras_os_montes',
+  COLARES = 'colares',
 }
