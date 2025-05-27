@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import { AlcoholType } from '../types/alcohols/AlcoholType';
+import { AlcoholTypeEnum } from '../types/alcohols/AlcoholTypeEnum';
 import { ProfileResponse } from '../types/api/users/ProfileResponse';
 import axios from './axios';
 
@@ -84,7 +84,7 @@ export const requests = {
    * @param type - The type of alcohol to fetch.
    * @returns A Promise resolving to the list of alcohols.
    */
-  getMyAlcohols: (type: AlcoholType) => {
+  getMyAlcohols: (type: AlcoholTypeEnum) => {
     return axios.get(`alcohol/my/${type}`);
   },
 };

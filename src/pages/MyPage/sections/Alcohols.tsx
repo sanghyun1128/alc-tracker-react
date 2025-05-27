@@ -4,15 +4,13 @@ import { styled } from 'styled-components';
 
 import { requests } from '../../../api/requests';
 import { DotPagination, IconButton } from '../../../components';
-import {
-  AlcoholType,
-  AlcoholTypeOrder,
-} from '../../../types/alcohols/AlcoholType';
+import { AlcoholTypeEnum } from '../../../types/alcohols/AlcoholTypeEnum';
 import {
   CocktailResponse,
   SpiritResponse,
   WineResponse,
 } from '../../../types/api/alcohols/AlcoholResponse';
+import { getSortedEnumValues } from '../../../utils/enumUtils';
 
 const Container = styled.div`
   grid-row: 2 / 3;
@@ -46,10 +44,14 @@ const CategoryWrapper = styled.div`
 //TODO: 알콜 각각 표시해주는 컴포넌트 만들기
 //TODO: 리액트 쿼리 이용해서 페이지네이션 구현하기
 export default function Alcohols() {
+  const AlcoholTypeOrder = getSortedEnumValues(AlcoholTypeEnum);
+
   const [alcoholList, setAlcoholList] = useState<
     SpiritResponse[] | WineResponse[] | CocktailResponse[]
   >([]);
-  const [category, setCategory] = useState<AlcoholType>(AlcoholTypeOrder[0]);
+  const [category, setCategory] = useState<AlcoholTypeEnum>(
+    AlcoholTypeOrder[0],
+  );
   const [pageIndex, setPageIndex] = useState<number>(0);
 
   useEffect(() => {
