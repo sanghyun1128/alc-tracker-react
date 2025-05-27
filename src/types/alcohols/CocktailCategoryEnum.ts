@@ -11,17 +11,3 @@ export enum CocktailCategoryEnum {
   DESSERT = 'dessert',
   FUSION = 'fusion',
 }
-
-export const CocktailCategoryOrder: CocktailCategoryEnum[] = [
-  CocktailCategoryEnum.CLASSIC,
-  CocktailCategoryEnum.FRUIT,
-  CocktailCategoryEnum.SPARKLING,
-  CocktailCategoryEnum.SMOOTHIE_SHAKE,
-  CocktailCategoryEnum.MOCKTAIL,
-  CocktailCategoryEnum.ON_THE_ROCKS,
-  CocktailCategoryEnum.HERB_SPICE,
-  CocktailCategoryEnum.SUMMER,
-  CocktailCategoryEnum.WINTER,
-  CocktailCategoryEnum.DESSERT,
-  CocktailCategoryEnum.FUSION,
-];

@@ -15,25 +15,4 @@ export enum SpiritCategoryEnum {
   SOJU = 'soju',
   MAKGEOLLI = 'makgeolli',
   TRADITIONAL = 'traditional',
-  OTHER = 'other',
 }
-
-export const SpiritCategoryOrder: SpiritCategoryEnum[] = [
-  SpiritCategoryEnum.IRISH,
-  SpiritCategoryEnum.SCOTCH,
-  SpiritCategoryEnum.BOURBON,
-  SpiritCategoryEnum.WHISKY,
-  SpiritCategoryEnum.VODKA,
-  SpiritCategoryEnum.GIN,
-  SpiritCategoryEnum.RUM,
-  SpiritCategoryEnum.TEQUILA,
-  SpiritCategoryEnum.COGNAC,
-  SpiritCategoryEnum.ARMAGNAC,
-  SpiritCategoryEnum.CALVADOS,
-  SpiritCategoryEnum.BRANDY,
-  SpiritCategoryEnum.LIQUEUR,
-  SpiritCategoryEnum.SOJU,
-  SpiritCategoryEnum.MAKGEOLLI,
-  SpiritCategoryEnum.TRADITIONAL,
-  SpiritCategoryEnum.OTHER,
-];
