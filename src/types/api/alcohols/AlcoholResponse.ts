@@ -34,12 +34,11 @@ export interface SpiritResponse extends AlcoholResponse {
 
 export interface WineResponse extends AlcoholResponse {
   category: WineCategoryEnum | null;
-  appellation: string | null;
   grape: WineGrapeEnum | null;
   region: string | null;
+  appellation: string | null;
 }
 
 export interface CocktailResponse extends AlcoholResponse {
   category: CocktailCategoryEnum | null;
-  base: string | null;
 }
