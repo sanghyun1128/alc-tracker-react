@@ -1,17 +1,17 @@
-import { ArgentinaAppellationEnum } from './ArgentinaAppellationEnum';
-import { AustraliaAppellationEnum } from './AustraliaAppellationEnum';
-import { AustriaAppellationEnum } from './AustriaAppellationEnum';
-import { CanadaAppellationEnum } from './CanadaAppellationEnum';
-import { ChileAppellationEnum } from './ChileAppellationEnum';
-import { FranceAppellationEnum } from './FranceAppellationEnum';
-import { GermanyAppellationEnum } from './GermanyAppellationEnum';
-import { GreeceAppellationEnum } from './GreeceAppellationEnum';
-import { ItalyAppellationEnum } from './ItalyAppellationEnum';
-import { NewZealandAppellationEnum } from './NewZealandAppellationEnum';
-import { PortugalAppellationEnum } from './PortugalAppellationEnum';
-import { SouthAfricaAppellationEnum } from './SouthAfricaAppellationEnum';
-import { SpainAppellationEnum } from './SpainAppellationEnum';
-import { USAAppellationEnum } from './USAAppellationEnum';
+import { ArgentinaAppellationEnum } from './appellations/ArgentinaAppellationEnum';
+import { AustraliaAppellationEnum } from './appellations/AustraliaAppellationEnum';
+import { AustriaAppellationEnum } from './appellations/AustriaAppellationEnum';
+import { CanadaAppellationEnum } from './appellations/CanadaAppellationEnum';
+import { ChileAppellationEnum } from './appellations/ChileAppellationEnum';
+import { FranceAppellationEnum } from './appellations/FranceAppellationEnum';
+import { GermanyAppellationEnum } from './appellations/GermanyAppellationEnum';
+import { GreeceAppellationEnum } from './appellations/GreeceAppellationEnum';
+import { ItalyAppellationEnum } from './appellations/ItalyAppellationEnum';
+import { NewZealandAppellationEnum } from './appellations/NewZealandAppellationEnum';
+import { PortugalAppellationEnum } from './appellations/PortugalAppellationEnum';
+import { SouthAfricaAppellationEnum } from './appellations/SouthAfricaAppellationEnum';
+import { SpainAppellationEnum } from './appellations/SpainAppellationEnum';
+import { USAAppellationEnum } from './appellations/USAAppellationEnum';
 
 /**
  * Union type of all wine appellation enums across supported countries
