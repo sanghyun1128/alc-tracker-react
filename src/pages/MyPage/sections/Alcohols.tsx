@@ -5,14 +5,14 @@ import { styled } from 'styled-components';
 import { requests } from '../../../api/requests';
 import { DotPagination, IconButton } from '../../../components';
 import {
+  AlcoholType,
+  AlcoholTypeOrder,
+} from '../../../types/alcohols/AlcoholType';
+import {
   CocktailResponse,
   SpiritResponse,
   WineResponse,
 } from '../../../types/api/alcohols/AlcoholResponse';
-import {
-  AlcoholType,
-  AlcoholTypeOrder,
-} from '../../../types/api/alcohols/AlcoholType';
 
 const Container = styled.div`
   grid-row: 2 / 3;
@@ -43,6 +43,8 @@ const CategoryWrapper = styled.div`
   background-color: ${props => props.theme.colors.secondary};
 `;
 
+//TODO: 알콜 각각 표시해주는 컴포넌트 만들기
+//TODO: 리액트 쿼리 이용해서 페이지네이션 구현하기
 export default function Alcohols() {
   const [alcoholList, setAlcoholList] = useState<
     SpiritResponse[] | WineResponse[] | CocktailResponse[]

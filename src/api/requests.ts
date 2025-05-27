@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import { AlcoholType } from '../types/api/alcohols/AlcoholType';
+import { AlcoholType } from '../types/alcohols/AlcoholType';
 import { ProfileResponse } from '../types/api/users/ProfileResponse';
 import axios from './axios';
 
