@@ -15,3 +15,21 @@ export enum WineRegionEnum {
   SPAIN = 'spain',
   USA = 'usa',
 }
+
+export const WineRegionOrder: WineRegionEnum[] = [
+  WineRegionEnum.OTHER,
+  WineRegionEnum.ARGENTINA,
+  WineRegionEnum.AUSTRALIA,
+  WineRegionEnum.AUSTRIA,
+  WineRegionEnum.CANADA,
+  WineRegionEnum.CHILE,
+  WineRegionEnum.FRANCE,
+  WineRegionEnum.GERMANY,
+  WineRegionEnum.GREECE,
+  WineRegionEnum.ITALY,
+  WineRegionEnum.NEW_ZEALAND,
+  WineRegionEnum.PORTUGAL,
+  WineRegionEnum.SOUTH_AFRICA,
+  WineRegionEnum.SPAIN,
+  WineRegionEnum.USA,
+];
