@@ -1,0 +1,17 @@
+export enum WineRegionEnum {
+  OTHER = 'other',
+  ARGENTINA = 'argentina',
+  AUSTRALIA = 'australia',
+  AUSTRIA = 'austria',
+  CANADA = 'canada',
+  CHILE = 'chile',
+  FRANCE = 'france',
+  GERMANY = 'germany',
+  GREECE = 'greece',
+  ITALY = 'italy',
+  NEW_ZEALAND = 'new_zealand',
+  PORTUGAL = 'portugal',
+  SOUTH_AFRICA = 'south_africa',
+  SPAIN = 'spain',
+  USA = 'usa',
+}
