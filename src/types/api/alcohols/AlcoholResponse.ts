@@ -3,6 +3,7 @@ import { SpiritCaskEnum } from '../../alcohols/SpiritCaskEnum';
 import { SpiritCategoryEnum } from '../../alcohols/SpiritCategoryEnum';
 import { WineCategoryEnum } from '../../alcohols/WineCategoryEnum';
 import { WineGrapeEnum } from '../../alcohols/WineGrapeEnum';
+import { ImageResponse } from '../common/ImageResponse';
 
 export interface OwnerResponse {
   id: string;
@@ -25,6 +26,7 @@ export interface AlcoholResponse {
   purchaseLocation: string | null;
   updatedAt: string;
   vintage: number | null;
+  images: ImageResponse[] | null;
 }
 
 export interface SpiritResponse extends AlcoholResponse {
