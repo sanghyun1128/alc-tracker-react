@@ -33,8 +33,10 @@ const Button = styled.button<{
         ? props.theme.colors.primaryOn
         : props.$buttonColor === 'secondary'
           ? props.theme.colors.secondaryOn
-          : 'transparent'};
-  }
+          : props.theme.alt === 'dark'
+            ? 'rgba(255, 255, 255, 0.1)'
+            : 'rgba(0, 0, 0, 0.05)'};
+  } // 라이트 모드에서 연한 검정
 `;
 
 interface IconButtonProps {
