@@ -11,6 +11,7 @@ import {
   WineResponse,
 } from '../../../types/api/alcohols/AlcoholResponse';
 import { getSortedEnumValues } from '../../../utils/enumUtils';
+import AlcoholCard from '../components/AlcoholCard';
 
 const Container = styled.div`
   grid-row: 2 / 3;
@@ -39,6 +40,18 @@ const CategoryWrapper = styled.div`
   margin: ${props => props.theme.margin};
   border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.colors.secondary};
+`;
+
+const AlcoholWrapper = styled.div`
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
+
+  margin: ${props => props.theme.margin};
+  border-radius: ${props => props.theme.borderRadius};
 `;
 
 //TODO: 알콜 각각 표시해주는 컴포넌트 만들기
@@ -83,12 +96,17 @@ export default function Alcohols() {
         ))}
       </CategoryWrapper>
 
-      <DotPagination
-        numOfPages={10}
-        align="row"
-        page={pageIndex}
-        setPage={setPageIndex}
-      />
+      <AlcoholWrapper>
+        {alcoholList.map((alcohol, index) => (
+          <AlcoholCard key={index} />
+        ))}
+        {/* <DotPagination
+          numOfPages={10}
+          align="row"
+          page={pageIndex}
+          setPage={setPageIndex}
+        /> */}
+      </AlcoholWrapper>
     </Container>
   );
 }
