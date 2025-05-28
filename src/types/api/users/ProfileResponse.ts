@@ -1,3 +1,5 @@
+import { ImageResponse } from '../common/ImageResponse';
+
 export interface ProfileResponse {
   id: string;
   index: number;
@@ -13,18 +15,8 @@ export interface ProfileResponse {
 }
 
 interface Profile {
-  image: ProfileImage | null;
+  image: ImageResponse | null;
   comment: string | null;
   languageISO6391: string | null;
   regionISOAlpha2: string | null;
-}
-
-interface ProfileImage {
-  id: string;
-  index: number;
-  order: number;
-  path: string;
-  type: number;
-  createdAt: string;
-  updatedAt: string;
 }
