@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 import { requests } from '../../../api/requests';
-import { DotPagination, IconButton } from '../../../components';
+import { IconButton } from '../../../components';
 import { AlcoholTypeEnum } from '../../../types/alcohols/AlcoholTypeEnum';
 import {
   CocktailResponse,
@@ -65,7 +65,6 @@ export default function Alcohols() {
   const [category, setCategory] = useState<AlcoholTypeEnum>(
     AlcoholTypeOrder[0],
   );
-  const [pageIndex, setPageIndex] = useState<number>(0);
 
   useEffect(() => {
     const fetchAlcohols = async () => {
@@ -80,7 +79,7 @@ export default function Alcohols() {
     };
 
     fetchAlcohols();
-  }, [category, pageIndex]);
+  }, [category]);
 
   return (
     <Container>
@@ -98,7 +97,11 @@ export default function Alcohols() {
 
       <AlcoholWrapper>
         {alcoholList.map((alcohol, index) => (
-          <AlcoholCard key={index} />
+          <AlcoholCard
+            key={alcohol.id || index}
+            alcohol={alcohol}
+            alcoholType={category}
+          />
         ))}
         {/* <DotPagination
           numOfPages={10}
