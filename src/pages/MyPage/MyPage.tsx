@@ -7,9 +7,15 @@ import Profile from './sections/Profile';
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 2fr 8fr;
+  gap: 0;
+
   height: 100dvh;
   width: 100dvw;
+
+  padding: 10px;
+  box-sizing: border-box;
+
   overflow: hidden;
 `;
 
