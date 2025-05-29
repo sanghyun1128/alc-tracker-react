@@ -18,7 +18,7 @@ const Container = styled.div`
 
   width: 150px;
   height: 220px;
-  padding: 12px;
+  padding: ${props => props.theme.padding};
 
   background-color: ${props => props.theme.colors.componentBackground};
   border-radius: ${props => props.theme.borderRadius};

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 import { requests } from '../../../api/requests';
-import { IconButton } from '../../../components';
+import { DotPagination, IconButton } from '../../../components';
 import { AlcoholTypeEnum } from '../../../types/alcohols/AlcoholTypeEnum';
 import {
   CocktailResponse,
@@ -15,16 +15,18 @@ import AlcoholCard from '../components/AlcoholCard';
 
 const Container = styled.div`
   grid-row: 2 / 3;
+  gap: ${props => props.theme.gap};
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 10fr;
+  grid-template-rows: 1fr 8fr 1fr;
   justify-items: stretch;
   align-items: center;
 
   height: 100%;
   min-height: 0;
 
+  padding: ${props => props.theme.padding};
   background-color: ${props => props.theme.colors.componentBackground};
   border-radius: ${props => props.theme.borderRadius};
   box-sizing: border-box;
@@ -40,7 +42,6 @@ const CategoryWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
 
-  margin: ${props => props.theme.margin};
   border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.colors.secondary};
 `;
@@ -48,6 +49,7 @@ const CategoryWrapper = styled.div`
 const AlcoholWrapper = styled.div`
   grid-column: 1 / 4;
   grid-row: 2 / 3;
+  gap: ${props => props.theme.gap};
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -57,12 +59,18 @@ const AlcoholWrapper = styled.div`
 
   height: 100%;
 
-  margin: ${props => props.theme.margin};
   border-radius: ${props => props.theme.borderRadius};
 `;
 
-//TODO: 알콜 각각 표시해주는 컴포넌트 만들기
-//TODO: 리액트 쿼리 이용해서 페이지네이션 구현하기
+const PaginationWrapper = styled.div`
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default function Alcohols() {
   const AlcoholTypeOrder = getSortedEnumValues(AlcoholTypeEnum);
 
@@ -72,6 +80,7 @@ export default function Alcohols() {
   const [category, setCategory] = useState<AlcoholTypeEnum>(
     AlcoholTypeOrder[0],
   );
+  const [pageIndex, setPageIndex] = useState(0);
 
   useEffect(() => {
     const fetchAlcohols = async () => {
@@ -110,13 +119,16 @@ export default function Alcohols() {
             alcoholType={category}
           />
         ))}
-        {/* <DotPagination
+      </AlcoholWrapper>
+
+      <PaginationWrapper>
+        <DotPagination
           numOfPages={10}
           align="row"
           page={pageIndex}
           setPage={setPageIndex}
-        /> */}
-      </AlcoholWrapper>
+        />
+      </PaginationWrapper>
     </Container>
   );
 }

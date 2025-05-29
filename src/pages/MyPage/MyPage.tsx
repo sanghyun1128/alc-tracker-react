@@ -8,12 +8,12 @@ import Profile from './sections/Profile';
 const Container = styled.div`
   display: grid;
   grid-template-rows: 2fr 8fr;
-  gap: 10px;
+  gap: ${props => props.theme.gap};
 
   height: 100dvh;
   width: 100dvw;
 
-  padding: 10px;
+  padding: ${props => props.theme.padding};
   box-sizing: border-box;
 
   overflow: hidden;
