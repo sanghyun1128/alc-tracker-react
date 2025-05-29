@@ -4,6 +4,8 @@ export const lightTheme: DefaultTheme = {
   alt: 'light',
   borderRadius: '5px',
   margin: '10px',
+  gap: '10px',
+  padding: '10px',
   transition: '0.3s ease-in-out',
 
   colors: {
