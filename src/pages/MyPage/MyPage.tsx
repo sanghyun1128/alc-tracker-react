@@ -8,7 +8,7 @@ import Profile from './sections/Profile';
 const Container = styled.div`
   display: grid;
   grid-template-rows: 2fr 8fr;
-  gap: 0;
+  gap: 10px;
 
   height: 100dvh;
   width: 100dvw;
