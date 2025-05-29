@@ -52,6 +52,10 @@ const AlcoholWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+
+  height: 100%;
 
   margin: ${props => props.theme.margin};
   border-radius: ${props => props.theme.borderRadius};
