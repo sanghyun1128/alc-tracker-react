@@ -15,61 +15,91 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   width: 150px;
   height: 220px;
   padding: 12px;
+
   background-color: ${props => props.theme.colors.componentBackground};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
   cursor: pointer;
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Desktop hover effect */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  /* Mobile touch effect */
+  @media (hover: none) and (pointer: coarse) {
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  /* Fallback for touch devices that also support hover */
+  @media (pointer: coarse) {
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
   }
 `;
 
 const ImageContainer = styled.div`
   width: 100%;
   height: 120px;
-  background-color: ${props => props.theme.colors.secondary};
-  border-radius: ${props => props.theme.borderRadius};
-  overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-color: ${props => props.theme.colors.secondary};
+  border-radius: ${props => props.theme.borderRadius};
   margin-bottom: 8px;
+
+  overflow: hidden;
 `;
 
 const AlcoholImage = styled.img`
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 `;
 
 const AlcoholName = styled.h3`
   font-size: 14px;
   font-weight: 600;
+  line-height: 1.2;
+
+  width: 100%;
+  height: 34px;
+
   color: ${props => props.theme.colors.text};
   margin: 0 0 8px 0;
+
   text-align: center;
-  line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  width: 100%;
-  height: 34px;
 `;
 
 const RatingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   margin-top: auto;
 `;
 

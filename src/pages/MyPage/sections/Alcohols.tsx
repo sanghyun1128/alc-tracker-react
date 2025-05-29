@@ -22,9 +22,12 @@ const Container = styled.div`
   justify-items: stretch;
   align-items: center;
 
+  height: 100%;
+  min-height: 0;
+
   background-color: ${props => props.theme.colors.componentBackground};
-  margin: ${props => props.theme.margin};
   border-radius: ${props => props.theme.borderRadius};
+  box-sizing: border-box;
 
   overflow-y: auto;
 `;
