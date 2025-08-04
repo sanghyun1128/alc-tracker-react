@@ -8,6 +8,7 @@ import { ReactComponent as Menu } from './menu.svg';
 import { ReactComponent as Minus } from './minus.svg';
 import { ReactComponent as Moon } from './moon.svg';
 import { ReactComponent as Plus } from './plus.svg';
+import { ReactComponent as Save } from './save.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Setting } from './setting.svg';
 import { ReactComponent as Spirit } from './spirit.svg';
@@ -48,4 +49,5 @@ export const Icons: { [src: string]: IconType } = {
   MENU: Menu,
   LOGOUT: Logout,
   EDIT: Edit,
+  SAVE: Save,
 };
