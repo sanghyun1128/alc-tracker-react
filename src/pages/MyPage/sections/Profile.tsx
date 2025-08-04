@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import 'react-tooltip/dist/react-tooltip.css';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import { styled } from 'styled-components';
 
 import { requests } from '../../../api/requests';
@@ -88,6 +89,7 @@ const ControlButtonWrapper = styled.div`
 export default function Profile() {
   const [profile, setProfile] = useState<ProfileResponse>();
   const [profileImageSrc, setProfileImageSrc] = useState<string>();
+  const [editMode, setEditMode] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -138,14 +140,47 @@ export default function Profile() {
           description="거주 국가"
         />
       </RegionWrapper>
-      <ControlButtonWrapper>
-        <IconButton
-          icon="EDIT"
-          size={20}
-          buttonColor="transparent"
-          onClick={e => console.log('Button clicked', e)}
-        />
-      </ControlButtonWrapper>
+
+      <SwitchTransition>
+        <CSSTransition
+          key={editMode ? 'edit' : 'view'}
+          timeout={200}
+          classNames="fade-btn">
+          <ControlButtonWrapper>
+            {editMode ? (
+              <>
+                <IconButton
+                  icon="CLOSE"
+                  size={20}
+                  buttonColor="transparent"
+                  onClick={e => setEditMode(false)}
+                />
+                <IconButton
+                  icon="SAVE"
+                  size={20}
+                  buttonColor="transparent"
+                  onClick={e => setEditMode(false)}
+                />
+              </>
+            ) : (
+              <>
+                <IconButton
+                  icon="EDIT"
+                  size={20}
+                  buttonColor="transparent"
+                  onClick={e => setEditMode(true)}
+                />
+                <IconButton
+                  icon="SETTING"
+                  size={20}
+                  buttonColor="transparent"
+                  onClick={e => console.log('Button clicked', e)}
+                />
+              </>
+            )}
+          </ControlButtonWrapper>
+        </CSSTransition>
+      </SwitchTransition>
     </Container>
   );
 }
