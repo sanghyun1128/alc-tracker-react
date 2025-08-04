@@ -137,13 +137,6 @@ export default function Profile() {
           size={30}
           description="거주 국가"
         />
-        <HeadingLabel text={'|'} size={'h3'} type={'dark'} />
-        <HeadingLabel
-          text={profile?.profile.languageISO6391?.toUpperCase() || ''}
-          size={'h3'}
-          type={'dark'}
-          description="사용 언어"
-        />
       </RegionWrapper>
       <ControlButtonWrapper>
         <IconButton
