@@ -14,7 +14,7 @@ export interface UserInfoResponse {
   updatedAt: string;
 }
 
-interface Profile {
+export interface Profile {
   image: ImageResponse | null;
   comment: string | null;
   languageISO6391: string | null;

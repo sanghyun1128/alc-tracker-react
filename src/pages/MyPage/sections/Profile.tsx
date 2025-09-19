@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
 
 import { requests } from '../../../api/requests';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
-import { HeadingLabel, IconButton } from '../../../components';
+import { HeadingLabel, IconButton, TextInput } from '../../../components';
 import { UserInfoResponse } from '../../../types/api/users/UserInfoResponse';
 import { getProfileImage } from '../../../utils/profileImage';
 import CountryFlagIcon from '../components/CountryFlagIcon';
@@ -90,6 +90,7 @@ export default function Profile() {
   const [userInfo, setUserInfo] = useState<UserInfoResponse>();
   const [profileImageSrc, setProfileImageSrc] = useState<string>();
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [bio, setBio] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -98,6 +99,7 @@ export default function Profile() {
         const response = await requests.getMyProfile();
         console.log('🚀 ~ fetchProfile ~ response:', response);
         setUserInfo(response.data);
+        setBio(response.data.profile.comment || '');
 
         if (response.data.profile.image) {
           const imagePath = response.data.profile.image.path;
@@ -124,14 +126,27 @@ export default function Profile() {
           text={userInfo?.nickname || ''}
           size={'h1'}
           type={'dark'}
-        />{' '}
+        />
       </NicknameWrapper>
       <BioWrapper>
-        <HeadingLabel
-          text={userInfo?.profile.comment || ''}
-          size={'h3'}
-          type={'dark'}
-        />
+        {editMode ? (
+          <TextInput
+            placeholder="한 줄 소개"
+            maxLength={100}
+            isError={false}
+            hideShowButton={false}
+            style={{}}
+            onChange={e => setBio(e.target.value)}
+            value={bio}
+          />
+        ) : (
+          <HeadingLabel
+            text={userInfo?.profile.comment || ''}
+            size={'h3'}
+            type={'dark'}
+            description="한 줄 소개"
+          />
+        )}
       </BioWrapper>
       <RegionWrapper>
         <CountryFlagIcon
@@ -153,13 +168,31 @@ export default function Profile() {
                   icon="CLOSE"
                   size={20}
                   buttonColor="transparent"
-                  onClick={e => setEditMode(false)}
+                  onClick={e => {
+                    setEditMode(false);
+                    setBio(userInfo?.profile.comment || '');
+                  }}
                 />
                 <IconButton
                   icon="SAVE"
                   size={20}
                   buttonColor="transparent"
-                  onClick={e => setEditMode(false)}
+                  onClick={async () => {
+                    if (userInfo) {
+                      try {
+                        const updatedProfile = {
+                          ...userInfo.profile,
+                          comment: bio,
+                        };
+                        await requests.updateUserProfile(updatedProfile);
+                        setUserInfo({ ...userInfo, profile: updatedProfile });
+                        setBio(bio);
+                        setEditMode(false);
+                      } catch (error) {
+                        console.error('Failed to update profile:', error);
+                      }
+                    }
+                  }}
                 />
               </>
             ) : (

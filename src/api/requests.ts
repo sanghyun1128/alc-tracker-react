@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 import { AlcoholTypeEnum } from '../types/alcohols/AlcoholTypeEnum';
-import { UserInfoResponse } from '../types/api/users/UserInfoResponse';
+import { Profile, UserInfoResponse } from '../types/api/users/UserInfoResponse';
 import axios from './axios';
 
 export const requests = {
@@ -97,8 +97,12 @@ export const requests = {
    * @returns A Promise resolving to the updated user profile data.
    */
   updateUserProfile: (
-    profileData: UserInfoResponse,
-  ): Promise<AxiosResponse<UserInfoResponse>> => {
-    return axios.put('users/profile/my', profileData);
+    profileData: Profile,
+  ): Promise<AxiosResponse<Profile>> => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { image, ...profileDataWithoutImage } = profileData;
+    return axios.put('users/profile/my', {
+      profile: profileDataWithoutImage,
+    });
   },
 };
