@@ -123,6 +123,7 @@ export default function ItemInputForm({
         hideShowButton={false}
         style={{ gridColumn: '1 / 7', gridRow: '1 / 2' }}
         onChange={handleInputChange}
+        value={state.name}
       />
       <TextInput
         placeholder={'Vintage'}
@@ -131,6 +132,7 @@ export default function ItemInputForm({
         hideShowButton={false}
         style={{ gridColumn: '7 / 9', gridRow: '1 / 2' }}
         onChange={handleInputChange}
+        value={state.vintage?.toString() || ''}
       />
       <TextInput
         placeholder={'Price'}
@@ -139,6 +141,7 @@ export default function ItemInputForm({
         hideShowButton={false}
         style={{ gridColumn: '9 / 11', gridRow: '1 / 2' }}
         onChange={handleInputChange}
+        value={state.price || ''}
       />
       <SimpleLabel
         text="Type"
@@ -198,6 +201,7 @@ export default function ItemInputForm({
         hideShowButton={false}
         style={{ gridColumn: '5 / 11', gridRow: '3 / 4' }}
         onChange={handleInputChange}
+        value={state.noseNotes || ''}
       />
       <SimpleLabel
         text="Palate"
@@ -224,6 +228,7 @@ export default function ItemInputForm({
         hideShowButton={false}
         style={{ gridColumn: '5 / 11', gridRow: '4 / 5' }}
         onChange={handleInputChange}
+        value={state.palateNotes || ''}
       />
       <SimpleLabel
         text="Finish"
@@ -250,6 +255,7 @@ export default function ItemInputForm({
         hideShowButton={false}
         style={{ gridColumn: '5 / 11', gridRow: '5 / 6' }}
         onChange={handleInputChange}
+        value={state.finishNotes || ''}
       />
       <MultiLineInput
         placeholder="Detail"

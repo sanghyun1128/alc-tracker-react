@@ -31,7 +31,7 @@ const Input = styled.input<{
   font-size: 1rem;
   font-weight: bold;
   font-family: inherit;
-  color: ${props => props.theme.colors.textReverse};
+  color: ${props => props.theme.colors.text};
   animation: ${({ $isError }) =>
     $isError &&
     css`
@@ -46,17 +46,18 @@ const Input = styled.input<{
 
 interface TextInputProps {
   placeholder: string;
+  value: string;
   maxLength: number;
   isError: boolean;
   hideShowButton: boolean;
   style: React.CSSProperties;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
 }
 
 /**
  * @param {TextInputProps} props
  * @param {String} props.placeholder placeholder text for the input field
+ * @param {String} props.value current value of the input field
  * @param {Number} props.maxLength maximum length of the input field
  * @param {Boolean} props.isError whether the input field is in an error state
  * @param {Boolean} props.hideShowButton whether to show a button to hide/show the input
@@ -65,12 +66,12 @@ interface TextInputProps {
  */
 export default function TextInput({
   placeholder,
+  value,
   maxLength,
   isError,
   hideShowButton,
   style,
   onChange,
-  value,
 }: TextInputProps) {
   const [showInput, setShowInput] = useState<boolean>(false);
 

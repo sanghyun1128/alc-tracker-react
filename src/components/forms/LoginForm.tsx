@@ -96,6 +96,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
     <Form onSubmit={event => submitForm(event)}>
       <TextInput
         placeholder="Email"
+        value={email}
         maxLength={254}
         isError={isEmailError}
         hideShowButton={false}
@@ -104,6 +105,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
       />
       <TextInput
         placeholder="Password"
+        value={password}
         maxLength={20}
         isError={isPasswordError}
         hideShowButton={true}

@@ -150,6 +150,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
     <Form onSubmit={event => submitForm(event)}>
       <TextInput
         placeholder="Nickname"
+        value={state.nickname}
         maxLength={15}
         isError={!state.isNicknameValid}
         style={{ gridColumn: '1 / 7', gridRow: '1 / 2' }}
@@ -158,6 +159,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       />
       <TextInput
         placeholder="Email"
+        value={state.email}
         maxLength={254}
         isError={!state.isEmailValid}
         style={{ gridColumn: '1 / 7', gridRow: '2 / 3' }}
@@ -166,6 +168,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       />
       <TextInput
         placeholder="Email confirmation code"
+        value={state.confirmEmail}
         maxLength={5}
         isError={!state.isEmailConfirmed}
         style={{ gridColumn: '1 / 7', gridRow: '3 / 4' }}
@@ -201,6 +204,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       />
       <TextInput
         placeholder="Password"
+        value={state.password}
         maxLength={20}
         isError={!state.isPasswordValid}
         style={{ gridColumn: '1 / 7', gridRow: '6 / 7' }}
@@ -209,6 +213,7 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
       />
       <TextInput
         placeholder="Re enter password"
+        value={state.confirmPassword}
         maxLength={20}
         isError={!state.isPasswordConfirmed}
         style={{ gridColumn: '1 / 7', gridRow: '7 / 8' }}
