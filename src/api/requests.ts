@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 import { AlcoholTypeEnum } from '../types/alcohols/AlcoholTypeEnum';
-import { ProfileResponse } from '../types/api/users/ProfileResponse';
+import { UserInfoResponse } from '../types/api/users/UserInfoResponse';
 import axios from './axios';
 
 export const requests = {
@@ -58,7 +58,7 @@ export const requests = {
    * @endpoint /users/profile/my
    * @returns A Promise resolving to the user's profile data.
    */
-  getMyProfile: (): Promise<AxiosResponse<ProfileResponse>> => {
+  getMyProfile: (): Promise<AxiosResponse<UserInfoResponse>> => {
     return axios.get(`users/profile/my`);
   },
 
@@ -86,5 +86,19 @@ export const requests = {
    */
   getMyAlcohols: (type: AlcoholTypeEnum) => {
     return axios.get(`alcohol/my/${type}`);
+  },
+
+  /**
+   * Update the user's profile information.
+   *
+   * @method PUT
+   * @endpoint /users/profile/my
+   * @param profileData
+   * @returns A Promise resolving to the updated user profile data.
+   */
+  updateUserProfile: (
+    profileData: UserInfoResponse,
+  ): Promise<AxiosResponse<UserInfoResponse>> => {
+    return axios.put('users/profile/my', profileData);
   },
 };
