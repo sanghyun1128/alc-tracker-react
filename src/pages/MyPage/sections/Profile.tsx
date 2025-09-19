@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import 'react-tooltip/dist/react-tooltip.css';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import { styled } from 'styled-components';
+import { styled, keyframes } from 'styled-components';
 
 import { requests } from '../../../api/requests';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
@@ -91,7 +91,12 @@ export default function Profile() {
   const [profileImageSrc, setProfileImageSrc] = useState<string>();
   const [editMode, setEditMode] = useState<boolean>(false);
   const [bio, setBio] = useState<string>('');
+  const [bioSavedAnim, setBioSavedAnim] = useState<boolean>(false);
   const navigate = useNavigate();
+  // Separate refs for SwitchTransition states to comply with react-transition-group nodeRef API
+  const editButtonsRef = useRef<HTMLDivElement | null>(null);
+  const viewButtonsRef = useRef<HTMLDivElement | null>(null);
+  const currentButtonsRef = editMode ? editButtonsRef : viewButtonsRef;
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -115,6 +120,22 @@ export default function Profile() {
 
     fetchProfile();
   }, []);
+
+  // Subtle success highlight animation for bio after save
+  const bioSavedHighlight = keyframes`
+    0% { background-color: rgba(241, 166, 97, 0.35); transform: scale(1.0); }
+    60% { background-color: rgba(241, 166, 97, 0.15); transform: scale(1.02); }
+    100% { background-color: transparent; transform: scale(1.0); }
+  `;
+
+  const BioAnimated = styled.div<{ $animate: boolean }>`
+    display: inline-block;
+    border-radius: 6px;
+    padding: 2px 4px;
+    animation: ${props => (props.$animate ? bioSavedHighlight : 'none')} 800ms
+      ease-out;
+    transition: ${props => props.theme.transition};
+  `;
 
   return (
     <Container>
@@ -140,12 +161,14 @@ export default function Profile() {
             value={bio}
           />
         ) : (
-          <HeadingLabel
-            text={userInfo?.profile.comment || ''}
-            size={'h3'}
-            type={'dark'}
-            description="한 줄 소개"
-          />
+          <BioAnimated $animate={bioSavedAnim}>
+            <HeadingLabel
+              text={userInfo?.profile.comment || ''}
+              size={'h3'}
+              type={'dark'}
+              description="한 줄 소개"
+            />
+          </BioAnimated>
         )}
       </BioWrapper>
       <RegionWrapper>
@@ -160,8 +183,9 @@ export default function Profile() {
         <CSSTransition
           key={editMode ? 'edit' : 'view'}
           timeout={200}
-          classNames="fade-btn">
-          <ControlButtonWrapper>
+          classNames="fade-btn"
+          nodeRef={currentButtonsRef}>
+          <ControlButtonWrapper ref={currentButtonsRef}>
             {editMode ? (
               <>
                 <IconButton
@@ -187,6 +211,12 @@ export default function Profile() {
                         await requests.updateUserProfile(updatedProfile);
                         setUserInfo({ ...userInfo, profile: updatedProfile });
                         setBio(bio);
+                        // Trigger success animation on bio
+                        setBioSavedAnim(false);
+                        // Allow reflow to restart the animation even if same value saved
+                        requestAnimationFrame(() => setBioSavedAnim(true));
+                        // Stop the animation flag after it runs
+                        setTimeout(() => setBioSavedAnim(false), 900);
                         setEditMode(false);
                       } catch (error) {
                         console.error('Failed to update profile:', error);
