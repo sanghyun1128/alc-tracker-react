@@ -33,10 +33,11 @@ const Input = styled.input<{
   font-family: inherit;
   color: ${props => props.theme.colors.text};
   animation: ${({ $isError }) =>
-    $isError &&
-    css`
-      ${shake} 1.3s
-    `};
+    $isError
+      ? css`
+          ${shake} 1.3s
+        `
+      : 'none'};
 
   &:focus {
     transition: border-bottom 0.8s;
