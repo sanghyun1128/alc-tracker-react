@@ -119,7 +119,7 @@ instance.interceptors.response.use(
       window.location.href = '/login';
     }
 
-    return Promise.resolve({ error: true, originalError: error });
+    return Promise.reject(error);
   },
 );
 export default instance;
