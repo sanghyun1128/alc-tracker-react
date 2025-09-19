@@ -12,7 +12,7 @@ const TextArea = styled.textarea`
   padding: 10px;
   justify-self: center;
   align-self: center;
-  color: ${props => props.theme.colors.textDark};
+  color: ${props => props.theme.colors.text};
 
   &:focus {
     outline: none;

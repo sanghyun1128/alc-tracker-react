@@ -19,7 +19,7 @@ const SelectTrigger = styled.div`
   align-items: center;
   padding: 10px;
   margin: 0;
-  color: ${props => props.theme.colors.textDark};
+  color: ${props => props.theme.colors.text};
   border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.colors.secondary};
   cursor: pointer;
@@ -47,7 +47,7 @@ const SelectOptionList = styled.ul<{
 const SelectOption = styled.li`
   width: 100%;
   padding: 10px;
-  color: ${props => props.theme.colors.textDark};
+  color: ${props => props.theme.colors.text};
   cursor: pointer;
 
   &:hover {

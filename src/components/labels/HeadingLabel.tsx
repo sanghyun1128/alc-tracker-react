@@ -12,8 +12,8 @@ const H1 = styled.h1<{ $type: string }>`
   margin: 0;
   color: ${props =>
     props.$type === 'light'
-      ? props.theme.colors.textLight
-      : props.theme.colors.textDark};
+      ? props.theme.colors.textReverse
+      : props.theme.colors.text};
 `;
 
 const H2 = styled.h2<{ $type: string }>`
@@ -23,8 +23,8 @@ const H2 = styled.h2<{ $type: string }>`
   margin: 0;
   color: ${props =>
     props.$type === 'light'
-      ? props.theme.colors.textLight
-      : props.theme.colors.textDark};
+      ? props.theme.colors.textReverse
+      : props.theme.colors.text};
 `;
 
 const H3 = styled.h3<{ $type: string }>`
@@ -34,8 +34,8 @@ const H3 = styled.h3<{ $type: string }>`
   margin: 0;
   color: ${props =>
     props.$type === 'light'
-      ? props.theme.colors.textLight
-      : props.theme.colors.textDark};
+      ? props.theme.colors.textReverse
+      : props.theme.colors.text};
 `;
 
 interface HeadingLabelProps {

@@ -16,7 +16,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   background-color: ${props => props.theme.colors.formBackground};
-  color: ${props => props.theme.colors.textLight};
+  color: ${props => props.theme.colors.textReverse};
   text-align: center;
   padding: 1rem 0;
   display: grid;

@@ -31,7 +31,7 @@ const Input = styled.input<{
   font-size: 1rem;
   font-weight: bold;
   font-family: inherit;
-  color: ${props => props.theme.colors.textLight};
+  color: ${props => props.theme.colors.textReverse};
   animation: ${({ $isError }) =>
     $isError &&
     css`
@@ -51,6 +51,7 @@ interface TextInputProps {
   hideShowButton: boolean;
   style: React.CSSProperties;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
 /**
@@ -69,6 +70,7 @@ export default function TextInput({
   hideShowButton,
   style,
   onChange,
+  value,
 }: TextInputProps) {
   const [showInput, setShowInput] = useState<boolean>(false);
 
@@ -85,6 +87,7 @@ export default function TextInput({
         maxLength={maxLength}
         $isError={isError}
         onChange={onChange}
+        value={value}
       />
       {hideShowButton && (
         <TextButton

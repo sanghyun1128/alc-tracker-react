@@ -30,7 +30,7 @@ const Input = styled.input<{
   font-size: 1rem;
   font-weight: bold;
   font-family: inherit;
-  color: ${props => props.theme.colors.textLight};
+  color: ${props => props.theme.colors.textReverse};
   animation: ${({ $isError }) =>
     $isError &&
     css`

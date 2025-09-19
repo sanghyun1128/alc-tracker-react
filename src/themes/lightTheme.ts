@@ -18,8 +18,8 @@ export const lightTheme: DefaultTheme = {
     secondaryOn: '#dddddd',
     warning: '#e63946',
 
-    textDark: '#023047',
-    textLight: '#f1faee',
+    text: '#023047',
+    textReverse: '#f1faee',
 
     wineWhite: '#C70039',
     wineWhiteOn: '#900C3F',
