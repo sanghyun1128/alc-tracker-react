@@ -86,6 +86,22 @@ const ControlButtonWrapper = styled.div`
   align-items: center;
 `;
 
+// Subtle success highlight animation for bio after save
+const bioSavedHighlight = keyframes`
+  0% { background-color: rgba(241, 166, 97, 0.35); transform: scale(1.0); }
+  60% { background-color: rgba(241, 166, 97, 0.15); transform: scale(1.02); }
+  100% { background-color: transparent; transform: scale(1.0); }
+`;
+
+const BioAnimated = styled.div<{ $animate: boolean }>`
+  display: inline-block;
+  border-radius: 6px;
+  padding: 2px 4px;
+  animation: ${props => (props.$animate ? bioSavedHighlight : 'none')} 800ms
+    ease-out;
+  transition: ${props => props.theme.transition};
+`;
+
 export default function Profile() {
   const [userInfo, setUserInfo] = useState<UserInfoResponse>();
   const [profileImageSrc, setProfileImageSrc] = useState<string>();
@@ -120,22 +136,6 @@ export default function Profile() {
 
     fetchProfile();
   }, []);
-
-  // Subtle success highlight animation for bio after save
-  const bioSavedHighlight = keyframes`
-    0% { background-color: rgba(241, 166, 97, 0.35); transform: scale(1.0); }
-    60% { background-color: rgba(241, 166, 97, 0.15); transform: scale(1.02); }
-    100% { background-color: transparent; transform: scale(1.0); }
-  `;
-
-  const BioAnimated = styled.div<{ $animate: boolean }>`
-    display: inline-block;
-    border-radius: 6px;
-    padding: 2px 4px;
-    animation: ${props => (props.$animate ? bioSavedHighlight : 'none')} 800ms
-      ease-out;
-    transition: ${props => props.theme.transition};
-  `;
 
   return (
     <Container>
