@@ -8,7 +8,7 @@ import { styled } from 'styled-components';
 import { requests } from '../../../api/requests';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
 import { HeadingLabel, IconButton } from '../../../components';
-import { ProfileResponse } from '../../../types/api/users/ProfileResponse';
+import { UserInfoResponse } from '../../../types/api/users/UserInfoResponse';
 import { getProfileImage } from '../../../utils/profileImage';
 import CountryFlagIcon from '../components/CountryFlagIcon';
 
@@ -87,7 +87,7 @@ const ControlButtonWrapper = styled.div`
 `;
 
 export default function Profile() {
-  const [profile, setProfile] = useState<ProfileResponse>();
+  const [userInfo, setUserInfo] = useState<UserInfoResponse>();
   const [profileImageSrc, setProfileImageSrc] = useState<string>();
   const [editMode, setEditMode] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -97,7 +97,7 @@ export default function Profile() {
       try {
         const response = await requests.getMyProfile();
         console.log('🚀 ~ fetchProfile ~ response:', response);
-        setProfile(response.data);
+        setUserInfo(response.data);
 
         if (response.data.profile.image) {
           const imagePath = response.data.profile.image.path;
@@ -121,21 +121,21 @@ export default function Profile() {
       </ProfileImageWrapper>
       <NicknameWrapper>
         <HeadingLabel
-          text={profile?.nickname || ''}
+          text={userInfo?.nickname || ''}
           size={'h1'}
           type={'dark'}
         />{' '}
       </NicknameWrapper>
       <BioWrapper>
         <HeadingLabel
-          text={profile?.profile.comment || ''}
+          text={userInfo?.profile.comment || ''}
           size={'h3'}
           type={'dark'}
         />
       </BioWrapper>
       <RegionWrapper>
         <CountryFlagIcon
-          region={profile?.profile.regionISOAlpha2 || ''}
+          region={userInfo?.profile.regionISOAlpha2 || ''}
           size={30}
           description="거주 국가"
         />

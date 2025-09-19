@@ -1,6 +1,6 @@
 import { ImageResponse } from '../common/ImageResponse';
 
-export interface ProfileResponse {
+export interface UserInfoResponse {
   id: string;
   index: number;
   nickname: string;
