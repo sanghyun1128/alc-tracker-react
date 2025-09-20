@@ -19,7 +19,7 @@ const Container = styled.div<{ $isClosing: boolean }>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${props => props.theme.colors.dim};
   display: flex;
   justify-content: center;
   align-items: center;

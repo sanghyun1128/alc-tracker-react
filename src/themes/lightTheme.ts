@@ -11,6 +11,7 @@ export const lightTheme: DefaultTheme = {
   colors: {
     background: '#FDEEDC',
     componentBackground: '#ffffff',
+    dim: 'rgba(0, 0, 0, 0.6)',
 
     primary: '#F1A661',
     primaryOn: '#FFD8A9',

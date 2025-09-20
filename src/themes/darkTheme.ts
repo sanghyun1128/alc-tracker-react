@@ -11,6 +11,7 @@ export const darkTheme: DefaultTheme = {
   colors: {
     background: '#222831',
     componentBackground: '#000000',
+    dim: 'rgba(0, 0, 0, 0.6)',
 
     primary: '#F1A661',
     primaryOn: '#FFD8A9',
