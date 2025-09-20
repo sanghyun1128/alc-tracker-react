@@ -1,5 +1,5 @@
 import IconButton from './buttons/IconButton';
-import SubmitButton from './buttons/SubmitButton';
+import SquareButton from './buttons/SquareButton';
 import TextButton from './buttons/TextButton';
 import CardView from './cards/CardView';
 import EmptyView from './cards/EmptyView';
@@ -23,7 +23,7 @@ import DotPagination from './navigation/DotPagination';
 import NavigationBar from './navigation/NavigationBar';
 
 // Button Components
-export { TextButton, IconButton, SubmitButton };
+export { TextButton, IconButton, SquareButton };
 
 // Card Components
 export { EmptyView, CardView, ReviewCard };
