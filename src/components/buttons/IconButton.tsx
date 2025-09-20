@@ -14,10 +14,8 @@ const Button = styled.button<{
   justify-content: center;
 
   border: none;
-  margin: ${props => props.theme.margin};
   background: none;
   cursor: pointer;
-  padding: 10px;
   border-radius: 50%;
   background-color: ${props =>
     props.$buttonColor === 'primary'
