@@ -209,8 +209,8 @@ export default function Profile() {
 
       {errorModalOpen && (
         <NotificationModal
-          title="저장 실패"
-          message={errorMessage || '프로필 저장에 실패했습니다.'}
+          title="경고"
+          message={errorMessage || '에러가 발생했습니다.'}
           confirmText="확인"
           onClose={() => setErrorModalOpen(false)}
         />
