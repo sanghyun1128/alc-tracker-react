@@ -50,7 +50,6 @@ interface HeadingLabelProps {
  * @param {String} props.text text to be displayed
  * @param {String} props.size size of the text 'h1' | 'h2' | 'h3'
  * @param {String} props.type color of the text 'light' | 'dark'
- * @param {Object} props.style React.CSSProperties to be applied to the text
  */
 export default function HeadingLabel({
   text,
