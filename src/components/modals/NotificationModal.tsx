@@ -11,13 +11,6 @@ import {
 import IconButton from '../buttons/IconButton';
 import TextButton from '../buttons/TextButton';
 
-interface NotificationModalProps {
-  title?: string;
-  message: string;
-  confirmText?: string;
-  onClose: () => void;
-}
-
 const Container = styled.div<{ $isClosing: boolean }>`
   width: 100vw;
   height: 100vh;
@@ -31,7 +24,10 @@ const Container = styled.div<{ $isClosing: boolean }>`
   justify-content: center;
   align-items: center;
 
-  animation: ${props => (props.$isClosing ? fadeOut : fadeIn)} 300ms ease;
+  will-change: opacity;
+  pointer-events: ${props => (props.$isClosing ? 'none' : 'auto')};
+  animation: ${props => (props.$isClosing ? fadeOut : fadeIn)} 300ms ease
+    forwards;
 `;
 
 const Modal = styled.div<{ $isClosing: boolean }>`
@@ -44,9 +40,10 @@ const Modal = styled.div<{ $isClosing: boolean }>`
   grid-template-rows: auto auto;
   gap: 8px;
 
+  will-change: transform, opacity;
   animation: ${props =>
       props.$isClosing ? fadeOutCenterToBottom : fadeInBottomToCenter}
-    300ms ease;
+    300ms ease forwards;
 `;
 
 const Title = styled.h3`
@@ -69,6 +66,13 @@ const Footer = styled.div`
   justify-content: flex-end;
   gap: 8px;
 `;
+
+interface NotificationModalProps {
+  title?: string;
+  message: string;
+  confirmText?: string;
+  onClose: () => void;
+}
 
 export default function NotificationModal({
   title = '알림',
