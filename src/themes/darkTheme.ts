@@ -6,7 +6,9 @@ export const darkTheme: DefaultTheme = {
   margin: '10px',
   gap: '10px',
   padding: '10px',
-  transition: '0.3s ease-in-out',
+  transition: '0.2s ease-in-out',
+  hoverFilter: 'brightness(0.88)',
+  focusBoxShadow: '0 0 0 3px #F1A661',
 
   colors: {
     background: '#222831',
@@ -14,9 +16,8 @@ export const darkTheme: DefaultTheme = {
     dim: 'rgba(0, 0, 0, 0.6)',
 
     primary: '#F1A661',
-    primaryOn: '#FFD8A9',
     secondary: '#eeeeee',
-    secondaryOn: '#dddddd',
+    success: '#06d6a0',
     warning: '#e63946',
 
     text: '#f1faee',
