@@ -8,10 +8,17 @@ import {
   fadeOut,
   fadeOutCenterToBottom,
 } from '../../animations/basicAnimations';
-import IconButton from '../buttons/IconButton';
-import TextButton from '../buttons/TextButton';
+import SquareButton from '../buttons/SquareButton';
+import HeadingLabel from '../labels/HeadingLabel';
 
+//TODO: animation 최적화 필요
 const Container = styled.div<{ $isClosing: boolean }>`
+  /* Layout */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Box model / positioning */
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -19,65 +26,101 @@ const Container = styled.div<{ $isClosing: boolean }>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${props => props.theme.colors.dim};
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  will-change: opacity;
+  /* Visuals */
+  background-color: ${props => props.theme.colors.dim};
+
+  /* Interaction */
   pointer-events: ${props => (props.$isClosing ? 'none' : 'auto')};
+
+  /* Animation */
   animation: ${props => (props.$isClosing ? fadeOut : fadeIn)} 300ms ease
     forwards;
 `;
 
 const Modal = styled.div<{ $isClosing: boolean }>`
-  width: min(420px, 85%);
-  background-color: ${props => props.theme.colors.componentBackground};
-  border-radius: ${props => props.theme.borderRadius};
-  padding: 16px 16px 12px;
+  /* Layout */
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
-  gap: 8px;
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
 
-  will-change: transform, opacity;
+  /* Box model */
+  width: min(420px, 85%);
+  height: 200px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: ${props => props.theme.borderRadius};
+
+  /* Visuals */
+  background-color: ${props => props.theme.colors.componentBackground};
+
+  /* Animation */
   animation: ${props =>
       props.$isClosing ? fadeOutCenterToBottom : fadeInBottomToCenter}
     300ms ease forwards;
 `;
 
-const Title = styled.h3`
-  margin: 0;
-  font-size: 1rem;
-  font-weight: bold;
-  color: ${props => props.theme.colors.text};
+const Header = styled.div`
+  /* Layout */
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Box model */
+  width: 100%;
+  height: 100%;
 `;
 
-const Message = styled.p`
-  margin: 0;
-  grid-column: 1 / 3;
-  color: ${props => props.theme.colors.text};
-  font-size: 0.9rem;
+const Body = styled.div`
+  /* Layout */
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Box model */
+  width: 100%;
+  height: 100%;
 `;
 
 const Footer = styled.div`
-  grid-column: 1 / 3;
+  /* Layout */
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
   display: flex;
-  justify-content: flex-end;
-  gap: 8px;
+  justify-content: center;
+  align-items: center;
+
+  /* Box model */
+  width: 100%;
+  height: 100%;
+  margin-bottom: ${props => props.theme.margin};
 `;
 
 interface NotificationModalProps {
-  title?: string;
+  title: string;
   message: string;
-  confirmText?: string;
+  confirmText: string;
   onClose: () => void;
 }
 
+/**
+ * NotificationModal component to display alert messages.
+ *
+ * @param {String} props.title title of the modal
+ * @param {String} props.message message to be displayed in the modal
+ * @param {String} props.confirmText text to be displayed on the confirm button
+ * @param {Function} props.onClose function to be called when the modal is closed
+ */
 export default function NotificationModal({
-  title = '알림',
+  title,
   message,
-  confirmText = '확인',
+  confirmText,
   onClose,
 }: NotificationModalProps) {
   const [isClosing, setIsClosing] = useState(false);
@@ -90,16 +133,19 @@ export default function NotificationModal({
   return (
     <Container $isClosing={isClosing} role="dialog" aria-modal="true">
       <Modal $isClosing={isClosing}>
-        <Title>{title}</Title>
-        <IconButton
-          icon="CLOSE"
-          size={18}
-          buttonColor="transparent"
-          onClick={close}
-        />
-        <Message>{message}</Message>
+        <Header>
+          <HeadingLabel text={title} size={'h2'} type={'dark'} />
+        </Header>
+        <Body>
+          <HeadingLabel text={message} size={'h3'} type={'dark'} />
+        </Body>
         <Footer>
-          <TextButton text={confirmText} onClick={close} style={{}} />
+          <SquareButton
+            text={confirmText}
+            size="medium"
+            intent="warning"
+            onClick={close}
+          />
         </Footer>
       </Modal>
     </Container>
