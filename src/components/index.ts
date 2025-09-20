@@ -18,6 +18,7 @@ import IconLabel from './labels/IconLabel';
 import SimpleLabel from './labels/SimpleLabel';
 import LottieContainer from './layout/LottieContainer';
 import ItemInputModal from './modals/ItemInputModal';
+import NotificationModal from './modals/NotificationModal';
 import DotPagination from './navigation/DotPagination';
 import NavigationBar from './navigation/NavigationBar';
 
@@ -40,7 +41,7 @@ export { IconLabel, HeadingLabel, SimpleLabel, FiveStarLabel };
 export { LottieContainer };
 
 // Modal Components
-export { ItemInputModal };
+export { ItemInputModal, NotificationModal };
 
 // Navigation Components
 export { DotPagination, NavigationBar };

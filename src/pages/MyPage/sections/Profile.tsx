@@ -7,7 +7,12 @@ import { styled, keyframes } from 'styled-components';
 
 import { requests } from '../../../api/requests';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
-import { HeadingLabel, IconButton, TextInput } from '../../../components';
+import {
+  HeadingLabel,
+  IconButton,
+  TextInput,
+  NotificationModal,
+} from '../../../components';
 import { UserInfoResponse } from '../../../types/api/users/UserInfoResponse';
 import { getProfileImage } from '../../../utils/profileImage';
 import CountryFlagIcon from '../components/CountryFlagIcon';
@@ -129,6 +134,8 @@ export default function Profile() {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [bio, setBio] = useState<string>('');
   const [bioSavedAnim, setBioSavedAnim] = useState<boolean>(false);
+  const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
   // Separate refs for SwitchTransition states to comply with react-transition-group nodeRef API
   const editButtonsRef = useRef<HTMLDivElement | null>(null);
@@ -200,6 +207,15 @@ export default function Profile() {
         />
       </RegionWrapper>
 
+      {errorModalOpen && (
+        <NotificationModal
+          title="저장 실패"
+          message={errorMessage || '프로필 저장에 실패했습니다.'}
+          confirmText="확인"
+          onClose={() => setErrorModalOpen(false)}
+        />
+      )}
+
       <SwitchTransition>
         <CSSTransition
           key={editMode ? 'edit' : 'view'}
@@ -241,8 +257,13 @@ export default function Profile() {
                         const total = 500 + 25 * Math.max(0, len - 1) + 150; // base + per-char stagger + buffer
                         setTimeout(() => setBioSavedAnim(false), total);
                         setEditMode(false);
-                      } catch (error) {
-                        console.error('Failed to update profile:', error);
+                      } catch (error: any) {
+                        const msg =
+                          error?.response?.data?.message ||
+                          error?.message ||
+                          '요청 처리 중 오류가 발생했습니다.';
+                        setErrorMessage(msg);
+                        setErrorModalOpen(true);
                       }
                     }
                   }}
