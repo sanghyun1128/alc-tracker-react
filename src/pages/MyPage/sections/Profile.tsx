@@ -216,78 +216,70 @@ export default function Profile() {
         />
       )}
 
-      <SwitchTransition>
-        <CSSTransition
-          key={editMode ? 'edit' : 'view'}
-          timeout={200}
-          classNames="fade-btn"
-          nodeRef={currentButtonsRef}>
-          <ControlButtonWrapper ref={currentButtonsRef}>
-            {editMode ? (
-              <>
-                <IconButton
-                  icon="CLOSE"
-                  size={20}
-                  buttonColor="transparent"
-                  onClick={e => {
+      <ControlButtonWrapper ref={currentButtonsRef}>
+        {editMode ? (
+          <>
+            <IconButton
+              icon="CLOSE"
+              size={20}
+              buttonColor="transparent"
+              onClick={e => {
+                setEditMode(false);
+                setBio(userInfo?.profile.comment || '');
+              }}
+            />
+            <IconButton
+              icon="SAVE"
+              size={20}
+              buttonColor="transparent"
+              onClick={async () => {
+                if (userInfo) {
+                  try {
+                    const updatedProfile = {
+                      ...userInfo.profile,
+                      comment: bio,
+                    };
+                    await requests.updateUserProfile(updatedProfile);
+                    setUserInfo({ ...userInfo, profile: updatedProfile });
+                    setBio(bio);
+                    // Trigger per-character reveal animation on bio
+                    setBioSavedAnim(false);
+                    // Allow reflow to restart the animation even if same value saved
+                    requestAnimationFrame(() => setBioSavedAnim(true));
+                    // Compute total animation time based on text length
+                    const len = (updatedProfile.comment || '').length;
+                    const total = 500 + 25 * Math.max(0, len - 1) + 150; // base + per-char stagger + buffer
+                    setTimeout(() => setBioSavedAnim(false), total);
                     setEditMode(false);
-                    setBio(userInfo?.profile.comment || '');
-                  }}
-                />
-                <IconButton
-                  icon="SAVE"
-                  size={20}
-                  buttonColor="transparent"
-                  onClick={async () => {
-                    if (userInfo) {
-                      try {
-                        const updatedProfile = {
-                          ...userInfo.profile,
-                          comment: bio,
-                        };
-                        await requests.updateUserProfile(updatedProfile);
-                        setUserInfo({ ...userInfo, profile: updatedProfile });
-                        setBio(bio);
-                        // Trigger per-character reveal animation on bio
-                        setBioSavedAnim(false);
-                        // Allow reflow to restart the animation even if same value saved
-                        requestAnimationFrame(() => setBioSavedAnim(true));
-                        // Compute total animation time based on text length
-                        const len = (updatedProfile.comment || '').length;
-                        const total = 500 + 25 * Math.max(0, len - 1) + 150; // base + per-char stagger + buffer
-                        setTimeout(() => setBioSavedAnim(false), total);
-                        setEditMode(false);
-                      } catch (error: any) {
-                        const msg =
-                          error?.response?.data?.message ||
-                          error?.message ||
-                          '요청 처리 중 오류가 발생했습니다.';
-                        setErrorMessage(msg);
-                        setErrorModalOpen(true);
-                      }
-                    }
-                  }}
-                />
-              </>
-            ) : (
-              <>
-                <IconButton
-                  icon="EDIT"
-                  size={20}
-                  buttonColor="transparent"
-                  onClick={e => setEditMode(true)}
-                />
-                <IconButton
-                  icon="SETTING"
-                  size={20}
-                  buttonColor="transparent"
-                  onClick={e => console.log('Button clicked', e)}
-                />
-              </>
-            )}
-          </ControlButtonWrapper>
-        </CSSTransition>
-      </SwitchTransition>
+                  } catch (error: any) {
+                    const msg =
+                      error?.response?.data?.message ||
+                      error?.message ||
+                      '요청 처리 중 오류가 발생했습니다.';
+                    setErrorMessage(msg);
+                    setErrorModalOpen(true);
+                  }
+                }
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <IconButton
+              icon="EDIT"
+              size={20}
+              buttonColor="transparent"
+              onClick={e => setEditMode(true)}
+            />
+            <IconButton
+              icon="SETTING"
+              size={20}
+              buttonColor="transparent"
+              onClick={e => console.log('Button clicked', e)}
+            />
+          </>
+        )}
+      </ControlButtonWrapper>
     </Container>
   );
 }
