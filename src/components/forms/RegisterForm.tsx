@@ -6,7 +6,7 @@ import styled, { DefaultTheme } from 'styled-components';
 import {
   TextInput,
   DatePicker,
-  SubmitButton,
+  SquareButton,
   TextButton,
   Selector,
   SimpleLabel,
@@ -220,9 +220,12 @@ export default function RegisterForm({ theme }: RegisterFormProps) {
         hideShowButton={true}
         onChange={handleInputChange}
       />
-      <SubmitButton
+      <SquareButton
+        type="submit"
         text="Register"
-        style={{ gridColumn: '2 / 6', gridRow: '8 / 9' }}
+        size="large"
+        intent="primary"
+        onClick={() => {}}
       />
       <TextButton
         text="Already have an account?"

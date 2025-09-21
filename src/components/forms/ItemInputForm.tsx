@@ -8,7 +8,7 @@ import {
   Selector,
   SimpleLabel,
   FiveStarInput,
-  SubmitButton,
+  SquareButton,
 } from '..';
 import { itemInputFormReducer } from '../../reducers/itemInputFormReducer';
 import { Alcohol, AlcoholList, SubtypeList } from '../../types/const';
@@ -263,9 +263,12 @@ export default function ItemInputForm({
         onChange={handleInputChange}
       />
 
-      <SubmitButton
+      <SquareButton
+        type="submit"
         text="Add Item"
-        style={{ gridColumn: '5 / 7', gridRow: '9 / 11' }}
+        size="large"
+        intent="primary"
+        onClick={() => {}}
       />
     </Form>
   );

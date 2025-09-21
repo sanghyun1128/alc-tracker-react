@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { TextInput, SubmitButton, TextButton } from '..';
+import { TextInput, SquareButton, TextButton } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
 import { requests } from '../../api/requests';
 import { deviceSizes } from '../../const/deviceSizes';
@@ -134,9 +134,12 @@ export default function LoginForm({ theme }: LoginFormProps) {
         }}
         onClick={() => navigate('/register')}
       />
-      <SubmitButton
+      <SquareButton
+        type="submit"
         text="Log In"
-        style={{ gridColumn: '2 / 5', gridRow: '3 / 4' }}
+        size="medium"
+        intent="primary"
+        onClick={() => {}}
       />
     </Form>
   );
