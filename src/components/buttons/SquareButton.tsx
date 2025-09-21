@@ -82,6 +82,7 @@ const Button = styled.button<{
 `;
 
 interface SquareButtonProps {
+  type?: 'button' | 'submit' | 'reset';
   text: string;
   size: 'small' | 'medium' | 'large';
   intent: 'primary' | 'secondary' | 'success' | 'warning';
@@ -91,19 +92,21 @@ interface SquareButtonProps {
 /**
  * Square shaped button component
  *
+ * @param {String} props.type button type (button, submit, reset)
  * @param {String} props.text text to be displayed on the button
  * @param {String} props.size size of the button (small, medium, large)
  * @param {String} props.intent intent of the button (primary, secondary, success, error, warning)
  * @param {Function} props.onClick function to be called on button click
  */
 export default function SquareButton({
+  type = 'button',
   text,
   size,
   intent,
   onClick,
 }: SquareButtonProps) {
   return (
-    <Button size={size} intent={intent} onClick={e => onClick(e)}>
+    <Button type={type} size={size} intent={intent} onClick={e => onClick(e)}>
       {text}
     </Button>
   );
