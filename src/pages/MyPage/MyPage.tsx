@@ -14,7 +14,6 @@ const Container = styled.div`
   width: 100dvw;
 
   padding: ${props => props.theme.padding};
-  box-sizing: border-box;
 
   overflow: hidden;
 `;

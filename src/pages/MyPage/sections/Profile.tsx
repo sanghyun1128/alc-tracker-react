@@ -31,7 +31,6 @@ const Container = styled.div`
 
   background-color: ${props => props.theme.colors.componentBackground};
   border-radius: ${props => props.theme.borderRadius};
-  box-sizing: border-box;
 
   overflow: hidden;
 `;
