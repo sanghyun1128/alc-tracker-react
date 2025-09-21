@@ -11,15 +11,15 @@ export const darkTheme: DefaultTheme = {
   focusBoxShadow: '0 0 0 3px #F1A661',
 
   colors: {
+    dim: 'rgba(0, 0, 0, 0.6)',
+
     background: '#222831',
     componentBackground: '#000000',
-    dim: 'rgba(0, 0, 0, 0.6)',
 
     primary: '#F1A661',
     secondary: '#eeeeee',
     success: '#06d6a0',
     warning: '#e63946',
-
     text: '#f1faee',
     textReverse: '#023047',
 

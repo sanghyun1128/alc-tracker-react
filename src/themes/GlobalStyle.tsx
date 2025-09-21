@@ -6,13 +6,22 @@ export const GlobalStyle = createGlobalStyle`
     --color-text-reverse: ${props => props.theme.colors.textReverse};
     --color-primary: ${props => props.theme.colors.primary};
     --color-secondary: ${props => props.theme.colors.secondary};
+    --color-success: ${props => props.theme.colors.success};
+    --color-warning: ${props => props.theme.colors.warning};
   }
-  
+
+  html {
+    box-sizing: border-box;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+
   body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     background-color: ${props => props.theme.colors.background};
+    color: var(--color-text);
     font-family:
     system-ui,
     -apple-system,
