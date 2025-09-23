@@ -15,6 +15,7 @@ export const darkTheme: DefaultTheme = {
 
     background: '#222831',
     componentBackground: '#000000',
+    inputBackground: '#393E46',
 
     primary: '#F1A661',
     secondary: '#eeeeee',

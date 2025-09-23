@@ -15,6 +15,7 @@ export const lightTheme: DefaultTheme = {
 
     background: '#FDEEDC',
     componentBackground: '#ffffff',
+    inputBackground: '#FDEEDC',
 
     primary: '#F1A661',
     secondary: '#eeeeee',
