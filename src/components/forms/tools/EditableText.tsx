@@ -1,14 +1,49 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import TextUpdateAnimation from '../../../animations/TextUpdateAnimation';
-import TextInput from './TextInput';
 
 const DisplayText = styled.span`
+  /* Layout */
+  display: inline-block;
+
+  /* Box model */
   margin: 0;
-  font-weight: bold;
+
+  /* Typography */
   font-family: inherit;
+  font-weight: bold;
+  color: ${props => props.theme.colors.text};
+`;
+
+const InlineInput = styled.input`
+  /* Layout */
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+
+  /* Box model */
+  box-sizing: border-box;
+  margin: 0;
+  padding: ${props => props.theme.padding};
+  border: none;
+  border-radius: ${props => props.theme.borderRadius};
+
+  /* Visuals */
+  background-color: ${props => props.theme.colors.inputBackground};
+
+  /* Typography */
+  color: ${props => props.theme.colors.text};
+  font: inherit; /* size, family */
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+
+  /* Interaction */
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
 `;
 
 export interface EditableTextProps {
@@ -25,14 +60,14 @@ export interface EditableTextProps {
  * EditableText switches between a TextInput (edit mode) and an animated text view.
  * Animation plays after exiting edit mode only when the saved value actually changed.
  *
- * @params {EditableTextProps} props
- * @params {String} props.value - The saved value to display in view mode.
- * @params {String} props.draftValue - The draft value to display in edit mode.
- * @params {Boolean} props.editing - Flag indicating whether the component is in edit mode.
- * @params {String} props.placeholder - Placeholder text to show when editing and the draft is empty.
- * @params {Number} props.maxLength - Maximum length for the input while editing. Default is 100.
- * @params {React.ElementType} props.as - The HTML element or React component to render the text as in view mode.
- * @params {Function} props.onDraftChange - Callback function to handle changes to the draft value.
+ * @param {EditableTextProps} props
+ * @param {String} props.value - The saved value to display in view mode.
+ * @param {String} props.draftValue - The draft value to display in edit mode.
+ * @param {Boolean} props.editing - Flag indicating whether the component is in edit mode.
+ * @param {String} props.placeholder - Placeholder text to show when editing and the draft is empty.
+ * @param {Number} props.maxLength - Maximum length for the input while editing. Default is 100.
+ * @param {React.ElementType} props.as - The HTML element or React component to render the text as in view mode.
+ * @param {Function} props.onDraftChange - Callback function to handle changes to the draft value.
  */
 export default function EditableText({
   value,
@@ -73,15 +108,14 @@ export default function EditableText({
 
   if (editing) {
     return (
-      <TextInput
-        placeholder={placeholder}
-        maxLength={maxLength}
-        isError={false}
-        hideShowButton={false}
-        style={{}}
-        onChange={e => onDraftChange(e.target.value)}
-        value={draftValue}
-      />
+      <DisplayText as={as}>
+        <InlineInput
+          placeholder={placeholder}
+          maxLength={maxLength}
+          value={draftValue}
+          onChange={e => onDraftChange(e.target.value)}
+        />
+      </DisplayText>
     );
   }
 
