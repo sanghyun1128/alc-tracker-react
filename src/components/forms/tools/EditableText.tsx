@@ -25,13 +25,14 @@ export interface EditableTextProps {
  * EditableText switches between a TextInput (edit mode) and an animated text view.
  * Animation plays after exiting edit mode only when the saved value actually changed.
  *
- * @Props {String} value - The saved value to display in view mode.
- * @Props {String} draftValue - The draft value to display in edit mode.
- * @Props {Boolean} editing - Flag indicating whether the component is in edit mode.
- * @Props {String} placeholder - Placeholder text to show when editing and the draft is empty.
- * @Props {Number} maxLength - Maximum length for the input while editing. Default is 100.
- * @Props {React.ElementType} as - The HTML element or React component to render the text as in view mode.
- * @Props {Function} onDraftChange - Callback function to handle changes to the draft value.
+ * @params {EditableTextProps} props
+ * @params {String} props.value - The saved value to display in view mode.
+ * @params {String} props.draftValue - The draft value to display in edit mode.
+ * @params {Boolean} props.editing - Flag indicating whether the component is in edit mode.
+ * @params {String} props.placeholder - Placeholder text to show when editing and the draft is empty.
+ * @params {Number} props.maxLength - Maximum length for the input while editing. Default is 100.
+ * @params {React.ElementType} props.as - The HTML element or React component to render the text as in view mode.
+ * @params {Function} props.onDraftChange - Callback function to handle changes to the draft value.
  */
 export default function EditableText({
   value,
