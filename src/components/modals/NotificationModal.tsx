@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -9,7 +9,6 @@ import {
   fadeOutCenterToBottom,
 } from '../../animations/basicAnimations';
 import SquareButton from '../buttons/SquareButton';
-import HeadingLabel from '../labels/HeadingLabel';
 
 //TODO: animation 최적화 필요
 const Container = styled.div<{ $isClosing: boolean }>`
@@ -41,16 +40,15 @@ const Container = styled.div<{ $isClosing: boolean }>`
 const Modal = styled.div<{ $isClosing: boolean }>`
   /* Layout */
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-rows: 1fr auto 1fr;
   grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
 
   /* Box model */
   width: min(420px, 85%);
-  height: 200px;
-  padding: 0 10px;
-  box-sizing: border-box;
+  height: auto;
+  padding: 0 ${props => props.theme.padding};
   border-radius: ${props => props.theme.borderRadius};
 
   /* Visuals */
@@ -62,7 +60,7 @@ const Modal = styled.div<{ $isClosing: boolean }>`
     300ms ease forwards;
 `;
 
-const Header = styled.div`
+const Header = styled.header`
   /* Layout */
   grid-row: 1 / 2;
   grid-column: 1 / 2;
@@ -75,7 +73,7 @@ const Header = styled.div`
   height: 100%;
 `;
 
-const Body = styled.div`
+const Message = styled.section`
   /* Layout */
   grid-row: 2 / 3;
   grid-column: 1 / 2;
@@ -88,7 +86,7 @@ const Body = styled.div`
   height: 100%;
 `;
 
-const Footer = styled.div`
+const Footer = styled.footer`
   /* Layout */
   grid-row: 3 / 4;
   grid-column: 1 / 2;
@@ -100,6 +98,7 @@ const Footer = styled.div`
   width: 100%;
   height: 100%;
   margin-bottom: ${props => props.theme.margin};
+  margin-top: ${props => props.theme.margin};
 `;
 
 interface NotificationModalProps {
@@ -124,6 +123,8 @@ export default function NotificationModal({
   onClose,
 }: NotificationModalProps) {
   const [isClosing, setIsClosing] = useState(false);
+  const titleId = useId();
+  const messageId = useId();
 
   const close = () => {
     setIsClosing(true);
@@ -131,14 +132,19 @@ export default function NotificationModal({
   };
 
   return (
-    <Container $isClosing={isClosing} role="dialog" aria-modal="true">
-      <Modal $isClosing={isClosing}>
+    <Container $isClosing={isClosing}>
+      <Modal
+        $isClosing={isClosing}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={messageId}>
         <Header>
-          <HeadingLabel text={title} size={'h2'} type={'dark'} />
+          <h3 id={titleId}>{title}</h3>
         </Header>
-        <Body>
-          <HeadingLabel text={message} size={'h3'} type={'dark'} />
-        </Body>
+        <Message>
+          <p id={messageId}>{message}</p>
+        </Message>
         <Footer>
           <SquareButton
             text={confirmText}
