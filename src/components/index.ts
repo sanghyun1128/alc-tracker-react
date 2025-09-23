@@ -8,6 +8,7 @@ import ItemInputForm from './forms/ItemInputForm';
 import LoginForm from './forms/LoginForm';
 import RegisterForm from './forms/RegisterForm';
 import DatePicker from './forms/tools/DatePicker';
+import EditableText from './forms/tools/EditableText';
 import FiveStarInput from './forms/tools/FiveStarInput';
 import MultiLineInput from './forms/tools/MultiLineInput';
 import Selector from './forms/tools/Selector';
@@ -32,7 +33,14 @@ export { EmptyView, CardView, ReviewCard };
 export { LoginForm, RegisterForm, ItemInputForm };
 
 // Form Tools Components
-export { DatePicker, TextInput, Selector, FiveStarInput, MultiLineInput };
+export {
+  DatePicker,
+  TextInput,
+  Selector,
+  FiveStarInput,
+  MultiLineInput,
+  EditableText,
+};
 
 // Label Components
 export { IconLabel, HeadingLabel, SimpleLabel, FiveStarLabel };
