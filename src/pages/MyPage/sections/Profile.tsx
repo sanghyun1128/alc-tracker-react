@@ -2,17 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import 'react-tooltip/dist/react-tooltip.css';
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import { styled, keyframes } from 'styled-components';
+import { styled } from 'styled-components';
 
+import TextUpdateAnimation from '../../../animations/TextUpdateAnimation';
 import { requests } from '../../../api/requests';
 import defaultProfileImage from '../../../assets/image/default-profile.png';
-import {
-  HeadingLabel,
-  IconButton,
-  TextInput,
-  NotificationModal,
-} from '../../../components';
+import { IconButton, TextInput, NotificationModal } from '../../../components';
 import { UserInfoResponse } from '../../../types/api/users/UserInfoResponse';
 import { getProfileImage } from '../../../utils/profileImage';
 import CountryFlagIcon from '../components/CountryFlagIcon';
@@ -90,43 +85,6 @@ const ControlButtonWrapper = styled.div`
   align-items: center;
 `;
 
-// Per-character reveal animation for bio after save
-const charReveal = keyframes`
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
-const BioTextLine = styled.h3`
-  font-size: 0.9rem;
-  font-weight: bold;
-  font-family: inherit;
-  margin: 0;
-  color: ${props => props.theme.colors.text};
-`;
-
-const Char = styled.span<{ $delay: number }>`
-  opacity: 0;
-  display: inline-block;
-  white-space: pre; /* preserve spaces */
-  animation: ${charReveal} 500ms ease-out forwards;
-  animation-delay: ${props => props.$delay}ms;
-`;
-
-function AnimatedBio({ text }: { text: string }) {
-  // 25ms stagger per character keeps the effect subtle
-  const stagger = 25;
-  const chars = Array.from(text || '');
-  return (
-    <BioTextLine aria-live="polite">
-      {chars.map((ch, i) => (
-        <Char key={`${ch}-${i}`} $delay={i * stagger}>
-          {ch}
-        </Char>
-      ))}
-    </BioTextLine>
-  );
-}
-
 export default function Profile() {
   const [userInfo, setUserInfo] = useState<UserInfoResponse>();
   const [profileImageSrc, setProfileImageSrc] = useState<string>();
@@ -136,7 +94,7 @@ export default function Profile() {
   const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
-  // Separate refs for SwitchTransition states to comply with react-transition-group nodeRef API
+
   const editButtonsRef = useRef<HTMLDivElement | null>(null);
   const viewButtonsRef = useRef<HTMLDivElement | null>(null);
   const currentButtonsRef = editMode ? editButtonsRef : viewButtonsRef;
@@ -164,17 +122,43 @@ export default function Profile() {
     fetchProfile();
   }, []);
 
+  const saveButtonOnClick = async () => {
+    if (userInfo) {
+      try {
+        const updatedProfile = {
+          ...userInfo.profile,
+          comment: bio,
+        };
+        await requests.updateUserProfile(updatedProfile);
+        setUserInfo({ ...userInfo, profile: updatedProfile });
+        setBio(bio);
+        // Trigger per-character reveal animation on bio
+        setBioSavedAnim(false);
+        // Allow reflow to restart the animation even if same value saved
+        requestAnimationFrame(() => setBioSavedAnim(true));
+        // Compute total animation time based on text length
+        const len = (updatedProfile.comment || '').length;
+        const total = 500 + 25 * Math.max(0, len - 1) + 150; // base + per-char stagger + buffer
+        setTimeout(() => setBioSavedAnim(false), total);
+        setEditMode(false);
+      } catch (error: any) {
+        const msg =
+          error?.response?.data?.message ||
+          error?.message ||
+          '요청 처리 중 오류가 발생했습니다.';
+        setErrorMessage(msg);
+        setErrorModalOpen(true);
+      }
+    }
+  };
+
   return (
     <Container>
       <ProfileImageWrapper>
         <ProfileImage src={profileImageSrc || defaultProfileImage} />
       </ProfileImageWrapper>
       <NicknameWrapper>
-        <HeadingLabel
-          text={userInfo?.nickname || ''}
-          size={'h1'}
-          type={'dark'}
-        />
+        <h2>{userInfo?.nickname || '닉네임 없음'}</h2>
       </NicknameWrapper>
       <BioWrapper>
         {editMode ? (
@@ -188,14 +172,12 @@ export default function Profile() {
             value={bio}
           />
         ) : bioSavedAnim ? (
-          <AnimatedBio text={userInfo?.profile.comment || ''} />
-        ) : (
-          <HeadingLabel
+          <TextUpdateAnimation
             text={userInfo?.profile.comment || ''}
-            size={'h3'}
-            type={'dark'}
-            description="한 줄 소개"
+            as={'h5'}
           />
+        ) : (
+          <h5>{userInfo?.profile.comment || ''}</h5>
         )}
       </BioWrapper>
       <RegionWrapper>
@@ -208,7 +190,7 @@ export default function Profile() {
 
       {errorModalOpen && (
         <NotificationModal
-          title="경고"
+          title="오류"
           message={errorMessage || '에러가 발생했습니다.'}
           confirmText="확인"
           onClose={() => setErrorModalOpen(false)}
@@ -231,35 +213,7 @@ export default function Profile() {
               icon="SAVE"
               size={20}
               buttonColor="transparent"
-              onClick={async () => {
-                if (userInfo) {
-                  try {
-                    const updatedProfile = {
-                      ...userInfo.profile,
-                      comment: bio,
-                    };
-                    await requests.updateUserProfile(updatedProfile);
-                    setUserInfo({ ...userInfo, profile: updatedProfile });
-                    setBio(bio);
-                    // Trigger per-character reveal animation on bio
-                    setBioSavedAnim(false);
-                    // Allow reflow to restart the animation even if same value saved
-                    requestAnimationFrame(() => setBioSavedAnim(true));
-                    // Compute total animation time based on text length
-                    const len = (updatedProfile.comment || '').length;
-                    const total = 500 + 25 * Math.max(0, len - 1) + 150; // base + per-char stagger + buffer
-                    setTimeout(() => setBioSavedAnim(false), total);
-                    setEditMode(false);
-                  } catch (error: any) {
-                    const msg =
-                      error?.response?.data?.message ||
-                      error?.message ||
-                      '요청 처리 중 오류가 발생했습니다.';
-                    setErrorMessage(msg);
-                    setErrorModalOpen(true);
-                  }
-                }
-              }}
+              onClick={saveButtonOnClick}
             />
           </>
         ) : (
