@@ -21,7 +21,7 @@ const Container = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 2fr 0.5fr 0.5fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   align-items: center;
 
   height: 100%;
@@ -45,7 +45,7 @@ const ProfileImage = styled.img`
 
 const ProfileImageWrapper = styled.div`
   grid-column: 1 / 2;
-  grid-row: 1 / 7;
+  grid-row: 1 / 9;
 
   display: flex;
   justify-content: center;
@@ -54,7 +54,7 @@ const ProfileImageWrapper = styled.div`
 
 const NicknameWrapper = styled.div`
   grid-column: 2 / 3;
-  grid-row: 1 / 3;
+  grid-row: 1 / 5;
 
   display: flex;
   justify-content: flex-start;
@@ -63,7 +63,7 @@ const NicknameWrapper = styled.div`
 
 const BioWrapper = styled.div`
   grid-column: 2 / 3;
-  grid-row: 3 / 6;
+  grid-row: 5 / 7;
 
   display: flex;
   justify-content: flex-start;
@@ -72,7 +72,7 @@ const BioWrapper = styled.div`
 
 const RegionWrapper = styled.div`
   grid-column: 3 / 4;
-  grid-row: 2 / 5;
+  grid-row: 2 / 7;
 
   font-size: 1.5em; /* make flag icon larger */
 
@@ -83,7 +83,7 @@ const RegionWrapper = styled.div`
 
 const ControlButtonWrapper = styled.div`
   grid-column: 4 / 5;
-  grid-row: 3 / 4;
+  grid-row: 2 / 7;
 
   display: flex;
   justify-content: center;
