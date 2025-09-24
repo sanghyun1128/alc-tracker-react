@@ -15,7 +15,6 @@ const DisplayText = styled.span`
   /* Typography */
   font-family: inherit;
   font-weight: bold;
-  color: ${props => props.theme.colors.text};
 `;
 
 const InlineInput = styled.input`
@@ -35,7 +34,6 @@ const InlineInput = styled.input`
   background-color: ${props => props.theme.colors.inputBackground};
 
   /* Typography */
-  color: ${props => props.theme.colors.text};
   font: inherit; /* size, family */
   font-weight: inherit;
   line-height: inherit;
