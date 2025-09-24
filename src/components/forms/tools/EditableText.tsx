@@ -7,10 +7,10 @@ import TextUpdateAnimation from '../../../animations/TextUpdateAnimation';
 const DisplayText = styled.span`
   /* Layout */
   display: inline-block;
+  width: 100%;
 
   /* Box model */
   margin: 0;
-  padding: ${props => props.theme.padding} 0;
 
   /* Typography */
   font-family: inherit;
@@ -26,7 +26,7 @@ const InlineInput = styled.input`
   /* Box model */
   box-sizing: border-box;
   margin: 0;
-  padding: ${props => props.theme.padding} 0;
+  padding: ${props => props.theme.padding};
   border: none;
   border-radius: ${props => props.theme.borderRadius};
 
@@ -34,14 +34,12 @@ const InlineInput = styled.input`
   background-color: ${props => props.theme.colors.inputBackground};
 
   /* Typography */
-  font: inherit; /* size, family */
   font-weight: inherit;
   line-height: inherit;
   letter-spacing: inherit;
 
   /* Interaction */
   outline: none;
-  -webkit-appearance: none;
   appearance: none;
 `;
 
