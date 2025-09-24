@@ -25,7 +25,7 @@ const Container = styled.div`
   align-items: center;
 
   height: 100%;
-  min-height: 0;
+  min-height: 120px;
 
   background-color: ${props => props.theme.colors.componentBackground};
   border-radius: ${props => props.theme.borderRadius};
@@ -151,6 +151,15 @@ export default function Profile() {
 
   return (
     <Container>
+      {errorModalOpen && (
+        <NotificationModal
+          title="오류"
+          message={errorMessage || '에러가 발생했습니다.'}
+          confirmText="확인"
+          onClose={() => setErrorModalOpen(false)}
+        />
+      )}
+
       <ProfileImageWrapper>
         <ProfileImage src={profileImageSrc || defaultProfileImage} />
       </ProfileImageWrapper>
@@ -164,7 +173,7 @@ export default function Profile() {
           onDraftChange={setBio}
           editing={editMode}
           placeholder="한 줄 소개"
-          maxLength={100}
+          maxLength={30}
           as={'h5'}
         />
       </BioWrapper>
@@ -174,15 +183,6 @@ export default function Profile() {
           description="거주 국가"
         />
       </RegionWrapper>
-
-      {errorModalOpen && (
-        <NotificationModal
-          title="오류"
-          message={errorMessage || '에러가 발생했습니다.'}
-          confirmText="확인"
-          onClose={() => setErrorModalOpen(false)}
-        />
-      )}
 
       <ControlButtonWrapper ref={currentButtonsRef}>
         {editMode ? (
