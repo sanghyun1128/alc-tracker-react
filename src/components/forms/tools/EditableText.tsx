@@ -10,6 +10,7 @@ const DisplayText = styled.span`
 
   /* Box model */
   margin: 0;
+  padding: ${props => props.theme.padding} 0;
 
   /* Typography */
   font-family: inherit;
@@ -26,7 +27,7 @@ const InlineInput = styled.input`
   /* Box model */
   box-sizing: border-box;
   margin: 0;
-  padding: ${props => props.theme.padding};
+  padding: ${props => props.theme.padding} 0;
   border: none;
   border-radius: ${props => props.theme.borderRadius};
 
