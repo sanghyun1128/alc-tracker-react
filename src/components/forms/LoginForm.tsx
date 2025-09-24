@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultTheme, styled } from 'styled-components';
 
-import { TextInput, SquareButton, TextButton } from '..';
+import { TextInput, SquareButton, TextButton, NotificationModal } from '..';
 import { fadeInBottomToCenter } from '../../animations/basicAnimations';
 import { requests } from '../../api/requests';
 import { deviceSizes } from '../../const/deviceSizes';
@@ -47,6 +47,9 @@ export default function LoginForm({ theme }: LoginFormProps) {
   const [password, setPassword] = useState<string>('');
   const [isEmailError, setIsEmailError] = useState<boolean>(false);
   const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
+
+  const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
 
   const emailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,34 +69,42 @@ export default function LoginForm({ theme }: LoginFormProps) {
     const isPasswordValid = passwordValidation(password);
 
     if (!isEmailValid) {
-      console.log('Email is invalid');
       setIsEmailError(true);
     } else {
-      console.log('Email is valid');
       setIsEmailError(false);
     }
 
     if (!isPasswordValid) {
-      console.log('Password is invalid');
       setIsPasswordError(true);
     } else {
-      console.log('Password is valid');
       setIsPasswordError(false);
     }
 
     if (isEmailValid && isPasswordValid) {
       try {
-        const response = await requests.emailLogin(email, password);
-
-        console.log('Logged in successfully', response.data);
-      } catch (error) {
-        console.error('Error logging in:', error);
+        await requests.emailLogin(email, password);
+        navigate('/my');
+      } catch (error: any) {
+        const msg =
+          error?.response?.data?.message ||
+          error?.message ||
+          '요청 처리 중 오류가 발생했습니다.';
+        setErrorMessage(msg);
+        setErrorModalOpen(true);
       }
     }
   };
 
   return (
     <Form onSubmit={event => submitForm(event)}>
+      {errorModalOpen && (
+        <NotificationModal
+          title="오류"
+          message={errorMessage || '에러가 발생했습니다.'}
+          confirmText="확인"
+          onClose={() => setErrorModalOpen(false)}
+        />
+      )}
       <TextInput
         placeholder="Email"
         value={email}
