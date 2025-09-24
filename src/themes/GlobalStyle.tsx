@@ -12,6 +12,9 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
+    font-family: system-ui;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   *, *::before, *::after {
     box-sizing: inherit;
@@ -22,15 +25,5 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: ${props => props.theme.colors.background};
     color: var(--color-text);
-    font-family:
-    system-ui,
-    -apple-system,
-    system-ui,
-    'Helvetica Neue',
-    Helvetica,
-    Arial,
-    sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 `;
