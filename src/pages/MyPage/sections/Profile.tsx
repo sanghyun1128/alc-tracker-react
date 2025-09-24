@@ -20,9 +20,8 @@ const Container = styled.div`
   grid-row: 1 / 2;
 
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  justify-items: stretch;
+  grid-template-columns: 1fr 2fr 0.5fr 0.5fr;
+  grid-template-rows: repeat(5, 1fr);
   align-items: center;
 
   height: 100%;
@@ -46,7 +45,7 @@ const ProfileImage = styled.img`
 
 const ProfileImageWrapper = styled.div`
   grid-column: 1 / 2;
-  grid-row: 1 / 4;
+  grid-row: 1 / 7;
 
   display: flex;
   justify-content: center;
@@ -64,7 +63,7 @@ const NicknameWrapper = styled.div`
 
 const BioWrapper = styled.div`
   grid-column: 2 / 3;
-  grid-row: 2 / 4;
+  grid-row: 3 / 6;
 
   display: flex;
   justify-content: flex-start;
@@ -73,7 +72,9 @@ const BioWrapper = styled.div`
 
 const RegionWrapper = styled.div`
   grid-column: 3 / 4;
-  grid-row: 2 / 3;
+  grid-row: 2 / 5;
+
+  font-size: 1.5em; /* make flag icon larger */
 
   display: flex;
   justify-content: space-around;
@@ -82,7 +83,7 @@ const RegionWrapper = styled.div`
 
 const ControlButtonWrapper = styled.div`
   grid-column: 4 / 5;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
 
   display: flex;
   justify-content: center;
@@ -170,7 +171,6 @@ export default function Profile() {
       <RegionWrapper>
         <CountryFlagIcon
           region={userInfo?.profile.regionISOAlpha2 || ''}
-          size={30}
           description="거주 국가"
         />
       </RegionWrapper>
