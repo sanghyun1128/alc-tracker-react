@@ -34,22 +34,28 @@ const Container = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: min(40px, 60%);
-  height: min(40px, 60%);
-
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-
-  margin: 0;
+  display: block;
 `;
 
 const ProfileImageWrapper = styled.div`
   grid-column: 1 / 2;
   grid-row: 1 / 9;
+  justify-self: center;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 80%;
+  min-width: 70px;
+  max-width: 100px;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+  overflow: hidden;
 `;
 
 const NicknameWrapper = styled.div`
@@ -164,7 +170,17 @@ export default function Profile() {
         <ProfileImage src={profileImageSrc || defaultProfileImage} />
       </ProfileImageWrapper>
       <NicknameWrapper>
-        <h2>{userInfo?.nickname || '닉네임 없음'}</h2>
+        <EditableText
+          value={userInfo?.nickname || ''}
+          draftValue={userInfo?.nickname || ''}
+          onDraftChange={e => {
+            /* Nickname is not editable */
+          }}
+          editing={false}
+          placeholder="닉네임"
+          maxLength={20}
+          as={'h3'}
+        />
       </NicknameWrapper>
       <BioWrapper>
         <EditableText
